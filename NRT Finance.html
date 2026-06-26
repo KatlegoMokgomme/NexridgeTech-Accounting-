@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NRT Enterprise Finance — NexridgeTech IT Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════
+   ENTERPRISE ACCOUNTING SYSTEM — CSS
+   NexridgeTech IT Solutions
+   IFRS-compliant · Double-entry · CA-grade
+═══════════════════════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Backgrounds */
+  --bg0:#080c14;--bg1:#0d1117;--bg2:#141b27;--bg3:#1c2538;--bg4:#232e46;
+  /* Brand */
+  --br:#00e5b0;--br2:#00c49a;--br3:#007d63;
+  --ba6:rgba(0,229,176,.06);--ba12:rgba(0,229,176,.12);--ba20:rgba(0,229,176,.20);--ba30:rgba(0,229,176,.30);
+  /* Borders */
+  --bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.12);--bd3:rgba(255,255,255,.18);--bdbr:rgba(0,229,176,.20);
+  /* Text */
+  --tx:rgba(255,255,255,.92);--tx2:rgba(255,255,255,.58);--tx3:rgba(255,255,255,.32);--tx4:rgba(255,255,255,.12);
+  /* Semantic */
+  --ok:#10b981;--ok2:#059669;--oka:rgba(16,185,129,.12);--oka2:rgba(16,185,129,.22);
+  --warn:#f59e0b;--warna:rgba(245,158,11,.12);--warna2:rgba(245,158,11,.22);
+  --err:#ef4444;--erra:rgba(239,68,68,.12);--erra2:rgba(239,68,68,.22);
+  --info:#3b82f6;--info2:#1d4ed8;--infoa:rgba(59,130,246,.12);--infoa2:rgba(59,130,246,.22);
+  --pur:#8b5cf6;--pura:rgba(139,92,246,.12);--pura2:rgba(139,92,246,.22);
+  --gold:#f59e0b;--golda:rgba(245,158,11,.12);
+  /* Fonts */
+  --f:'Inter',system-ui,sans-serif;--m:'JetBrains Mono',monospace;
+  /* Layout */
+  --sbw:230px;--th:52px;
+  /* Shadows */
+  --sh1:0 2px 8px rgba(0,0,0,.45);--sh2:0 8px 32px rgba(0,0,0,.55);
+  --sh3:0 20px 64px rgba(0,0,0,.70);--sh4:0 32px 96px rgba(0,0,0,.80);
+  /* Glow */
+  --glow:0 0 20px rgba(0,229,176,.25),0 0 60px rgba(0,229,176,.08);
+  --glow2:0 0 10px rgba(0,229,176,.18);
+  /* Print colours */
+  --pk:#0a0f1e;--pk2:#1e293b;--pk3:#4b6278;--pl:#dde6ef;--pl2:#b8c8d8;--pbg:#f5f8fc;--pbg2:#eaf0f7;
+}
+html,body{height:100%;font-family:var(--f);font-size:14px;color:var(--tx);background:var(--bg0);overflow:hidden}
+input,select,textarea,button{font-family:inherit;font-size:inherit}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:99px}
+
+/* ── LOGIN ─────────────────────────────────── */
+#ls{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;padding:1rem;
+  background:radial-gradient(ellipse at 50% 30%,rgba(0,229,176,.05),transparent 65%),var(--bg0)}
+.lc{width:100%;max-width:400px;background:var(--bg1);border:1px solid var(--bd2);border-radius:16px;
+  padding:2.5rem 2rem;box-shadow:var(--sh4);position:relative;overflow:hidden}
+.lc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--ba30),transparent)}
+.lc::after{content:'';position:absolute;top:0;left:0;right:0;height:80px;
+  background:radial-gradient(ellipse at 50% -10px,rgba(0,229,176,.06),transparent 70%);pointer-events:none}
+.lbrand{display:flex;align-items:center;gap:.55rem;margin-bottom:1.75rem;position:relative;z-index:1}
+.llogo{width:40px;height:40px;background:linear-gradient(135deg,var(--br),var(--br3));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:var(--glow2);flex-shrink:0}
+.llogo svg{width:18px;height:18px;color:#000}
+.lbn{font-size:.97rem;font-weight:700}.lbn em{color:var(--br);font-style:normal;font-weight:800}
+.lbs{font-size:.55rem;font-family:var(--m);color:var(--tx3);letter-spacing:.1em;text-transform:uppercase}
+.lh{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.2rem}
+.lsub{font-size:.78rem;color:var(--tx2);margin-bottom:1.5rem;line-height:1.5}
+.lff{margin-bottom:.65rem}
+.ll{display:block;font-size:.59rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tx3);margin-bottom:.3rem}
+.li{width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:.6rem .8rem;
+  color:var(--tx);font-size:.82rem;outline:none;transition:all .15s}
+.li:focus{border-color:var(--bdbr);background:var(--bg3);box-shadow:0 0 0 3px var(--ba6)}
+.lerr{font-size:.73rem;color:var(--err);background:var(--erra);border:1px solid var(--erra2);
+  border-radius:7px;padding:.45rem .7rem;margin-bottom:.7rem;display:none}
+.lerr.v{display:block}
+.lbtn{width:100%;background:linear-gradient(135deg,var(--br),var(--br3));color:#000;border:none;
+  border-radius:8px;padding:.72rem;font-weight:800;font-size:.85rem;cursor:pointer;
+  transition:all .2s;box-shadow:var(--glow2);margin-top:.25rem}
+.lbtn:hover{box-shadow:var(--glow);transform:translateY(-1px)}
+.lft{font-size:.62rem;color:var(--tx3);text-align:center;margin-top:1.25rem;
+  padding-top:.9rem;border-top:1px solid var(--bd);font-family:var(--m)}
+
+/* ── APP SHELL ─────────────────────────────── */
+#app{display:none;flex-direction:column;height:100vh}
+#app.on{display:flex}
+
+/* ── TOPBAR ────────────────────────────────── */
+.topbar{height:var(--th);flex-shrink:0;
+  background:linear-gradient(180deg,var(--bg2),var(--bg1));
+  border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;padding:0 1rem 0 .75rem;gap:.5rem;
+  box-shadow:0 2px 16px rgba(0,0,0,.3);z-index:50}
+.tlogo{width:28px;height:28px;background:linear-gradient(135deg,var(--br),var(--br3));
+  border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:var(--glow2);flex-shrink:0}
+.tlogo svg{width:13px;height:13px;color:#000}
+.tname{font-size:.88rem;font-weight:700;white-space:nowrap;margin-left:.1rem}
+.tname em{color:var(--br);font-style:normal;font-weight:800}
+.tsep{width:1px;height:20px;background:var(--bd);flex-shrink:0;margin:0 .3rem}
+.tco{font-size:.78rem;font-weight:600;color:var(--tx2)}
+.tperiod{background:var(--bg3);border:1px solid var(--bd);border-radius:7px;
+  padding:.28rem .65rem;color:var(--tx);font-size:.73rem;outline:none;cursor:pointer;font-family:var(--f);transition:all .15s}
+.tperiod:focus{border-color:var(--bdbr);box-shadow:0 0 0 3px var(--ba6)}
+.tsp{flex:1}
+.tacts{display:flex;align-items:center;gap:.3rem}
+.tib{background:none;border:none;cursor:pointer;color:var(--tx2);padding:.38rem .45rem;
+  border-radius:7px;transition:all .15s;display:flex;align-items:center;justify-content:center;position:relative}
+.tib:hover{background:rgba(255,255,255,.06);color:var(--tx)}
+.tib .nb2{position:absolute;top:4px;right:4px;width:6px;height:6px;background:var(--err);
+  border-radius:50%;border:1.5px solid var(--bg1)}
+.tuc{display:flex;align-items:center;gap:.38rem;padding:.22rem .5rem .22rem .3rem;
+  background:var(--bg2);border:1px solid var(--bd);border-radius:8px;cursor:pointer;transition:all .15s}
+.tuc:hover{background:var(--bg3);border-color:var(--bdbr)}
+.tav{width:24px;height:24px;border-radius:6px;background:var(--ba12);border:1px solid var(--ba20);
+  display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--br);font-family:var(--m)}
+.tun{font-size:.73rem;font-weight:600}.tur{font-size:.56rem;color:var(--tx3);font-family:var(--m)}
+.tbadge{font-size:.6rem;padding:.15rem .45rem;border-radius:100px;background:var(--warna);color:var(--warn);
+  border:1px solid var(--warna2);font-family:var(--m);font-weight:600;white-space:nowrap}
+
+/* ── BODY ──────────────────────────────────── */
+.body{flex:1;display:flex;overflow:hidden}
+
+/* ── SIDEBAR NAV ───────────────────────────── */
+.sidenav{width:var(--sbw);flex-shrink:0;background:var(--bg1);border-right:1px solid var(--bd);
+  display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:thin;scrollbar-color:var(--bd) transparent}
+.sn-co{padding:.75rem .875rem .5rem;flex-shrink:0}
+.sn-co-name{font-size:.72rem;font-weight:700;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sn-co-tag{font-size:.58rem;color:var(--tx3);font-family:var(--m);margin-top:.08rem}
+.sn-divider{height:1px;background:var(--bd);margin:.35rem 0;flex-shrink:0}
+.sn-group{padding:.2rem 0}
+.sn-group-lbl{font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--tx3);padding:.35rem .875rem .2rem;font-family:var(--m)}
+.sn-item{display:flex;align-items:center;gap:.55rem;padding:.42rem .875rem;
+  cursor:pointer;transition:all .14s;border-radius:0;color:var(--tx2);font-size:.78rem;font-weight:500;
+  border:none;background:none;width:100%;text-align:left;border-left:2px solid transparent;position:relative}
+.sn-item:hover{background:rgba(255,255,255,.05);color:var(--tx)}
+.sn-item.on{background:var(--ba6);color:var(--br);border-left-color:var(--br);font-weight:600}
+.sn-item svg{width:14px;height:14px;flex-shrink:0;opacity:.7}
+.sn-item.on svg{opacity:1}
+.sn-item .sn-badge{font-size:.55rem;padding:.1rem .35rem;border-radius:100px;background:var(--err);
+  color:#fff;font-family:var(--m);font-weight:700;margin-left:auto}
+.sn-item .sn-badge.ok{background:var(--ok)}.sn-item .sn-badge.warn{background:var(--warn);color:#000}
+
+/* ── MAIN CONTENT ──────────────────────────── */
+.main{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.view{flex:1;overflow-y:auto;display:none;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:var(--bd) transparent}
+.view.on{display:flex}
+.vhd{padding:.875rem 1.5rem .75rem;border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+  background:linear-gradient(180deg,var(--bg2),var(--bg1));flex-shrink:0}
+.vhd-l .vt{font-size:1rem;font-weight:800;letter-spacing:-.025em}
+.vhd-l .vs{font-size:.67rem;color:var(--tx3);font-family:var(--m);margin-top:.1rem}
+.vhd-r{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.vcontent{flex:1;padding:1.25rem 1.5rem;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--bd) transparent;
+  background:radial-gradient(ellipse at 70% -15%,rgba(0,229,176,.02),transparent 55%)}
+
+/* ── BUTTONS ───────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;border-radius:7px;
+  font-family:var(--f);font-size:.75rem;font-weight:600;cursor:pointer;border:none;
+  padding:.45rem .82rem;transition:all .16s;min-height:30px;white-space:nowrap;letter-spacing:-.01em}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.bbr{background:linear-gradient(135deg,var(--br),var(--br3));color:#000;box-shadow:var(--glow2)}
+.bbr:hover:not(:disabled){box-shadow:var(--glow);transform:translateY(-1px)}
+.bgh{background:var(--bg2);color:var(--tx);border:1px solid var(--bd)}
+.bgh:hover:not(:disabled){background:var(--bg3);border-color:var(--bd2);transform:translateY(-1px)}
+.bok2{background:var(--oka);color:var(--ok);border:1px solid var(--oka2)}
+.bok2:hover:not(:disabled){background:rgba(16,185,129,.2)}
+.bdan{background:var(--erra);color:var(--err);border:1px solid var(--erra2)}
+.bdan:hover:not(:disabled){background:rgba(239,68,68,.18)}
+.binf{background:var(--infoa);color:var(--info);border:1px solid var(--infoa2)}
+.binf:hover:not(:disabled){background:rgba(59,130,246,.18)}
+.bpur{background:var(--pura);color:var(--pur);border:1px solid var(--pura2)}
+.bpur:hover:not(:disabled){background:rgba(139,92,246,.18)}
+.bsm{font-size:.68rem;padding:.28rem .6rem;min-height:26px}
+.bxs{font-size:.62rem;padding:.16rem .4rem;min-height:22px}
+
+/* ── FORMS ─────────────────────────────────── */
+.fg{margin-bottom:.6rem}
+.fl{display:block;font-size:.59rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tx3);margin-bottom:.3rem}
+.fl .req{color:var(--err);margin-left:.2rem}
+.fi,.fs{width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:7px;
+  padding:.5rem .72rem;color:var(--tx);font-size:.78rem;outline:none;transition:all .15s;-webkit-appearance:none}
+.fi:focus,.fs:focus{border-color:var(--bdbr);background:var(--bg3);box-shadow:0 0 0 3px var(--ba6)}
+.fi:hover:not(:focus),.fs:hover:not(:focus){border-color:var(--bd2)}
+.fi.mono{font-family:var(--m)}.fi.debit{border-color:rgba(59,130,246,.3)}.fi.credit{border-color:rgba(239,68,68,.3)}
+.fr{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+textarea.fi{resize:vertical;min-height:64px}
+.fval-err{font-size:.65rem;color:var(--err);margin-top:.2rem}
+
+/* ── KPI CARDS ─────────────────────────────── */
+.krow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:1.125rem}
+.kcard{background:var(--bg1);border:1px solid var(--bd);border-radius:12px;
+  padding:1rem 1.125rem;position:relative;overflow:hidden;transition:all .2s;cursor:default}
+.kcard:hover{border-color:var(--bd2);box-shadow:var(--sh1);transform:translateY(-1px)}
+.kcard::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:12px 12px 0 0}
+.kbr::after{background:linear-gradient(90deg,var(--br),var(--br3))}
+.kok::after{background:linear-gradient(90deg,var(--ok),var(--ok2))}
+.kinf::after{background:linear-gradient(90deg,var(--info),var(--info2))}
+.kwrn::after{background:linear-gradient(90deg,var(--warn),#d97706)}
+.kerr::after{background:linear-gradient(90deg,var(--err),#dc2626)}
+.kpur::after{background:linear-gradient(90deg,var(--pur),#6d28d9)}
+.kgold::after{background:linear-gradient(90deg,var(--gold),#d97706)}
+.kcard-label{font-size:.63rem;color:var(--tx3);font-weight:500;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em}
+.kcard-value{font-size:1.4rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+.kcard-sub{font-size:.62rem;color:var(--tx3);font-family:var(--m);margin-top:.2rem}
+.kcard-trend{font-size:.65rem;margin-top:.3rem;display:flex;align-items:center;gap:.25rem;font-weight:600}
+.kcard-trend.up{color:var(--ok)}.kcard-trend.dn{color:var(--err)}.kcard-trend.flat{color:var(--tx3)}
+
+/* ── DATA TABLES ───────────────────────────── */
+.tbwrap{background:var(--bg1);border:1px solid var(--bd);border-radius:11px;overflow:hidden}
+.tbhd{display:flex;align-items:center;justify-content:space-between;padding:.6rem .9rem;
+  border-bottom:1px solid var(--bd);gap:.4rem;flex-wrap:wrap;background:var(--bg2)}
+.tbhdl{font-size:.78rem;font-weight:700}
+.tbl{width:100%;border-collapse:collapse;font-size:.75rem}
+.tbl th{padding:.42rem .7rem;text-align:left;font-size:.58rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--tx3);border-bottom:1px solid var(--bd);white-space:nowrap;
+  background:var(--bg2);cursor:pointer;user-select:none;transition:color .15s}
+.tbl th:hover{color:var(--tx)}
+.tbl th.nr,.tbl td.nr{text-align:right}
+.tbl th.cr,.tbl td.cr{text-align:center}
+.tbl td{padding:.48rem .7rem;border-bottom:1px solid var(--bd);vertical-align:middle}
+.tbl tbody tr{transition:background .12s;cursor:pointer}
+.tbl tbody tr:hover td{background:rgba(255,255,255,.03)}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl td.amt{font-family:var(--m);font-weight:700;text-align:right}
+.tbl td.amtdr{font-family:var(--m);font-weight:700;text-align:right;color:var(--info)}
+.tbl td.amtcr{font-family:var(--m);font-weight:700;text-align:right;color:var(--ok)}
+.tbl td.neg{color:var(--err)}.tbl td.pos{color:var(--ok)}
+.tbl td.mn{font-family:var(--m);font-size:.7rem}
+.tbl-empty{padding:2.5rem;text-align:center;color:var(--tx3);font-size:.75rem}
+.tbl-sub{background:var(--ba6)!important}
+.tbl-total td{font-weight:700;border-top:2px solid var(--bd2)!important}
+.tbl-grand td{font-weight:800;font-size:.82rem;background:var(--ba12)!important}
+
+/* ── PILLS & BADGES ────────────────────────── */
+.pill{display:inline-flex;align-items:center;padding:.15rem .48rem;border-radius:100px;
+  font-size:.58rem;font-family:var(--m);font-weight:600;letter-spacing:.07em;text-transform:uppercase;border:1px solid transparent}
+.pdr{background:var(--infoa);color:var(--info);border-color:var(--infoa2)}
+.pcr{background:var(--oka);color:var(--ok);border-color:var(--oka2)}
+.ppos{background:var(--ba12);color:var(--br);border-color:var(--ba20)}
+.pneg{background:var(--erra);color:var(--err);border-color:var(--erra2)}
+.pdraft{background:rgba(255,255,255,.06);color:var(--tx3);border-color:var(--bd)}
+.pposted{background:var(--oka);color:var(--ok);border-color:var(--oka2)}
+.ppending{background:var(--warna);color:var(--warn);border-color:var(--warna2)}
+.pvoided{background:var(--erra);color:var(--err);border-color:var(--erra2)}
+.ppaid{background:var(--oka);color:var(--ok);border-color:var(--oka2)}
+.ppart{background:var(--warna);color:var(--warn);border-color:var(--warna2)}
+.povd{background:var(--erra);color:var(--err);border-color:var(--erra2)}
+.popen{background:var(--infoa);color:var(--info);border-color:var(--infoa2)}
+.passet{background:var(--infoa);color:var(--info);border-color:var(--infoa2)}
+.pliab{background:var(--erra);color:var(--err);border-color:var(--erra2)}
+.pequity{background:var(--pura);color:var(--pur);border-color:var(--pura2)}
+.prev{background:var(--oka);color:var(--ok);border-color:var(--oka2)}
+.pexp{background:var(--warna);color:var(--warn);border-color:var(--warna2)}
+.pcos{background:var(--golda);color:var(--gold);border-color:rgba(245,158,11,.22)}
+
+/* ── ACCOUNT TYPE COLOURS ──────────────────── */
+.at-asset{color:var(--info)}.at-contra{color:var(--pur)}.at-liab{color:var(--err)}.at-equity{color:var(--br)}.at-rev{color:var(--ok)}.at-cos{color:var(--gold)}.at-exp{color:var(--warn)}
+
+/* ── SECTION CARDS ─────────────────────────── */
+.sc{background:var(--bg1);border:1px solid var(--bd);border-radius:11px;margin-bottom:.9rem;overflow:hidden}
+.sc-hd{padding:.65rem .9rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:var(--bg2)}
+.sc-ht{font-size:.78rem;font-weight:700}.sc-hs{font-size:.65rem;color:var(--tx3)}
+.sc-bd{padding:.875rem .9rem}
+
+/* ── MODAL ─────────────────────────────────── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);
+  z-index:500;display:none;align-items:center;justify-content:center;padding:1rem}
+.ov.open{display:flex}
+.mbox{background:var(--bg1);border:1px solid var(--bd2);border-radius:14px;
+  box-shadow:var(--sh4);overflow:hidden;width:100%;max-width:560px;max-height:90vh;display:flex;flex-direction:column}
+.mbox.wide{max-width:860px}.mbox.xlg{max-width:1000px}
+.mhd{padding:.8rem 1.1rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mht{font-size:.88rem;font-weight:700}.mhs{font-size:.67rem;color:var(--tx3)}
+.mbd{padding:1.1rem;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--bd) transparent;flex:1}
+.mft{padding:.8rem 1.1rem;border-top:1px solid var(--bd);display:flex;justify-content:flex-end;gap:.4rem;flex-shrink:0}
+
+/* ── JOURNAL ENTRY LINES ───────────────────── */
+.jl-grid{display:grid;grid-template-columns:auto 1fr 120px 120px 80px;gap:4px;align-items:center}
+.jl-hdr{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3);
+  padding:.28rem .5rem;border-bottom:1px solid var(--bd);margin-bottom:.3rem}
+.jl-row{background:var(--bg2);border:1px solid var(--bd);border-radius:6px;padding:.38rem .5rem;
+  transition:border-color .14s;display:contents}
+.jl-row:hover > *{background:var(--bg3)}
+.jl-num{font-family:var(--m);font-size:.67rem;color:var(--tx3);text-align:center;background:var(--bg3);
+  border-radius:4px;padding:.32rem .4rem;min-width:28px}
+.fi.jl-acc{font-size:.73rem}
+.fi.jl-dr{color:var(--info);border-color:rgba(59,130,246,.25);text-align:right;font-family:var(--m)}
+.fi.jl-cr{color:var(--ok);border-color:rgba(16,185,129,.25);text-align:right;font-family:var(--m)}
+
+/* ── FINANCIAL STATEMENT STYLES ─────────────── */
+.fs-wrap{background:#fff;color:var(--pk);border-radius:11px;box-shadow:var(--sh2);overflow:hidden;font-family:var(--f);margin-bottom:1rem}
+.fs-hdr{background:#004d3e;color:#fff;padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:start;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.fs-co{font-size:1rem;font-weight:800;letter-spacing:-.02em}.fs-co em{color:#00e5b0;font-style:normal}
+.fs-type{font-size:.88rem;font-weight:700;margin-top:.2rem}
+.fs-period{font-size:.65rem;opacity:.75;margin-top:.1rem}
+.fs-body{padding:1rem 1.25rem}
+.fs-section{margin-bottom:.75rem}
+.fs-shead{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#004d3e;
+  padding:.32rem .5rem;background:#f0fdf9;border-left:3px solid #00c99a;margin-bottom:.35rem}
+.fs-row{display:grid;grid-template-columns:1fr auto;padding:.28rem .5rem;font-size:.76rem;border-radius:4px}
+.fs-row:hover{background:#f5f8fc}
+.fs-row.indent{padding-left:1.5rem;color:var(--pk2)}
+.fs-row.indent2{padding-left:2.5rem;color:var(--pk2);font-size:.72rem}
+.fs-row.sub{font-weight:600;border-top:1px solid var(--pl)}
+.fs-row.total{font-weight:700;border-top:2px solid var(--pl2);margin-top:.2rem}
+.fs-row.grand{font-weight:800;font-size:.88rem;background:#004d3e;color:#fff;border-radius:6px;
+  padding:.5rem .75rem;margin-top:.35rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.fs-row.grand .fs-val.pos,.fs-row.grand .fs-val{color:#fff}
+.fs-val{font-family:var(--m);font-weight:600;white-space:nowrap}
+.fs-val.pos{color:#059669}.fs-val.neg{color:#dc2626}
+.fs-val.dr{color:#1d4ed8}.fs-val.cr{color:#059669}
+.fs-divider{border:none;border-top:1px solid var(--pl);margin:.4rem 0}
+.fs-footer{background:#f5f8fc;border-top:2px solid #004d3e;padding:.6rem 1.25rem;
+  display:flex;justify-content:space-between;font-size:.62rem;color:var(--pk3)}
+
+/* ── CHARTS (CSS/SVG based) ─────────────────── */
+.chart-wrap{background:var(--bg2);border-radius:9px;padding:.875rem;margin-bottom:.875rem;overflow:hidden}
+.chart-title{font-size:.73rem;font-weight:700;margin-bottom:.65rem}
+.bar-chart{display:flex;align-items:flex-end;gap:4px;height:120px;overflow-x:auto}
+.bar-group{display:flex;align-items:flex-end;gap:2px;flex:1;min-width:24px}
+.bar{border-radius:3px 3px 0 0;min-height:3px;transition:height .4s cubic-bezier(.34,1.56,.64,1);cursor:pointer}
+.bar.rev{background:var(--ok)}.bar.exp{background:var(--err)}.bar.pro{background:var(--br)}
+.bar.ar{background:var(--info)}.bar.ap{background:var(--warn)}
+.bar-lbl{font-size:.46rem;color:var(--tx3);font-family:var(--m);white-space:nowrap;margin-top:.3rem;text-align:center}
+.donut-wrap{display:flex;align-items:center;gap:1rem}
+.donut-legend{display:flex;flex-direction:column;gap:.3rem;flex:1}
+.dl-item{display:flex;align-items:center;gap:.35rem;font-size:.68rem}
+.dl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.metric-item{background:var(--bg3);border-radius:7px;padding:.55rem .7rem}
+.metric-lbl{font-size:.58rem;color:var(--tx3);margin-bottom:.18rem;text-transform:uppercase;letter-spacing:.06em}
+.metric-val{font-size:.95rem;font-weight:800;letter-spacing:-.03em}
+.metric-val.good{color:var(--ok)}.metric-val.warn{color:var(--warn)}.metric-val.bad{color:var(--err)}.metric-val.neutral{color:var(--br)}
+
+/* ── AGING TABLE ───────────────────────────── */
+.age-hdr{display:flex;gap:1rem;background:var(--bg2);border-radius:9px;padding:.55rem .875rem;margin-bottom:.875rem;flex-wrap:wrap}
+.age-bkt{display:flex;flex-direction:column;gap:.06rem}
+.abkl{font-size:.55rem;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em}
+.abkv{font-size:.88rem;font-weight:800;font-family:var(--m)}
+.abkv.cur{color:var(--ok)}.abkv.d30{color:var(--warn)}.abkv.d60{color:var(--err)}.abkv.d90{color:var(--err);text-decoration:underline}
+
+/* ── SEARCH / FILTER BAR ───────────────────── */
+.sbar{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.875rem}
+.sin{background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:.4rem .72rem;
+  color:var(--tx);font-size:.78rem;outline:none;transition:all .15s;flex:1;min-width:160px}
+.sin:focus{border-color:var(--bdbr);box-shadow:0 0 0 3px var(--ba6)}
+.ssel{background:var(--bg2);border:1px solid var(--bd);border-radius:7px;
+  padding:.32rem .55rem;color:var(--tx);font-size:.73rem;outline:none;cursor:pointer;font-family:var(--f)}
+.ssel:focus{border-color:var(--bdbr);box-shadow:0 0 0 3px var(--ba6)}
+.fchip{font-size:.68rem;padding:.23rem .58rem;border-radius:100px;border:1px solid var(--bd);
+  background:none;color:var(--tx3);cursor:pointer;transition:all .13s;font-family:var(--f)}
+.fchip.on{background:var(--ba12);color:var(--br);border-color:var(--ba20)}
+.fchip:hover:not(.on){color:var(--tx);border-color:var(--bd2)}
+
+/* ── TOASTS ────────────────────────────────── */
+#toasts{position:fixed;bottom:1.25rem;right:1.25rem;z-index:9999;display:flex;flex-direction:column;gap:.35rem;pointer-events:none}
+.toast{background:var(--bg3);border:1px solid var(--bd2);border-radius:9px;padding:.55rem .825rem;
+  font-size:.75rem;max-width:300px;box-shadow:var(--sh3);animation:tIn .2s ease;
+  display:flex;align-items:center;gap:.42rem;pointer-events:auto}
+.toast.out{animation:tOut .2s ease forwards}
+@keyframes tIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tOut{to{opacity:0;transform:translateY(6px)}}
+
+/* ── RECONCILIATION ────────────────────────── */
+.rec-pair{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.rec-col{background:var(--bg2);border-radius:9px;padding:.65rem}
+.rec-col-hd{font-size:.68rem;font-weight:700;margin-bottom:.5rem;color:var(--tx2)}
+.rec-item{display:flex;align-items:center;gap:.4rem;padding:.3rem .42rem;border-radius:5px;
+  font-size:.72rem;cursor:pointer;transition:all .13s;border:1px solid transparent}
+.rec-item:hover{background:var(--bg3)}.rec-item.matched{background:var(--oka);border-color:var(--oka2);opacity:.7}
+.rec-chk{width:13px;height:13px;accent-color:var(--ok);flex-shrink:0}
+
+/* ── AUDIT TRAIL ───────────────────────────── */
+.audit-item{display:flex;gap:.65rem;padding:.55rem 0;border-bottom:1px solid var(--bd);font-size:.72rem}
+.audit-item:last-child{border-bottom:none}
+.audit-time{font-family:var(--m);font-size:.65rem;color:var(--tx3);white-space:nowrap;flex-shrink:0;min-width:120px}
+.audit-user{color:var(--br);font-weight:600;flex-shrink:0;min-width:80px}
+.audit-action{color:var(--tx2)}
+
+/* ── SPLIT LAYOUT ──────────────────────────── */
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:.875rem}
+.split3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.875rem}
+.split-r{display:grid;grid-template-columns:2fr 1fr;gap:.875rem}
+.split-l{display:grid;grid-template-columns:1fr 2fr;gap:.875rem}
+
+/* ── TAB SYSTEM ────────────────────────────── */
+.tabs{display:flex;gap:.25rem;border-bottom:1px solid var(--bd);margin-bottom:1rem;flex-wrap:wrap}
+.tab{font-size:.73rem;font-weight:600;padding:.42rem .875rem;border-radius:7px 7px 0 0;
+  border:1px solid transparent;background:none;color:var(--tx3);cursor:pointer;
+  transition:all .14s;border-bottom:none;font-family:var(--f)}
+.tab.on{background:var(--bg1);color:var(--br);border-color:var(--bd);border-bottom-color:var(--bg1)}
+.tab:hover:not(.on){color:var(--tx)}
+.tabp{display:none}.tabp.on{display:block}
+
+/* ── PROGRESS BARS ─────────────────────────── */
+.pbar{height:6px;background:var(--bg3);border-radius:100px;overflow:hidden;margin:.25rem 0}
+.pfill{height:100%;border-radius:100px;transition:width .4s}
+.pfill.ok{background:var(--ok)}.pfill.warn{background:var(--warn)}.pfill.err{background:var(--err)}.pfill.br{background:var(--br)}
+
+/* ── FIXED ASSETS ──────────────────────────── */
+.asset-card{background:var(--bg2);border:1px solid var(--bd);border-radius:9px;padding:.75rem .875rem;
+  margin-bottom:.5rem;display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:center;transition:border-color .15s}
+.asset-card:hover{border-color:var(--bd2)}
+.asset-name{font-size:.8rem;font-weight:600}.asset-meta{font-size:.65rem;color:var(--tx3);font-family:var(--m);margin-top:.08rem}
+
+/* ── SUMMARY BOXES ─────────────────────────── */
+.sumbox{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem;margin-bottom:.9rem}
+.sum-item{background:var(--bg2);border-radius:8px;padding:.6rem .75rem;border:1px solid var(--bd)}
+.sum-l{font-size:.6rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.18rem}
+.sum-v{font-size:.95rem;font-weight:800;font-family:var(--m)}
+
+/* ── HELP NOTICE ───────────────────────────── */
+.notice{background:var(--infoa);border:1px solid var(--infoa2);border-radius:8px;padding:.6rem .82rem;
+  font-size:.72rem;color:var(--tx2);line-height:1.6;margin-bottom:.875rem}
+.notice strong{color:var(--tx)}
+.notice.warn{background:var(--warna);border-color:var(--warna2)}
+.notice.ok{background:var(--oka);border-color:var(--oka2)}
+
+/* ── PRINT ─────────────────────────────────── */
+@media print{
+  :root{--pk:#0a0f1e!important;--pk2:#1e293b!important;--pk3:#4b6278!important;--pl:#dde6ef!important;--pl2:#b8ccd8!important;--pbg:#f5f8fc!important;--pbg2:#eaf0f7!important}
+  @page{size:A4;margin:14mm 15mm 12mm 15mm}
+  html,body{height:auto!important;overflow:visible!important;background:#fff!important;
+    -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  #ls,#toasts,.topbar,.sidenav,.vhd{display:none!important}
+  #app,#app>.body{display:block!important;height:auto!important;overflow:visible!important}
+  .view{display:none!important}.view.on{display:block!important;height:auto!important;overflow:visible!important}
+  .vcontent{padding:0!important;background:#fff!important;overflow:visible!important}
+  .fs-wrap,.tbwrap{box-shadow:none!important;border:1px solid var(--pl)!important}
+  .btn,.sbar,.tabs,.notice{display:none!important}
+  .fs-hdr,.fs-row.grand,.fs-shead{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+}
+/* misc */
+.mn{font-family:var(--m)}.t2{color:var(--tx2)}.t3{color:var(--tx3)}.es{padding:2.5rem;text-align:center;color:var(--tx3)}
+.ok-c{color:var(--ok)}.err-c{color:var(--err)}.warn-c{color:var(--warn)}.br-c{color:var(--br)}.info-c{color:var(--info)}
+.fw7{font-weight:700}.fw8{font-weight:800}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="ls">
+  <div class="lc">
+    <div class="lbrand"><div class="llogo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div><div class="lbn">Nexridge<em>Tech</em></div><div class="lbs">Enterprise Finance</div></div></div>
+    <div class="lh">Sign In</div>
+    <div class="lsub">Access your financial management platform</div>
+    <div class="lerr" id="lerr">Invalid credentials. Please try again.</div>
+    <div class="lff"><label class="ll">Username</label><input class="li" id="lu" type="text" placeholder="admin" autocomplete="username"></div>
+    <div class="lff"><label class="ll">Password</label><input class="li" id="lp" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+    <button class="lbtn" onclick="doLogin()">Sign In →</button>
+    <div class="lft">admin / nrt2024 &nbsp;·&nbsp; CA-grade double-entry accounting</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="tlogo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <div class="tname">NRT<em>Finance</em></div>
+    <div class="tsep"></div>
+    <div class="tco" id="tco">NexridgeTech IT Solutions</div>
+    <div class="tsep"></div>
+    <select class="tperiod" id="tPeriod" onchange="onPeriodChange()">
+      <option value="2026-01">Jan 2026</option><option value="2026-02">Feb 2026</option>
+      <option value="2026-03">Mar 2026</option><option value="2026-04">Apr 2026</option>
+      <option value="2026-05">May 2026</option><option value="2026-06" selected>Jun 2026</option>
+      <option value="ytd2026">YTD 2026</option><option value="fy2025">FY 2025</option>
+    </select>
+    <div class="tsp"></div>
+    <div class="tacts">
+      <span class="tbadge" id="tPStatus">DRAFT PERIOD</span>
+      <button class="btn bbr bsm" onclick="openJournalModal()">+ Journal Entry</button>
+      <button class="tib" title="Notifications"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="nb2"></span></button>
+      <div class="tuc" onclick="T.info('Signed in as '+getUser().name)">
+        <div class="tav" id="tav">A</div>
+        <div><div class="tun" id="tun">Admin</div><div class="tur">CA · Administrator</div></div>
+      </div>
+      <button class="tib" onclick="doLogout()" title="Sign out"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="body">
+    <!-- Sidebar Nav -->
+    <nav class="sidenav">
+      <div class="sn-co"><div class="sn-co-name" id="sn-co">NexridgeTech IT Solutions</div><div class="sn-co-tag">Reg: 2018/123456/07 · VAT: 4120123456</div></div>
+      <div class="sn-divider"></div>
+      <div class="sn-group">
+        <button class="sn-item on" data-v="dashboard" onclick="sv('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Executive Dashboard</button>
+      </div>
+      <div class="sn-divider"></div>
+      <div class="sn-group">
+        <div class="sn-group-lbl">General Ledger</div>
+        <button class="sn-item" data-v="coa" onclick="sv('coa')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Chart of Accounts</button>
+        <button class="sn-item" data-v="journals" onclick="sv('journals')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Journal Entries</button>
+        <button class="sn-item" data-v="tb" onclick="sv('tb')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Trial Balance</button>
+      </div>
+      <div class="sn-divider"></div>
+      <div class="sn-group">
+        <div class="sn-group-lbl">Accounts Receivable</div>
+        <button class="sn-item" data-v="customers" onclick="sv('customers')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Customers</button>
+        <button class="sn-item" data-v="invoices" onclick="sv('invoices')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Sales Invoices<span class="sn-badge" id="snb-inv">0</span></button>
+        <button class="sn-item" data-v="receipts" onclick="sv('receipts')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Receipts</button>
+      </div>
+      <div class="sn-divider"></div>
+      <div class="sn-group">
+        <div class="sn-group-lbl">Accounts Payable</div>
+        <button class="sn-item" data-v="suppliers" onclick="sv('suppliers')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Suppliers</button>
+        <button class="sn-item" data-v="bills" onclick="sv('bills')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Purchase Bills<span class="sn-badge warn" id="snb-bills">0</span></button>
+        <button class="sn-item" data-v="payments" onclick="sv('payments')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payments</button>
+      </div>
+      <div class="sn-divider"></div>
+      <div class="sn-group">
+        <div class="sn-group-lbl">Banking</div>
+        <button class="sn-item" data-v="banking" onclick="sv('banking')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Bank Accounts</button>
+        <button class="sn-item" data-v="recon" onclick="sv('recon')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>Reconciliation</button>
+      </div>
+      <div class="sn-divider"></div>
+      <div class="sn-group">
+        <div class="sn-group-lbl">Financial Reports</div>
+        <button class="sn-item" data-v="reports" onclick="sv('reports')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Financial Statements</button>
+        <button class="sn-item" data-v="tax" onclick="sv('tax')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Tax Report (VAT201)</button>
+        <button class="sn-item" data-v="assets" onclick="sv('assets')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Fixed Assets</button>
+      </div>
+      <div class="sn-divider"></div>
+      <div class="sn-group">
+        <div class="sn-group-lbl">Administration</div>
+        <button class="sn-item" data-v="audit" onclick="sv('audit')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Audit Trail</button>
+        <button class="sn-item" data-v="settings" onclick="sv('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>Settings</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main">
+
+      <!-- ═══ DASHBOARD ═══════════════════════ -->
+      <div class="view on" id="v-dashboard">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Executive Dashboard</div><div class="vs" id="dash-period">Financial overview · All figures in ZAR</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="window.print()">Export PDF</button><button class="btn bbr bsm" onclick="sv('journals');openJournalModal()">+ Journal Entry</button></div></div>
+        <div class="vcontent">
+          <div class="krow" id="dash-kpi1"></div>
+          <div class="split2" style="margin-bottom:.9rem">
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Revenue vs Expenses (6 Months)</span></div><div class="sc-bd"><div class="chart-wrap" style="margin:0"><div class="bar-chart" id="dash-rev-chart" style="height:100px"></div></div></div></div>
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Key Financial Ratios</span></div><div class="sc-bd"><div class="metric-grid" id="dash-ratios"></div></div></div>
+          </div>
+          <div class="split3" style="margin-bottom:.9rem">
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Profitability</span></div><div class="sc-bd" id="dash-prof"></div></div>
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Liquidity &amp; Solvency</span></div><div class="sc-bd" id="dash-liq"></div></div>
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">AR &amp; AP Summary</span></div><div class="sc-bd" id="dash-arap"></div></div>
+          </div>
+          <div class="split2">
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Recent Journal Entries</span><button class="btn bgh bxs" onclick="sv('journals')">View All</button></div>
+              <div class="sc-bd" style="padding:0"><table class="tbl"><thead><tr><th>Date</th><th>Reference</th><th>Description</th><th class="nr">Debit</th><th class="nr">Credit</th><th>Status</th></tr></thead><tbody id="dash-journals"><tr><td colspan="6" class="tbl-empty">No entries</td></tr></tbody></table></div></div>
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Overdue Receivables</span><button class="btn bgh bxs" onclick="sv('invoices')">View All</button></div>
+              <div class="sc-bd" style="padding:0"><table class="tbl"><thead><tr><th>Customer</th><th>Invoice</th><th>Due</th><th class="nr">Amount</th></tr></thead><tbody id="dash-ar-aging"><tr><td colspan="4" class="tbl-empty">None overdue</td></tr></tbody></table></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ CHART OF ACCOUNTS ════════════════ -->
+      <div class="view" id="v-coa">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Chart of Accounts</div><div class="vs">IFRS-compliant account structure</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="exportCoaCSV()">Export CSV</button><button class="btn bbr bsm" onclick="openAccModal()">+ New Account</button></div></div>
+        <div class="vcontent">
+          <div class="sbar">
+            <input class="sin" id="coa-search" placeholder="Search accounts…" oninput="rCoA()">
+            <select class="ssel" id="coa-type" onchange="rCoA()"><option value="">All Types</option><option value="ASSET">Assets</option><option value="LIABILITY">Liabilities</option><option value="EQUITY">Equity</option><option value="REVENUE">Revenue</option><option value="COS">Cost of Sales</option><option value="EXPENSE">Expenses</option></select>
+          </div>
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Code</th><th>Account Name</th><th>Type</th><th>Sub-Type</th><th class="nr">Balance (DR)</th><th class="nr">Balance (CR)</th><th class="cr">Status</th><th></th></tr></thead>
+          <tbody id="coa-body"><tr><td colspan="8" class="tbl-empty">Loading…</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ JOURNAL ENTRIES ══════════════════ -->
+      <div class="view" id="v-journals">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Journal Entries</div><div class="vs">Double-entry ledger · All entries must balance</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="exportJournalsCSV()">Export</button><button class="btn bbr bsm" onclick="openJournalModal()">+ New Entry</button></div></div>
+        <div class="vcontent">
+          <div class="sbar">
+            <input class="sin" id="je-search" placeholder="Search reference, description…" oninput="rJournals()">
+            <select class="ssel" id="je-status" onchange="rJournals()"><option value="">All Status</option><option value="draft">Draft</option><option value="posted">Posted</option><option value="voided">Voided</option></select>
+            <input class="sin" id="je-from" type="date" style="max-width:130px" onchange="rJournals()" placeholder="From">
+            <input class="sin" id="je-to" type="date" style="max-width:130px" onchange="rJournals()" placeholder="To">
+          </div>
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Date</th><th>Reference</th><th>Description</th><th class="nr">Total DR</th><th class="nr">Total CR</th><th>Lines</th><th>Posted By</th><th>Status</th><th></th></tr></thead>
+          <tbody id="je-body"><tr><td colspan="9" class="tbl-empty">No journal entries.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ TRIAL BALANCE ════════════════════ -->
+      <div class="view" id="v-tb">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Trial Balance</div><div class="vs" id="tb-period-lbl">As at current period</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="window.print()">Print</button><button class="btn bgh bsm" onclick="exportTBcsv()">Export CSV</button></div></div>
+        <div class="vcontent">
+          <div id="tb-content"></div>
+        </div>
+      </div>
+
+      <!-- ═══ CUSTOMERS ═══════════════════════ -->
+      <div class="view" id="v-customers">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Customers</div><div class="vs">Accounts receivable master list</div></div>
+          <div class="vhd-r"><button class="btn bbr bsm" onclick="openCustModal()">+ New Customer</button></div></div>
+        <div class="vcontent">
+          <div class="sbar"><input class="sin" id="cust-search" placeholder="Search customers…" oninput="rCusts()"></div>
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Code</th><th>Name</th><th>Contact</th><th>Email</th><th>Phone</th><th>Payment Terms</th><th class="nr">Outstanding</th><th class="nr">Credit Limit</th><th></th></tr></thead>
+          <tbody id="cust-body"><tr><td colspan="9" class="tbl-empty">No customers.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ INVOICES ═════════════════════════ -->
+      <div class="view" id="v-invoices">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Sales Invoices</div><div class="vs">Accounts receivable ledger</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="exportInvCSV()">Export</button><button class="btn bbr bsm" onclick="openInvModal()">+ New Invoice</button></div></div>
+        <div class="vcontent">
+          <div class="sumbox" id="inv-summary"></div>
+          <div class="sbar">
+            <input class="sin" id="inv-search" placeholder="Search invoices…" oninput="rInvoices()">
+            <select class="ssel" id="inv-status" onchange="rInvoices()"><option value="">All Status</option><option value="draft">Draft</option><option value="posted">Posted</option><option value="paid">Paid</option><option value="partial">Partial</option><option value="overdue">Overdue</option></select>
+            <select class="ssel" id="inv-cust" onchange="rInvoices()"><option value="">All Customers</option></select>
+          </div>
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Invoice #</th><th>Date</th><th>Customer</th><th>Due Date</th><th class="nr">Excl. VAT</th><th class="nr">VAT</th><th class="nr">Total</th><th class="nr">Paid</th><th class="nr">Balance</th><th>Status</th><th></th></tr></thead>
+          <tbody id="inv-body"><tr><td colspan="11" class="tbl-empty">No invoices.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ RECEIPTS ═════════════════════════ -->
+      <div class="view" id="v-receipts">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Customer Receipts</div><div class="vs">Payments received from customers</div></div>
+          <div class="vhd-r"><button class="btn bbr bsm" onclick="openRcptModal()">+ New Receipt</button></div></div>
+        <div class="vcontent">
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Date</th><th>Receipt #</th><th>Customer</th><th>Invoice Ref</th><th>Method</th><th class="nr">Amount</th><th>Posted By</th><th></th></tr></thead>
+          <tbody id="rcpt-body"><tr><td colspan="8" class="tbl-empty">No receipts.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ SUPPLIERS ════════════════════════ -->
+      <div class="view" id="v-suppliers">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Suppliers</div><div class="vs">Accounts payable master list</div></div>
+          <div class="vhd-r"><button class="btn bbr bsm" onclick="openSuppModal()">+ New Supplier</button></div></div>
+        <div class="vcontent">
+          <div class="sbar"><input class="sin" id="supp-search" placeholder="Search suppliers…" oninput="rSupps()"></div>
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Code</th><th>Name</th><th>Contact</th><th>Email</th><th>Payment Terms</th><th>VAT No.</th><th class="nr">Outstanding</th><th></th></tr></thead>
+          <tbody id="supp-body"><tr><td colspan="8" class="tbl-empty">No suppliers.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ BILLS ════════════════════════════ -->
+      <div class="view" id="v-bills">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Purchase Bills</div><div class="vs">Accounts payable ledger</div></div>
+          <div class="vhd-r"><button class="btn bbr bsm" onclick="openBillModal()">+ New Bill</button></div></div>
+        <div class="vcontent">
+          <div class="sumbox" id="bill-summary"></div>
+          <div class="sbar">
+            <input class="sin" id="bill-search" placeholder="Search bills…" oninput="rBills()">
+            <select class="ssel" id="bill-status" onchange="rBills()"><option value="">All Status</option><option value="draft">Draft</option><option value="posted">Posted</option><option value="paid">Paid</option><option value="overdue">Overdue</option></select>
+          </div>
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Bill #</th><th>Date</th><th>Supplier</th><th>Due Date</th><th>Ref</th><th class="nr">Excl. VAT</th><th class="nr">VAT</th><th class="nr">Total</th><th class="nr">Paid</th><th>Status</th><th></th></tr></thead>
+          <tbody id="bill-body"><tr><td colspan="11" class="tbl-empty">No bills.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ PAYMENTS ═════════════════════════ -->
+      <div class="view" id="v-payments">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Supplier Payments</div><div class="vs">Payments made to suppliers</div></div>
+          <div class="vhd-r"><button class="btn bbr bsm" onclick="openPayModal()">+ Record Payment</button></div></div>
+        <div class="vcontent">
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Date</th><th>Payment #</th><th>Supplier</th><th>Bill Ref</th><th>Method</th><th class="nr">Amount</th><th>Posted By</th><th></th></tr></thead>
+          <tbody id="pay-body"><tr><td colspan="8" class="tbl-empty">No payments.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ BANKING ══════════════════════════ -->
+      <div class="view" id="v-banking">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Bank Accounts</div><div class="vs">Cash &amp; bank management</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="openBankTxModal()">+ Transaction</button><button class="btn bbr bsm" onclick="openBankModal()">+ Bank Account</button></div></div>
+        <div class="vcontent">
+          <div class="krow" id="bank-cards"></div>
+          <div class="tbwrap"><div class="tbhd"><span class="tbhdl">Bank Transactions</span><div style="display:flex;gap:.35rem"><select class="ssel" id="bank-acct-filter" onchange="rBankTx()"><option value="">All Accounts</option></select><select class="ssel" id="bank-tx-type" onchange="rBankTx()"><option value="">All Types</option><option value="debit">Debit</option><option value="credit">Credit</option></select></div></div>
+            <table class="tbl"><thead><tr><th>Date</th><th>Account</th><th>Description</th><th>Reference</th><th class="nr">Debit</th><th class="nr">Credit</th><th class="nr">Balance</th><th>Reconciled</th><th></th></tr></thead>
+            <tbody id="bank-tx-body"><tr><td colspan="9" class="tbl-empty">No transactions.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ RECONCILIATION ═══════════════════ -->
+      <div class="view" id="v-recon">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Bank Reconciliation</div><div class="vs">Match bank transactions to ledger entries</div></div>
+          <div class="vhd-r"><select class="ssel" id="recon-acct" onchange="rRecon()"><option value="">Select Account</option></select><button class="btn bbr bsm" onclick="autoRecon()">Auto-Match</button></div></div>
+        <div class="vcontent">
+          <div class="notice">&#9432; Select a bank account above. Match <strong>bank statement transactions</strong> (left) to <strong>ledger entries</strong> (right). Auto-Match will pair identical amounts and dates automatically.</div>
+          <div class="rec-pair" id="recon-panels">
+            <div class="rec-col"><div class="rec-col-hd">Bank Statement (Unreconciled)</div><div id="recon-bank"></div></div>
+            <div class="rec-col"><div class="rec-col-hd">Ledger Entries (Unmatched)</div><div id="recon-ledger"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ FINANCIAL REPORTS ════════════════ -->
+      <div class="view" id="v-reports">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Financial Statements</div><div class="vs">IFRS-compliant · Auto-generated from ledger</div></div>
+          <div class="vhd-r">
+            <select class="ssel" id="rpt-period" onchange="rReports()"><option value="ytd2026">YTD 2026 (Jan–Jun)</option><option value="2026-06">June 2026</option><option value="2026-Q2">Q2 2026</option><option value="fy2025">FY 2025</option></select>
+            <button class="btn bgh bsm" onclick="window.print()">Print / PDF</button>
+          </div></div>
+        <div class="vcontent">
+          <div class="tabs">
+            <button class="tab on" onclick="srt('is',this)">Income Statement</button>
+            <button class="tab" onclick="srt('bs',this)">Balance Sheet</button>
+            <button class="tab" onclick="srt('cf',this)">Cash Flow</button>
+            <button class="tab" onclick="srt('ar-aging',this)">AR Aging</button>
+            <button class="tab" onclick="srt('ap-aging',this)">AP Aging</button>
+            <button class="tab" onclick="srt('gl',this)">General Ledger</button>
+          </div>
+          <div class="tabp on" id="rp-is"></div>
+          <div class="tabp" id="rp-bs"></div>
+          <div class="tabp" id="rp-cf"></div>
+          <div class="tabp" id="rp-ar-aging"></div>
+          <div class="tabp" id="rp-ap-aging"></div>
+          <div class="tabp" id="rp-gl"></div>
+        </div>
+      </div>
+
+      <!-- ═══ TAX REPORT ═══════════════════════ -->
+      <div class="view" id="v-tax">
+        <div class="vhd"><div class="vhd-l"><div class="vt">VAT201 Tax Report</div><div class="vs">SARS VAT return · 15% standard rate</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="window.print()">Print VAT201</button></div></div>
+        <div class="vcontent"><div id="tax-content"></div></div>
+      </div>
+
+      <!-- ═══ FIXED ASSETS ═════════════════════ -->
+      <div class="view" id="v-assets">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Fixed Asset Register</div><div class="vs">Depreciation management · Straight-line &amp; reducing balance</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="runDepreciation()">Run Depreciation</button><button class="btn bbr bsm" onclick="openAssetModal()">+ New Asset</button></div></div>
+        <div class="vcontent">
+          <div class="krow" id="asset-kpi"></div>
+          <div class="tbwrap"><table class="tbl"><thead><tr><th>Code</th><th>Asset Name</th><th>Category</th><th>Purchase Date</th><th class="nr">Cost</th><th class="nr">Acc. Depr.</th><th class="nr">Net Book Value</th><th>Method</th><th>Useful Life</th><th class="cr">Status</th><th></th></tr></thead>
+          <tbody id="asset-body"><tr><td colspan="11" class="tbl-empty">No assets.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ═══ AUDIT TRAIL ═══════════════════════ -->
+      <div class="view" id="v-audit">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Audit Trail</div><div class="vs">Complete transaction history · Tamper-evident log</div></div>
+          <div class="vhd-r"><button class="btn bgh bsm" onclick="exportAuditCSV()">Export</button></div></div>
+        <div class="vcontent">
+          <div class="notice">&#9432; All transactions, postings, modifications and access events are permanently recorded. Entries cannot be deleted — only voided with a reversing entry.</div>
+          <div class="sbar"><input class="sin" id="audit-search" placeholder="Search audit log…" oninput="rAudit()"><select class="ssel" id="audit-type" onchange="rAudit()"><option value="">All Events</option><option value="POST">Posted</option><option value="VOID">Voided</option><option value="CREATE">Created</option><option value="LOGIN">Login</option></select></div>
+          <div class="sc"><div class="sc-bd" id="audit-body" style="max-height:600px;overflow-y:auto"><div class="es">No audit entries.</div></div></div>
+        </div>
+      </div>
+
+      <!-- ═══ SETTINGS ═════════════════════════ -->
+      <div class="view" id="v-settings">
+        <div class="vhd"><div class="vhd-l"><div class="vt">Settings</div><div class="vs">Company configuration &amp; system preferences</div></div>
+          <div class="vhd-r"><button class="btn bbr bsm" onclick="saveSettings()">Save Settings</button></div></div>
+        <div class="vcontent">
+          <div class="split2">
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Company Information</span></div>
+              <div class="sc-bd">
+                <div class="fg"><label class="fl">Company Name</label><input class="fi" id="set-name" placeholder="NexridgeTech IT Solutions"></div>
+                <div class="fg"><label class="fl">Registration Number</label><input class="fi" id="set-reg" placeholder="2018/123456/07"></div>
+                <div class="fg"><label class="fl">VAT Registration Number</label><input class="fi" id="set-vat" placeholder="4120123456"></div>
+                <div class="fr2">
+                  <div class="fg"><label class="fl">Financial Year Start</label><select class="fs" id="set-fys"><option value="1">January</option><option value="3">March</option><option value="7">July</option></select></div>
+                  <div class="fg"><label class="fl">Base Currency</label><select class="fs" id="set-curr"><option value="ZAR">ZAR — South African Rand</option><option value="USD">USD — US Dollar</option><option value="EUR">EUR — Euro</option></select></div>
+                </div>
+                <div class="fg"><label class="fl">Physical Address</label><textarea class="fi" id="set-addr" rows="2" placeholder="123 Main Street, Johannesburg, 2000"></textarea></div>
+              </div>
+            </div>
+            <div class="sc"><div class="sc-hd"><span class="sc-ht">Accounting Defaults</span></div>
+              <div class="sc-bd">
+                <div class="fg"><label class="fl">Default AR Account</label><select class="fs" id="set-ar-acc"></select></div>
+                <div class="fg"><label class="fl">Default AP Account</label><select class="fs" id="set-ap-acc"></select></div>
+                <div class="fg"><label class="fl">Default Revenue Account</label><select class="fs" id="set-rev-acc"></select></div>
+                <div class="fg"><label class="fl">Default VAT Output Account</label><select class="fs" id="set-vat-out"></select></div>
+                <div class="fg"><label class="fl">Default VAT Input Account</label><select class="fs" id="set-vat-in"></select></div>
+                <div class="fg"><label class="fl">Default Bank Account</label><select class="fs" id="set-bank-acc"></select></div>
+                <div class="fr2">
+                  <div class="fg"><label class="fl">VAT Rate (%)</label><input class="fi" id="set-vat-rate" type="number" value="15" min="0" max="30"></div>
+                  <div class="fg"><label class="fl">Payment Terms (days)</label><input class="fi" id="set-terms" type="number" value="30" min="0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sc"><div class="sc-hd"><span class="sc-ht">Period Management</span></div>
+            <div class="sc-bd">
+              <div class="notice">&#9432; <strong>Period Close</strong> locks all journal entries for that period. Adjustments require a new journal entry in the correction period. This cannot be undone.</div>
+              <table class="tbl"><thead><tr><th>Period</th><th>Year</th><th>Status</th><th>Journals</th><th>Revenue</th><th>Expenses</th><th></th></tr></thead>
+              <tbody id="period-body"></tbody></table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /main -->
+  </div><!-- /body -->
+</div><!-- /app -->
+
+<!-- ═══ MODAL: Journal Entry ════════════ -->
+<div class="ov" id="je-modal">
+  <div class="mbox wide">
+    <div class="mhd"><div><div class="mht">New Journal Entry</div><div class="mhs">Double-entry · Debits must equal Credits</div></div><button class="btn bgh bsm" onclick="closeModal('je-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fr3">
+        <div class="fg"><label class="fl">Date<span class="req">*</span></label><input class="fi" type="date" id="je-date"></div>
+        <div class="fg"><label class="fl">Reference<span class="req">*</span></label><input class="fi" id="je-ref" placeholder="JNL-2026-001"></div>
+        <div class="fg"><label class="fl">Entry Type</label><select class="fs" id="je-type"><option value="general">General</option><option value="adjustment">Adjustment</option><option value="accrual">Accrual</option><option value="depreciation">Depreciation</option><option value="reversal">Reversal</option></select></div>
+      </div>
+      <div class="fg"><label class="fl">Description<span class="req">*</span></label><input class="fi" id="je-desc" placeholder="Narration for this journal entry"></div>
+      <div style="margin-bottom:.4rem">
+        <div class="jl-grid" style="display:grid;grid-template-columns:32px 1fr 150px 120px 120px 36px;gap:4px;margin-bottom:.25rem">
+          <div class="jl-hdr" style="grid-column:1">#</div>
+          <div class="jl-hdr">Account</div>
+          <div class="jl-hdr">Narration</div>
+          <div class="jl-hdr" style="text-align:right">Debit (DR)</div>
+          <div class="jl-hdr" style="text-align:right">Credit (CR)</div>
+          <div class="jl-hdr"></div>
+        </div>
+        <div id="je-lines"></div>
+        <button class="btn bgh bsm" onclick="addJELine()" style="margin-top:.4rem">+ Add Line</button>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:1.5rem;padding:.5rem .75rem;background:var(--bg2);border-radius:8px;border:1px solid var(--bd)">
+        <div style="text-align:right"><div style="font-size:.6rem;color:var(--tx3);font-family:var(--m);text-transform:uppercase;margin-bottom:.15rem">Total Debit</div><div style="font-size:1rem;font-weight:800;color:var(--info);font-family:var(--m)" id="je-total-dr">R 0.00</div></div>
+        <div style="text-align:right"><div style="font-size:.6rem;color:var(--tx3);font-family:var(--m);text-transform:uppercase;margin-bottom:.15rem">Total Credit</div><div style="font-size:1rem;font-weight:800;color:var(--ok);font-family:var(--m)" id="je-total-cr">R 0.00</div></div>
+        <div style="text-align:right"><div style="font-size:.6rem;color:var(--tx3);font-family:var(--m);text-transform:uppercase;margin-bottom:.15rem">Difference</div><div style="font-size:1rem;font-weight:800;font-family:var(--m)" id="je-diff" class="err-c">R 0.00</div></div>
+      </div>
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('je-modal')">Cancel</button><button class="btn bpur" onclick="saveJE('draft')">Save Draft</button><button class="btn bbr" onclick="saveJE('posted')">Post Entry</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Account ═══════════════════ -->
+<div class="ov" id="acc-modal">
+  <div class="mbox">
+    <div class="mhd"><div class="mht" id="acc-modal-title">New Account</div><button class="btn bgh bsm" onclick="closeModal('acc-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fr2"><div class="fg"><label class="fl">Account Code<span class="req">*</span></label><input class="fi mono" id="acc-code" placeholder="1000"></div><div class="fg"><label class="fl">Account Name<span class="req">*</span></label><input class="fi" id="acc-name" placeholder="Cash at Bank"></div></div>
+      <div class="fr2">
+        <div class="fg"><label class="fl">Account Type<span class="req">*</span></label><select class="fs" id="acc-type"><option value="ASSET">Asset</option><option value="CONTRA_ASSET">Contra Asset</option><option value="LIABILITY">Liability</option><option value="EQUITY">Equity</option><option value="REVENUE">Revenue</option><option value="COS">Cost of Sales</option><option value="EXPENSE">Expense</option></select></div>
+        <div class="fg"><label class="fl">Sub-Type</label><select class="fs" id="acc-sub"><option value="Current">Current</option><option value="NonCurrent">Non-Current</option><option value="Operating">Operating</option><option value="Finance">Finance</option><option value="Tax">Tax</option><option value="Other">Other</option></select></div>
+      </div>
+      <div class="fg"><label class="fl">Description</label><input class="fi" id="acc-desc" placeholder="Brief description"></div>
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('acc-modal')">Cancel</button><button class="btn bbr" onclick="saveAccount()">Save Account</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Customer/Supplier ════════ -->
+<div class="ov" id="entity-modal">
+  <div class="mbox">
+    <div class="mhd"><div class="mht" id="entity-modal-title">New Customer</div><button class="btn bgh bsm" onclick="closeModal('entity-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fr2"><div class="fg"><label class="fl">Code</label><input class="fi mono" id="ent-code" placeholder="CUST-001"></div><div class="fg"><label class="fl">Company Name<span class="req">*</span></label><input class="fi" id="ent-name" placeholder="ABC Company (Pty) Ltd"></div></div>
+      <div class="fr2"><div class="fg"><label class="fl">Contact Person</label><input class="fi" id="ent-contact" placeholder="John Smith"></div><div class="fg"><label class="fl">Email</label><input class="fi" id="ent-email" type="email" placeholder="john@company.co.za"></div></div>
+      <div class="fr2"><div class="fg"><label class="fl">Phone</label><input class="fi" id="ent-phone" placeholder="+27 11 XXX XXXX"></div><div class="fg"><label class="fl">VAT Number</label><input class="fi" id="ent-vat" placeholder="4XXXXXXXXX"></div></div>
+      <div class="fr2"><div class="fg"><label class="fl">Payment Terms (days)</label><input class="fi" id="ent-terms" type="number" value="30" min="0"></div><div class="fg"><label class="fl">Credit Limit</label><input class="fi" id="ent-limit" type="number" placeholder="100000"></div></div>
+      <div class="fg"><label class="fl">Address</label><textarea class="fi" id="ent-addr" rows="2" placeholder="Physical address"></textarea></div>
+      <input type="hidden" id="ent-type"><input type="hidden" id="ent-id">
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('entity-modal')">Cancel</button><button class="btn bbr" onclick="saveEntity()">Save</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Invoice / Bill ═══════════ -->
+<div class="ov" id="inv-modal">
+  <div class="mbox wide">
+    <div class="mhd"><div><div class="mht" id="inv-modal-title">New Sales Invoice</div><div class="mhs" id="inv-modal-sub">Accounts receivable · Post to create ledger entries</div></div><button class="btn bgh bsm" onclick="closeModal('inv-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fr3">
+        <div class="fg"><label class="fl">Date<span class="req">*</span></label><input class="fi" type="date" id="inv-date"></div>
+        <div class="fg"><label class="fl">Invoice/Bill #<span class="req">*</span></label><input class="fi mono" id="inv-num" placeholder="INV-2026-001"></div>
+        <div class="fg"><label class="fl">Due Date<span class="req">*</span></label><input class="fi" type="date" id="inv-due"></div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label class="fl" id="inv-party-lbl">Customer<span class="req">*</span></label><select class="fs" id="inv-party"></select></div>
+        <div class="fg"><label class="fl">Reference / PO</label><input class="fi" id="inv-ref" placeholder="Client PO reference"></div>
+      </div>
+      <div style="margin-bottom:.5rem">
+        <div style="display:grid;grid-template-columns:1fr 120px 90px 90px 90px 28px;gap:4px;margin-bottom:.25rem;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3)">
+          <div>Description</div><div>Account</div><div style="text-align:right">Qty</div><div style="text-align:right">Unit Price</div><div style="text-align:right">Amount</div><div></div></div>
+        <div id="inv-lines"></div>
+        <button class="btn bgh bsm" onclick="addInvLine()" style="margin-top:.4rem">+ Add Line</button>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:.5rem;align-items:center;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:.35rem;font-size:.75rem;cursor:pointer"><input type="checkbox" id="inv-vat-on" style="accent-color:var(--br);width:14px;height:14px"> Apply VAT (15%)</label>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:.5rem">
+        <div style="width:220px">
+          <div style="display:flex;justify-content:space-between;padding:.22rem 0;font-size:.75rem"><span class="t3">Subtotal</span><span class="mn fw7" id="inv-subtotal">R 0.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:.22rem 0;font-size:.75rem" id="inv-vat-row"><span class="t3">VAT (15%)</span><span class="mn fw7" id="inv-vat-amt">R 0.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:.35rem .5rem;font-size:.88rem;font-weight:800;background:var(--ba12);border-radius:6px;margin-top:.25rem;border:1px solid var(--ba20)"><span>TOTAL</span><span class="mn br-c" id="inv-total">R 0.00</span></div>
+        </div>
+      </div>
+      <input type="hidden" id="inv-mode"><input type="hidden" id="inv-edit-id">
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('inv-modal')">Cancel</button><button class="btn bpur" onclick="saveInvoice('draft')">Save Draft</button><button class="btn bbr" onclick="saveInvoice('posted')">Post &amp; Create Ledger Entries</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Receipt / Payment ════════ -->
+<div class="ov" id="pay-rcpt-modal">
+  <div class="mbox">
+    <div class="mhd"><div class="mht" id="pr-modal-title">Record Receipt</div><button class="btn bgh bsm" onclick="closeModal('pay-rcpt-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fr2"><div class="fg"><label class="fl">Date<span class="req">*</span></label><input class="fi" type="date" id="pr-date"></div><div class="fg"><label class="fl" id="pr-party-lbl">Customer</label><select class="fs" id="pr-party"></select></div></div>
+      <div class="fg"><label class="fl">Invoice / Bill Reference</label><select class="fs" id="pr-inv"></select></div>
+      <div class="fr2"><div class="fg"><label class="fl">Payment Method</label><select class="fs" id="pr-method"><option>EFT / Bank Transfer</option><option>Cash</option><option>Cheque</option><option>Credit Card</option></select></div><div class="fg"><label class="fl">Bank Account</label><select class="fs" id="pr-bank"></select></div></div>
+      <div class="fg"><label class="fl">Amount<span class="req">*</span></label><input class="fi mono" id="pr-amount" type="number" min="0" step="0.01" placeholder="0.00" oninput="calcPrBalance()"></div>
+      <div style="background:var(--bg2);border-radius:8px;border:1px solid var(--bd);padding:.6rem .75rem;font-size:.75rem" id="pr-balance-info"></div>
+      <div class="fg" style="margin-top:.5rem"><label class="fl">Reference / Notes</label><input class="fi" id="pr-ref" placeholder="Bank reference or notes"></div>
+      <input type="hidden" id="pr-mode">
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('pay-rcpt-modal')">Cancel</button><button class="btn bbr" onclick="savePR()">Post &amp; Create Entry</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Bank Account ══════════════ -->
+<div class="ov" id="bank-modal">
+  <div class="mbox">
+    <div class="mhd"><div class="mht">Bank Account</div><button class="btn bgh bsm" onclick="closeModal('bank-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fg"><label class="fl">Account Name<span class="req">*</span></label><input class="fi" id="bk-name" placeholder="FNB Business Account"></div>
+      <div class="fr2"><div class="fg"><label class="fl">Bank</label><input class="fi" id="bk-bank" placeholder="First National Bank"></div><div class="fg"><label class="fl">Account Number</label><input class="fi mono" id="bk-acc" placeholder="62XXXXXXXX"></div></div>
+      <div class="fr2"><div class="fg"><label class="fl">Branch Code</label><input class="fi mono" id="bk-branch" placeholder="250655"></div><div class="fg"><label class="fl">Account Type</label><select class="fs" id="bk-type"><option>Current / Cheque</option><option>Savings</option><option>Transmission</option></select></div></div>
+      <div class="fg"><label class="fl">Linked Ledger Account</label><select class="fs" id="bk-ledger"></select></div>
+      <div class="fg"><label class="fl">Opening Balance</label><input class="fi mono" id="bk-opening" type="number" placeholder="0.00"></div>
+      <input type="hidden" id="bk-id">
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('bank-modal')">Cancel</button><button class="btn bbr" onclick="saveBankAcct()">Save</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Bank Transaction ══════════ -->
+<div class="ov" id="bank-tx-modal">
+  <div class="mbox">
+    <div class="mhd"><div class="mht">Bank Transaction</div><button class="btn bgh bsm" onclick="closeModal('bank-tx-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fr2"><div class="fg"><label class="fl">Date<span class="req">*</span></label><input class="fi" type="date" id="btx-date"></div><div class="fg"><label class="fl">Bank Account<span class="req">*</span></label><select class="fs" id="btx-bank"></select></div></div>
+      <div class="fg"><label class="fl">Description<span class="req">*</span></label><input class="fi" id="btx-desc" placeholder="Transaction description"></div>
+      <div class="fr2"><div class="fg"><label class="fl">Type</label><select class="fs" id="btx-type" onchange="updateBtxSide()"><option value="debit">Debit (Money Out)</option><option value="credit">Credit (Money In)</option></select></div><div class="fg"><label class="fl">Amount<span class="req">*</span></label><input class="fi mono" id="btx-amt" type="number" min="0" step="0.01" placeholder="0.00"></div></div>
+      <div class="fg"><label class="fl">Contra Account (Ledger)</label><select class="fs" id="btx-contra"></select></div>
+      <div class="fg"><label class="fl">Reference</label><input class="fi" id="btx-ref" placeholder="Bank reference"></div>
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('bank-tx-modal')">Cancel</button><button class="btn bbr" onclick="saveBankTx()">Post Transaction</button></div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Fixed Asset ═══════════════ -->
+<div class="ov" id="asset-modal">
+  <div class="mbox">
+    <div class="mhd"><div class="mht" id="asset-modal-title">New Fixed Asset</div><button class="btn bgh bsm" onclick="closeModal('asset-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fr2"><div class="fg"><label class="fl">Asset Code</label><input class="fi mono" id="fa-code" placeholder="FA-001"></div><div class="fg"><label class="fl">Asset Name<span class="req">*</span></label><input class="fi" id="fa-name" placeholder="e.g. Dell Server R750"></div></div>
+      <div class="fr2"><div class="fg"><label class="fl">Category</label><select class="fs" id="fa-cat"><option>Computer Equipment</option><option>Vehicles</option><option>Furniture &amp; Fittings</option><option>Plant &amp; Machinery</option><option>Leasehold Improvements</option><option>Intangible Assets</option></select></div><div class="fg"><label class="fl">Purchase Date<span class="req">*</span></label><input class="fi" type="date" id="fa-date"></div></div>
+      <div class="fr2"><div class="fg"><label class="fl">Cost Price<span class="req">*</span></label><input class="fi mono" id="fa-cost" type="number" placeholder="0.00" oninput="calcFaDepr()"></div><div class="fg"><label class="fl">Residual Value</label><input class="fi mono" id="fa-residual" type="number" placeholder="0.00" oninput="calcFaDepr()"></div></div>
+      <div class="fr2"><div class="fg"><label class="fl">Depreciation Method</label><select class="fs" id="fa-method" onchange="calcFaDepr()"><option value="SL">Straight-Line</option><option value="RB">Reducing Balance</option></select></div><div class="fg"><label class="fl">Useful Life (years)</label><input class="fi" id="fa-life" type="number" min="1" max="50" placeholder="5" oninput="calcFaDepr()"></div></div>
+      <div class="fg"><label class="fl">Ledger Asset Account</label><select class="fs" id="fa-ledger"></select></div>
+      <div style="background:var(--bg2);border-radius:8px;border:1px solid var(--bd);padding:.55rem .72rem;font-size:.73rem;color:var(--tx2)" id="fa-calc">Annual depreciation will appear here.</div>
+      <input type="hidden" id="fa-id">
+    </div>
+    <div class="mft"><button class="btn bgh" onclick="closeModal('asset-modal')">Cancel</button><button class="btn bbr" onclick="saveAsset()">Save Asset</button></div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div id="toasts"></div>
+<script>
+'use strict';
+// ═══════════════════════════════════════════════════════════════
+// NRT ENTERPRISE FINANCE — CA-Grade Double-Entry Accounting Engine
+// ═══════════════════════════════════════════════════════════════
+
+// ── HELPERS ────────────────────────────────────────────────────
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fR=v=>'R '+Math.abs(parseFloat(v)||0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const fRS=v=>(parseFloat(v)||0)<0?'('+fR(v)+')':fR(v);
+const fRB=v=>(parseFloat(v)||0)<0?'<span class="fs-val neg">('+fR(v)+')</span>':'<span class="fs-val pos">'+fR(v)+'</span>';
+const n=v=>parseFloat(v)||0;
+const tod=()=>new Date().toISOString().split('T')[0];
+const fD=s=>{if(!s)return'';try{return new Date(s+'T00:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'});}catch{return s;}};
+const genId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const LS={get:k=>{try{return JSON.parse(localStorage.getItem(k));}catch{return null;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}},del:k=>localStorage.removeItem(k)};
+
+// ── TOAST ──────────────────────────────────────────────────────
+const T={show(m,i='ℹ️',d=3200){const el=document.createElement('div');el.className='toast';el.innerHTML=`<span>${i}</span>${esc(m)}`;$('toasts').appendChild(el);setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),220);},d);},ok:m=>T.show(m,'✅'),err:m=>T.show(m,'❌',5000),info:m=>T.show(m,'ℹ️'),warn:m=>T.show(m,'⚠️')};
+
+// ── AUTH ───────────────────────────────────────────────────────
+function initAuth(){if(!LS.get('nrt_users'))LS.set('nrt_users',[{id:'u1',username:'admin',password:'nrt2024',name:'NRT Admin',role:'CA · Administrator'}]);}
+function doLogin(){const u=$('lu').value.trim(),p=$('lp').value;const usr=(LS.get('nrt_users')||[]).find(x=>x.username===u&&x.password===p);if(!usr){$('lerr').classList.add('v');$('lp').value='';return;}LS.set('nrt_sess',{...usr,ts:Date.now()});$('lerr').classList.remove('v');startApp(usr);}
+function doLogout(){LS.del('nrt_sess');$('ls').style.display='flex';$('app').classList.remove('on');}
+function getUser(){return LS.get('nrt_sess')||{name:'Admin',role:'CA'};}
+function startApp(u){$('ls').style.display='none';$('app').classList.add('on');$('tav').textContent=(u.name||'A')[0].toUpperCase();$('tun').textContent=u.name;addAudit('LOGIN','Signed in: '+u.name);sv('dashboard');}
+
+// ── AUDIT TRAIL ────────────────────────────────────────────────
+function addAudit(type,desc,ref=''){const log=LS.get('nrt_audit')||[];log.unshift({id:genId(),ts:new Date().toISOString(),user:getUser().name,type,desc,ref});if(log.length>500)log.pop();LS.set('nrt_audit',log);}
+
+// ── VIEW SWITCHING ─────────────────────────────────────────────
+let _cv='dashboard',_rptTab='is';
+function sv(v){
+  document.querySelectorAll('.view').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.sn-item').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  const el=$('v-'+v);if(el)el.classList.add('on');_cv=v;
+  if(v==='dashboard')rDash();
+  if(v==='coa')rCoA();
+  if(v==='journals')rJournals();
+  if(v==='tb')rTB();
+  if(v==='customers')rCusts();
+  if(v==='invoices'){populateInvFilters();rInvoices();}
+  if(v==='receipts')rRcpts();
+  if(v==='suppliers')rSupps();
+  if(v==='bills')rBills();
+  if(v==='payments')rPays();
+  if(v==='banking'){rBankCards();rBankTx();populateBankFilters();}
+  if(v==='recon')rRecon();
+  if(v==='reports'){rReports();}
+  if(v==='tax')rTax();
+  if(v==='assets')rAssets();
+  if(v==='audit')rAudit();
+  if(v==='settings')loadSettings();
+}
+function srt(t,btn){document.querySelectorAll('.tabp').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));const p=$('rp-'+t);if(p)p.classList.add('on');if(btn)btn.classList.add('on');_rptTab=t;rReports();}
+function closeModal(id){const el=$(id);if(el)el.classList.remove('open');}
+function openModal(id){const el=$(id);if(el)el.classList.add('open');}
+
+// ═══════════════════════════════════════════════════════════════
+// CORE ACCOUNTING ENGINE
+// ═══════════════════════════════════════════════════════════════
+
+function getCoA(){return LS.get('nrt_coa')||[];}
+function getJournals(){return LS.get('nrt_journals')||[];}
+function getPostedJournals(){return getJournals().filter(j=>j.status==='posted');}
+
+// Get debit/credit totals for an account over a date range
+function getAccBalance(code,from,to){
+  let dr=0,cr=0;
+  getPostedJournals().filter(j=>j.date>=from&&j.date<=to).forEach(j=>{
+    j.lines.forEach(l=>{if(l.code===code){dr+=n(l.dr);cr+=n(l.cr);}});
+  });
+  return{dr,cr,net:dr-cr};
+}
+
+// Get the reporting balance for an account (positive = normal balance)
+function getReportBal(acc,from,to){
+  const{dr,cr,net}=getAccBalance(acc.code,from,to);
+  switch(acc.type){
+    case'ASSET':return net; // DR normal: positive = asset
+    case'CONTRA_ASSET':return-net; // CR normal: negative of DR-CR
+    case'LIABILITY':return cr-dr; // CR normal: positive = owed
+    case'EQUITY':return cr-dr; // CR normal
+    case'REVENUE':return cr-dr; // CR normal: positive = income
+    case'COS':return net; // DR normal: positive = cost
+    case'EXPENSE':return net; // DR normal: positive = cost
+    default:return net;
+  }
+}
+
+// Period range helper
+function gPR(per){
+  const y=2026;
+  switch(per){
+    case'ytd2026':return{from:'2026-01-01',to:'2026-06-30',lbl:'Year-to-Date 2026 (Jan – Jun 2026)'};
+    case'2026-Q2':return{from:'2026-04-01',to:'2026-06-30',lbl:'Q2 2026 (Apr – Jun 2026)'};
+    case'2026-06':return{from:'2026-06-01',to:'2026-06-30',lbl:'June 2026'};
+    case'fy2025':return{from:'2025-01-01',to:'2025-12-31',lbl:'Financial Year 2025'};
+    case'2026-01':return{from:'2026-01-01',to:'2026-01-31',lbl:'January 2026'};
+    case'2026-02':return{from:'2026-02-01',to:'2026-02-28',lbl:'February 2026'};
+    case'2026-03':return{from:'2026-03-01',to:'2026-03-31',lbl:'March 2026'};
+    case'2026-04':return{from:'2026-04-01',to:'2026-04-30',lbl:'April 2026'};
+    case'2026-05':return{from:'2026-05-01',to:'2026-05-31',lbl:'May 2026'};
+    default:return{from:'2026-01-01',to:'2026-06-30',lbl:'YTD 2026'};
+  }
+}
+function getCurPer(){return $('tPeriod')?$('tPeriod').value:'ytd2026';}
+function getRptPer(){return $('rpt-period')?$('rpt-period').value:'ytd2026';}
+function onPeriodChange(){rDash();updateSnBadges();}
+
+// ── INCOME STATEMENT ────────────────────────────────────────────
+function calcIS(from,to){
+  const accs=getCoA();
+  const rev=accs.filter(a=>a.type==='REVENUE').reduce((s,a)=>s+getReportBal(a,from,to),0);
+  const cos=accs.filter(a=>a.type==='COS').reduce((s,a)=>s+getReportBal(a,from,to),0);
+  const gp=rev-cos;
+  const opex=accs.filter(a=>a.type==='EXPENSE'&&a.sub!=='Finance'&&a.sub!=='Tax').reduce((s,a)=>s+getReportBal(a,from,to),0);
+  const ebit=gp-opex;
+  const fin=accs.filter(a=>a.type==='EXPENSE'&&a.sub==='Finance').reduce((s,a)=>s+getReportBal(a,from,to),0);
+  const ebt=ebit-fin;
+  const tax=accs.filter(a=>a.type==='EXPENSE'&&a.sub==='Tax').reduce((s,a)=>s+getReportBal(a,from,to),0);
+  const ni=ebt-tax;
+  return{rev,cos,gp,opex,ebit,fin,ebt,tax,ni,gpM:rev?gp/rev*100:0,npM:rev?ni/rev*100:0};
+}
+
+// ── BALANCE SHEET ────────────────────────────────────────────────
+function calcBS(to,from){
+  const EPOCH='2000-01-01';
+  const accs=getCoA();
+  const bsFrom=EPOCH; // Balance sheet accounts accumulate from beginning
+  let ca=0,nca=0,cl=0,ncl=0,eq=0;
+  const caAccs=[],ncaAccs=[],clAccs=[],nclAccs=[],eqAccs=[];
+  accs.forEach(a=>{
+    const bal=getReportBal(a,bsFrom,to);
+    if(a.type==='ASSET'||a.type==='CONTRA_ASSET'){
+      if(a.sub==='Current'){ca+=bal;caAccs.push({...a,bal});}
+      else{nca+=bal;ncaAccs.push({...a,bal});}
+    }else if(a.type==='LIABILITY'){
+      if(a.sub==='Current'){cl+=bal;clAccs.push({...a,bal});}
+      else{ncl+=bal;nclAccs.push({...a,bal});}
+    }else if(a.type==='EQUITY'){
+      eq+=bal;eqAccs.push({...a,bal});
+    }
+  });
+  const is=calcIS(from||'2026-01-01',to);
+  const totalAssets=ca+nca;
+  const totalLiab=cl+ncl;
+  const totalEq=eq+is.ni;
+  const totalLiabEq=totalLiab+totalEq;
+  return{ca,nca,cl,ncl,eq,ni:is.ni,totalAssets,totalLiab,totalEq,totalLiabEq,
+    caAccs,ncaAccs,clAccs,nclAccs,eqAccs,balanced:Math.abs(totalAssets-totalLiabEq)<1};
+}
+
+// ── CASH FLOW (INDIRECT) ────────────────────────────────────────
+function calcCF(from,to){
+  const EPOCH='2000-01-01';
+  const accs=getCoA();
+  const is=calcIS(from,to);
+  // Get changes in working capital
+  const prevTo=from.slice(0,-2)+'01'; // Approximate prior period end
+  const arNow=accs.filter(a=>a.code==='1100').reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const arPrev=accs.filter(a=>a.code==='1100').reduce((s,a)=>s+getReportBal(a,EPOCH,from),0);
+  const apNow=accs.filter(a=>a.code==='3000').reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const apPrev=accs.filter(a=>a.code==='3000').reduce((s,a)=>s+getReportBal(a,EPOCH,from),0);
+  const invNow=accs.filter(a=>a.code==='1200').reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const invPrev=accs.filter(a=>a.code==='1200').reduce((s,a)=>s+getReportBal(a,EPOCH,from),0);
+  const depr=accs.filter(a=>a.code==='8600').reduce((s,a)=>s+getReportBal(a,from,to),0);
+  const dAR=-(arNow-arPrev);
+  const dAP=apNow-apPrev;
+  const dInv=-(invNow-invPrev);
+  const opCF=is.ni+depr+dAR+dAP+dInv;
+  // Investing: look for PPE changes
+  const ppeNow=accs.filter(a=>['2000','2100','2200'].includes(a.code)).reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const ppePrev=accs.filter(a=>['2000','2100','2200'].includes(a.code)).reduce((s,a)=>s+getReportBal(a,EPOCH,from),0);
+  const capex=-(ppeNow-ppePrev);
+  const invCF=capex;
+  // Financing
+  const loanNow=accs.filter(a=>['3300','4000'].includes(a.code)).reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const loanPrev=accs.filter(a=>['3300','4000'].includes(a.code)).reduce((s,a)=>s+getReportBal(a,EPOCH,from),0);
+  const netLoans=loanNow-loanPrev;
+  const finCF=netLoans;
+  return{ni:is.ni,depr,dAR,dAP,dInv,opCF,capex,invCF,netLoans,finCF,netCF:opCF+invCF+finCF};
+}
+
+// ── TRIAL BALANCE ────────────────────────────────────────────────
+function calcTB(from,to){
+  const EPOCH='2000-01-01';
+  const accs=getCoA();
+  let totalDR=0,totalCR=0;
+  const rows=accs.map(a=>{
+    const{dr,cr}=getAccBalance(a.code,EPOCH,to);
+    const net=dr-cr;
+    const drBal=net>0?net:0;
+    const crBal=net<0?-net:0;
+    totalDR+=drBal;totalCR+=crBal;
+    return{...a,dr:drBal,cr:crBal,active:drBal>0||crBal>0};
+  }).filter(r=>r.active);
+  return{rows,totalDR,totalCR,balanced:Math.abs(totalDR-totalCR)<0.01};
+}
+
+// ═══════════════════════════════════════════════════════════════
+// JOURNAL ENTRIES
+// ═══════════════════════════════════════════════════════════════
+let _jLines=[];
+function openJournalModal(editId){
+  _jLines=[{id:1,code:'',narr:'',dr:0,cr:0},{id:2,code:'',narr:'',dr:0,cr:0}];
+  $('je-date').value=tod();$('je-ref').value=autoJERef();$('je-desc').value='';
+  renderJELines();openModal('je-modal');
+}
+function autoJERef(){const j=getJournals();return'JNL-'+(new Date().getFullYear())+'-'+String(j.length+1).padStart(4,'0');}
+function addJELine(){_jLines.push({id:Date.now(),code:'',narr:'',dr:0,cr:0});renderJELines();}
+function delJELine(id){if(_jLines.length<=2){T.warn('Minimum 2 lines required.');return;}_jLines=_jLines.filter(l=>l.id!==id);renderJELines();}
+function updJELine(id,k,v){const l=_jLines.find(x=>x.id===id);if(l){l[k]=k==='dr'||k==='cr'?n(v):v;renderJELines();}}
+function renderJELines(){
+  const accs=getCoA();
+  const opts=accs.map(a=>`<option value="${a.code}">${a.code} — ${esc(a.name)}</option>`).join('');
+  let tDR=0,tCR=0;
+  $('je-lines').innerHTML=_jLines.map((l,i)=>{tDR+=l.dr;tCR+=l.cr;return`
+    <div style="display:grid;grid-template-columns:32px 1fr 150px 120px 120px 32px;gap:4px;margin-bottom:3px;align-items:center">
+      <div style="font-family:var(--m);font-size:.67rem;color:var(--tx3);background:var(--bg3);border-radius:4px;padding:.3rem;text-align:center">${i+1}</div>
+      <select class="fi" style="font-size:.72rem" onchange="updJELine(${l.id},'code',this.value)"><option value="">— Select Account —</option>${opts}</select>
+      <input class="fi" style="font-size:.72rem" placeholder="Narration" value="${esc(l.narr)}" oninput="updJELine(${l.id},'narr',this.value)">
+      <input class="fi" style="font-size:.72rem;text-align:right;font-family:var(--m);color:var(--info)" type="number" min="0" step="0.01" placeholder="0.00" value="${l.dr||''}" oninput="updJELine(${l.id},'dr',this.value);updJELine(${l.id},'cr',0)">
+      <input class="fi" style="font-size:.72rem;text-align:right;font-family:var(--m);color:var(--ok)" type="number" min="0" step="0.01" placeholder="0.00" value="${l.cr||''}" oninput="updJELine(${l.id},'cr',this.value);updJELine(${l.id},'dr',0)">
+      <button class="btn bdan bxs" onclick="delJELine(${l.id})" style="padding:.25rem">✕</button>
+    </div>`}).join('');
+  $('je-total-dr').textContent=fR(tDR);$('je-total-cr').textContent=fR(tCR);
+  const diff=tDR-tCR;
+  const de=$('je-diff');de.textContent=fR(Math.abs(diff));de.className=Math.abs(diff)<0.005?'ok-c':'err-c';
+}
+function saveJE(status){
+  const date=$('je-date').value,ref=$('je-ref').value.trim(),desc=$('je-desc').value.trim();
+  if(!date||!ref||!desc){T.err('Date, reference and description are required.');return;}
+  const lines=_jLines.filter(l=>l.code&&(l.dr>0||l.cr>0));
+  if(lines.length<2){T.err('At least 2 lines with amounts are required.');return;}
+  const tDR=lines.reduce((s,l)=>s+n(l.dr),0),tCR=lines.reduce((s,l)=>s+n(l.cr),0);
+  if(status==='posted'&&Math.abs(tDR-tCR)>0.005){T.err(`Entry does not balance. DR: ${fR(tDR)} ≠ CR: ${fR(tCR)}`);return;}
+  const entry={id:genId(),date,ref,desc,type:$('je-type').value,lines,status,totalDR:tDR,totalCR:tCR,postedBy:getUser().name,postedAt:new Date().toISOString()};
+  const j=getJournals();j.unshift(entry);LS.set('nrt_journals',j);
+  addAudit(status==='posted'?'POST':'CREATE',`Journal ${ref}: ${desc}`,entry.id);
+  closeModal('je-modal');T.ok(`Journal entry ${ref} ${status==='posted'?'posted':'saved as draft'}.`);
+  if(_cv==='journals')rJournals();if(_cv==='dashboard')rDash();updateSnBadges();
+}
+function voidJE(id){
+  if(!confirm('Void this journal entry? A reversing entry will be created.'))return;
+  const j=getJournals(),idx=j.findIndex(x=>x.id===id);if(idx<0)return;
+  const orig=j[idx];if(orig.status==='voided'){T.warn('Already voided.');return;}
+  j[idx].status='voided';
+  // Create reversing entry
+  const rev={id:genId(),date:tod(),ref:'VOID-'+orig.ref,desc:'Void of '+orig.ref+': '+orig.desc,
+    type:'reversal',lines:orig.lines.map(l=>({...l,dr:l.cr,cr:l.dr})),
+    status:'posted',totalDR:orig.totalCR,totalCR:orig.totalDR,postedBy:getUser().name,postedAt:new Date().toISOString()};
+  j.unshift(rev);LS.set('nrt_journals',j);
+  addAudit('VOID',`Voided ${orig.ref}`,id);T.ok('Journal voided.');if(_cv==='journals')rJournals();
+}
+function rJournals(){
+  const s=($('je-search')||{}).value?.toLowerCase()||'';
+  const st=($('je-status')||{}).value||'';
+  const from=($('je-from')||{}).value||'';
+  const to=($('je-to')||{}).value||'';
+  const fl=getJournals().filter(j=>(!st||j.status===st)&&(!from||j.date>=from)&&(!to||j.date<=to)&&(!s||(j.ref||'').toLowerCase().includes(s)||(j.desc||'').toLowerCase().includes(s)));
+  $('je-body').innerHTML=fl.length?fl.map(j=>`<tr>
+    <td class="mn" style="font-size:.68rem">${j.date}</td>
+    <td class="mn fw7" style="font-size:.7rem">${esc(j.ref)}</td>
+    <td>${esc(j.desc)}</td>
+    <td class="amtdr">${fR(j.totalDR)}</td>
+    <td class="amtcr">${fR(j.totalCR)}</td>
+    <td class="mn" style="text-align:center">${j.lines?.length||0}</td>
+    <td class="t3" style="font-size:.68rem">${esc(j.postedBy||'—')}</td>
+    <td><span class="pill p${j.status}">${j.status}</span></td>
+    <td style="white-space:nowrap">${j.status==='posted'?`<button class="btn bdan bxs" onclick="voidJE('${j.id}')">Void</button>`:''}
+      <button class="btn bgh bxs" onclick="showJEDetail('${j.id}')">View</button></td>
+    </tr>`).join(''):'<tr><td colspan="9" class="tbl-empty">No journal entries found.</td></tr>';
+}
+function showJEDetail(id){
+  const j=getJournals().find(x=>x.id===id);if(!j)return;
+  const accs=getCoA();
+  alert(`${j.ref} | ${j.date} | ${j.status}\n${j.desc}\n\n${j.lines.map(l=>{const a=accs.find(x=>x.code===l.code);return `${l.code} ${a?a.name:''}\n  DR: ${fR(l.dr||0)}  CR: ${fR(l.cr||0)}\n  ${l.narr||''}`;}).join('\n')}\n\nTotal DR: ${fR(j.totalDR)}  Total CR: ${fR(j.totalCR)}`);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CHART OF ACCOUNTS
+// ═══════════════════════════════════════════════════════════════
+function openAccModal(code){
+  const acc=code?getCoA().find(a=>a.code===code):null;
+  $('acc-modal-title').textContent=acc?'Edit Account':'New Account';
+  $('acc-code').value=acc?.code||'';$('acc-name').value=acc?.name||'';
+  $('acc-type').value=acc?.type||'ASSET';$('acc-sub').value=acc?.sub||'Current';
+  $('acc-desc').value=acc?.desc||'';$('acc-code').dataset.edit=acc?.code||'';
+  openModal('acc-modal');
+}
+function saveAccount(){
+  const code=$('acc-code').value.trim(),name=$('acc-name').value.trim();
+  if(!code||!name){T.err('Code and name required.');return;}
+  const coa=getCoA();const editCode=$('acc-code').dataset.edit;
+  if(!editCode&&coa.find(a=>a.code===code)){T.err('Account code already exists.');return;}
+  const acc={code,name,type:$('acc-type').value,sub:$('acc-sub').value,desc:$('acc-desc').value.trim(),active:true};
+  if(editCode){const i=coa.findIndex(a=>a.code===editCode);if(i>=0)coa[i]=acc;}else{coa.push(acc);coa.sort((a,b)=>a.code.localeCompare(b.code));}
+  LS.set('nrt_coa',coa);closeModal('acc-modal');T.ok('Account saved.');rCoA();addAudit('CREATE','Account: '+code+' '+name);
+}
+function rCoA(){
+  const s=($('coa-search')||{}).value?.toLowerCase()||'';
+  const t=($('coa-type')||{}).value||'';
+  const{from,to}=gPR(getCurPer());
+  const EPOCH='2000-01-01';
+  const fl=getCoA().filter(a=>(!t||a.type===t||a.type.includes(t))&&(!s||a.code.includes(s)||(a.name||'').toLowerCase().includes(s)));
+  const typeLabels={ASSET:'Asset',CONTRA_ASSET:'Contra Asset',LIABILITY:'Liability',EQUITY:'Equity',REVENUE:'Revenue',COS:'Cost of Sales',EXPENSE:'Expense'};
+  const typeClass={ASSET:'passet',CONTRA_ASSET:'ppur',LIABILITY:'pliab',EQUITY:'ppos',REVENUE:'prev',COS:'pcos',EXPENSE:'pexp'};
+  $('coa-body').innerHTML=fl.length?fl.map(a=>{
+    const{dr,cr}=getAccBalance(a.code,EPOCH,to);
+    return`<tr onclick="openAccModal('${a.code}')">
+      <td class="mn fw7">${a.code}</td><td>${esc(a.name)}</td>
+      <td><span class="pill ${typeClass[a.type]||'pdraft'}">${typeLabels[a.type]||a.type}</span></td>
+      <td class="t3">${a.sub||'—'}</td>
+      <td class="amtdr">${dr>0?fR(dr):'—'}</td>
+      <td class="amtcr">${cr>0?fR(cr):'—'}</td>
+      <td style="text-align:center"><span class="pill ${a.active?'ppaid':'pvoided'}">${a.active?'Active':'Inactive'}</span></td>
+      <td><button class="btn bgh bxs" onclick="event.stopPropagation();openAccModal('${a.code}')">Edit</button></td>
+    </tr>`;}).join(''):'<tr><td colspan="8" class="tbl-empty">No accounts found.</td></tr>';
+}
+function exportCoaCSV(){
+  const rows=[['Code','Name','Type','Sub-Type','Description'],...getCoA().map(a=>[a.code,a.name,a.type,a.sub,a.desc])];
+  const csv=rows.map(r=>r.map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='NRT_Chart_of_Accounts.csv';a.click();
+}
+
+// ── TRIAL BALANCE ────────────────────────────────────────────────
+function rTB(){
+  const{from,to,lbl}=gPR(getCurPer());
+  $('tb-period-lbl').textContent='As at '+to+' · Period: '+lbl;
+  const{rows,totalDR,totalCR,balanced}=calcTB(from,to);
+  const typeClass={ASSET:'at-asset',CONTRA_ASSET:'at-contra',LIABILITY:'at-liab',EQUITY:'at-equity',REVENUE:'at-rev',COS:'at-cos',EXPENSE:'at-exp'};
+  $('tb-content').innerHTML=`
+    <div class="${balanced?'notice ok':'notice warn'}">&#${balanced?'10003':'9888'}; Trial Balance is <strong>${balanced?'balanced':'NOT balanced'}</strong>. Total DR = ${fR(totalDR)} | Total CR = ${fR(totalCR)}</div>
+    <div class="tbwrap"><div class="tbhd"><span class="tbhdl">Trial Balance as at ${to}</span><button class="btn bgh bsm" onclick="exportTBcsv()">Export CSV</button></div>
+    <table class="tbl"><thead><tr><th>Code</th><th>Account Name</th><th>Type</th><th class="nr">Debit (ZAR)</th><th class="nr">Credit (ZAR)</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr><td class="mn fw7">${r.code}</td><td class="${typeClass[r.type]||''}">${esc(r.name)}</td><td class="t3" style="font-size:.65rem">${r.type}</td><td class="amtdr">${r.dr>0?fR(r.dr):'—'}</td><td class="amtcr">${r.cr>0?fR(r.cr):'—'}</td></tr>`).join('')}
+    </tbody><tfoot><tr class="tbl-grand"><td colspan="3"><strong>TOTALS</strong></td><td class="amtdr"><strong>${fR(totalDR)}</strong></td><td class="amtcr"><strong>${fR(totalCR)}</strong></td></tr></tfoot></table></div>`;
+}
+function exportTBcsv(){const{rows,totalDR,totalCR}=calcTB('2000-01-01',gPR(getCurPer()).to);const csv=[['Code','Name','Type','Sub','Debit','Credit'],...rows.map(r=>[r.code,r.name,r.type,r.sub,r.dr,r.cr]),['','TOTAL','','',totalDR,totalCR]].map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='NRT_Trial_Balance.csv';a.click();}
+
+// ═══════════════════════════════════════════════════════════════
+// AR MODULE — CUSTOMERS & INVOICES
+// ═══════════════════════════════════════════════════════════════
+function getCusts(){return LS.get('nrt_custs')||[];}
+function getInvoices(){return LS.get('nrt_inv')||[];}
+function getInvBalance(inv){const paid=(LS.get('nrt_rcpts')||[]).filter(r=>r.invId===inv.id).reduce((s,r)=>s+n(r.amount),0);return{paid,balance:n(inv.total)-paid};}
+function getInvStatus(inv){const{balance}=getInvBalance(inv);if(inv.status==='draft')return'draft';if(balance<=0)return'paid';if(inv.dueDate<tod()&&balance>0)return'overdue';if(balance<n(inv.total))return'partial';return'posted';}
+function getCustOutstanding(custId){return getInvoices().filter(i=>i.custId===custId&&i.status!=='draft').reduce((s,i)=>s+getInvBalance(i).balance,0);}
+
+function openCustModal(id){
+  const c=id?getCusts().find(x=>x.id===id):null;
+  $('entity-modal-title').textContent=c?'Edit Customer':'New Customer';
+  $('ent-type').value='customer';$('ent-id').value=c?.id||'';
+  $('ent-code').value=c?.code||'CUST-'+String(getCusts().length+1).padStart(3,'0');
+  $('ent-name').value=c?.name||'';$('ent-contact').value=c?.contact||'';
+  $('ent-email').value=c?.email||'';$('ent-phone').value=c?.phone||'';
+  $('ent-vat').value=c?.vat||'';$('ent-terms').value=c?.terms||30;
+  $('ent-limit').value=c?.limit||'';$('ent-addr').value=c?.addr||'';
+  openModal('entity-modal');
+}
+function openSuppModal(id){
+  const s=id?(LS.get('nrt_supps')||[]).find(x=>x.id===id):null;
+  $('entity-modal-title').textContent=s?'Edit Supplier':'New Supplier';
+  $('ent-type').value='supplier';$('ent-id').value=s?.id||'';
+  $('ent-code').value=s?.code||'SUPP-'+String((LS.get('nrt_supps')||[]).length+1).padStart(3,'0');
+  $('ent-name').value=s?.name||'';$('ent-contact').value=s?.contact||'';
+  $('ent-email').value=s?.email||'';$('ent-phone').value=s?.phone||'';
+  $('ent-vat').value=s?.vat||'';$('ent-terms').value=s?.terms||30;
+  $('ent-limit').value='';$('ent-addr').value=s?.addr||'';
+  openModal('entity-modal');
+}
+function saveEntity(){
+  const type=$('ent-type').value,name=$('ent-name').value.trim();
+  if(!name){T.err('Company name required.');return;}
+  const key=type==='customer'?'nrt_custs':'nrt_supps';
+  const list=LS.get(key)||[];const editId=$('ent-id').value;
+  const e={id:editId||genId(),code:$('ent-code').value.trim(),name,contact:$('ent-contact').value.trim(),email:$('ent-email').value.trim(),phone:$('ent-phone').value.trim(),vat:$('ent-vat').value.trim(),terms:n($('ent-terms').value),limit:n($('ent-limit').value),addr:$('ent-addr').value.trim(),active:true};
+  if(editId){const i=list.findIndex(x=>x.id===editId);if(i>=0)list[i]=e;}else list.push(e);
+  LS.set(key,list);closeModal('entity-modal');T.ok((type==='customer'?'Customer':'Supplier')+' saved.');
+  addAudit('CREATE',type+': '+name,e.id);
+  if(type==='customer')rCusts();else rSupps();
+}
+function rCusts(){
+  const s=($('cust-search')||{}).value?.toLowerCase()||'';
+  const fl=getCusts().filter(c=>!s||(c.name||'').toLowerCase().includes(s)||(c.code||'').toLowerCase().includes(s));
+  $('cust-body').innerHTML=fl.length?fl.map(c=>`<tr onclick="openCustModal('${c.id}')">
+    <td class="mn fw7">${esc(c.code)}</td><td>${esc(c.name)}</td><td class="t3">${esc(c.contact||'—')}</td>
+    <td class="t3">${esc(c.email||'—')}</td><td class="mn t3">${esc(c.phone||'—')}</td><td class="t3">${c.terms||30} days</td>
+    <td class="amt ${getCustOutstanding(c.id)>0?'err-c':''}">${fR(getCustOutstanding(c.id))}</td>
+    <td class="mn t3">${c.limit?fR(c.limit):'Unlimited'}</td>
+    <td><button class="btn bbr bxs" onclick="event.stopPropagation();openInvModal(null,'${c.id}')">Invoice</button></td>
+    </tr>`).join(''):'<tr><td colspan="9" class="tbl-empty">No customers found.</td></tr>';
+}
+function rSupps(){
+  const s=($('supp-search')||{}).value?.toLowerCase()||'';
+  const fl=(LS.get('nrt_supps')||[]).filter(c=>!s||(c.name||'').toLowerCase().includes(s));
+  $('supp-body').innerHTML=fl.length?fl.map(c=>`<tr onclick="openSuppModal('${c.id}')">
+    <td class="mn fw7">${esc(c.code)}</td><td>${esc(c.name)}</td><td class="t3">${esc(c.contact||'—')}</td>
+    <td class="t3">${esc(c.email||'—')}</td><td class="t3">${c.terms||30} days</td>
+    <td class="mn t3">${esc(c.vat||'—')}</td>
+    <td class="amt ${getBillOutstanding(c.id)>0?'err-c':''}">${fR(getBillOutstanding(c.id))}</td>
+    <td><button class="btn bbr bxs" onclick="event.stopPropagation();openBillModal(null,'${c.id}')">Bill</button></td>
+    </tr>`).join(''):'<tr><td colspan="8" class="tbl-empty">No suppliers found.</td></tr>';
+}
+
+// ── INVOICES ────────────────────────────────────────────────────
+let _invLines=[];
+function openInvModal(editId,custId){
+  _invLines=[{id:1,desc:'Professional Services',accCode:'6000',qty:1,price:0}];
+  const inv=editId?getInvoices().find(x=>x.id===editId):null;
+  $('inv-modal-title').textContent='New Sales Invoice';
+  $('inv-modal-sub').textContent='Accounts Receivable · Post to create ledger entries';
+  $('inv-mode').value='invoice';$('inv-edit-id').value=editId||'';
+  $('inv-date').value=tod();
+  const due=new Date();due.setDate(due.getDate()+30);$('inv-due').value=due.toISOString().split('T')[0];
+  const invs=getInvoices();$('inv-num').value='INV-'+(new Date().getFullYear())+'-'+String(invs.length+1).padStart(4,'0');
+  $('inv-ref').value='';$('inv-vat-on').checked=true;
+  const custs=getCusts();
+  $('inv-party').innerHTML='<option value="">— Select Customer —</option>'+custs.map(c=>`<option value="${c.id}"${(custId&&c.id===custId)||inv?.custId===c.id?' selected':''}>${esc(c.name)}</option>`).join('');
+  $('inv-party-lbl').textContent='Customer *';
+  if(inv){_invLines=inv.lines||_invLines;$('inv-vat-on').checked=inv.vatOn;}
+  renderInvLines();openModal('inv-modal');
+}
+let _ilNextId=2;
+function addInvLine(){_invLines.push({id:_ilNextId++,desc:'',accCode:'6000',qty:1,price:0});renderInvLines();}
+function delInvLine(id){if(_invLines.length<=1){T.warn('At least one line required.');return;}_invLines=_invLines.filter(l=>l.id!==id);renderInvLines();}
+function updInvLine(id,k,v){const l=_invLines.find(x=>x.id===id);if(l){l[k]=k==='qty'||k==='price'?n(v):v;renderInvLines();}}
+function renderInvLines(){
+  const accs=getCoA().filter(a=>a.type==='REVENUE'||a.type==='COS');
+  const opts=accs.map(a=>`<option value="${a.code}">${a.code} — ${esc(a.name)}</option>`).join('');
+  let sub=0;
+  $('inv-lines').innerHTML=_invLines.map((l,i)=>{const amt=n(l.qty)*n(l.price);sub+=amt;return`
+    <div style="display:grid;grid-template-columns:1fr 130px 70px 90px 90px 28px;gap:3px;margin-bottom:3px;align-items:center">
+      <input class="fi" style="font-size:.72rem" placeholder="Description" value="${esc(l.desc)}" oninput="updInvLine(${l.id},'desc',this.value)">
+      <select class="fi" style="font-size:.7rem" onchange="updInvLine(${l.id},'accCode',this.value)">${opts}</select>
+      <input class="fi" style="font-size:.72rem;text-align:right" type="number" min="0" step="0.001" value="${l.qty}" oninput="updInvLine(${l.id},'qty',this.value)">
+      <input class="fi" style="font-size:.72rem;text-align:right;font-family:var(--m)" type="number" min="0" step="0.01" value="${l.price||''}" placeholder="0.00" oninput="updInvLine(${l.id},'price',this.value)">
+      <div style="font-family:var(--m);font-size:.72rem;font-weight:700;text-align:right;color:var(--br);background:var(--bg3);border-radius:6px;padding:.4rem .5rem">${fR(amt)}</div>
+      <button class="btn bdan bxs" onclick="delInvLine(${l.id})" style="padding:.22rem">✕</button>
+    </div>`;}).join('');
+  const vatOn=$('inv-vat-on')?.checked;
+  const vat=vatOn?sub*0.15:0,total=sub+vat;
+  $('inv-subtotal').textContent=fR(sub);$('inv-vat-amt').textContent=fR(vat);$('inv-total').textContent=fR(total);
+  $('inv-vat-row').style.display=vatOn?'flex':'none';
+}
+function saveInvoice(status){
+  const custId=$('inv-party').value,date=$('inv-date').value,num=$('inv-num').value.trim(),due=$('inv-due').value;
+  if(!custId||!date||!num){T.err('Customer, date and invoice number required.');return;}
+  const lines=_invLines.filter(l=>l.desc&&(l.qty>0||l.price>0));
+  if(!lines.length){T.err('At least one line item required.');return;}
+  const sub=lines.reduce((s,l)=>s+n(l.qty)*n(l.price),0);
+  const vatOn=$('inv-vat-on').checked,vat=vatOn?sub*0.15:0,total=sub+vat;
+  const inv={id:genId(),custId,date,num,dueDate:due,ref:$('inv-ref').value.trim(),lines,sub,vat,total,vatOn,status,postedBy:getUser().name,postedAt:new Date().toISOString()};
+  if(status==='posted'){
+    // Create journal entries: DR Trade Receivables, CR Revenue, CR VAT Payable
+    const cfg=LS.get('nrt_settings')||{};
+    const jLines=[
+      {code:cfg.arAcc||'1100',narr:'Invoice '+num,dr:total,cr:0},
+    ];
+    lines.forEach(l=>jLines.push({code:l.accCode||cfg.revAcc||'6000',narr:l.desc,dr:0,cr:n(l.qty)*n(l.price)}));
+    if(vatOn)jLines.push({code:cfg.vatOut||'3100',narr:'VAT on '+num,dr:0,cr:vat});
+    const je={id:genId(),date,ref:'INV-JNL-'+num,desc:'Sales Invoice '+num+' — '+(getCusts().find(c=>c.id===custId)?.name||''),type:'invoice',lines:jLines,status:'posted',totalDR:total,totalCR:total,postedBy:getUser().name,postedAt:new Date().toISOString(),invId:inv.id};
+    const j=getJournals();j.unshift(je);LS.set('nrt_journals',j);
+  }
+  const invList=getInvoices();
+  const editId=$('inv-edit-id').value;
+  if(editId){const i=invList.findIndex(x=>x.id===editId);if(i>=0)invList[i]=inv;}else invList.unshift(inv);
+  LS.set('nrt_inv',invList);closeModal('inv-modal');T.ok(`Invoice ${num} ${status==='posted'?'posted':'saved as draft'}.`);
+  addAudit(status==='posted'?'POST':'CREATE','Invoice: '+num,inv.id);
+  populateInvFilters();rInvoices();if(_cv==='dashboard')rDash();updateSnBadges();
+}
+function populateInvFilters(){
+  const custs=getCusts(),sel=$('inv-cust');if(!sel)return;const cur=sel.value;
+  sel.innerHTML='<option value="">All Customers</option>'+custs.map(c=>`<option value="${c.id}"${c.id===cur?' selected':''}>${esc(c.name)}</option>`).join('');
+}
+function rInvoices(){
+  const s=($('inv-search')||{}).value?.toLowerCase()||'',st=($('inv-status')||{}).value||'',cid=($('inv-cust')||{}).value||'';
+  const invs=getInvoices();
+  const fl=invs.filter(i=>{const ist=getInvStatus(i);return(!st||ist===st)&&(!cid||i.custId===cid)&&(!s||(i.num||'').toLowerCase().includes(s)||(getCusts().find(c=>c.id===i.custId)?.name||'').toLowerCase().includes(s));});
+  const tot=invs.filter(i=>i.status!=='draft').reduce((s,i)=>s+i.total,0);
+  const out=invs.filter(i=>i.status!=='draft').reduce((s,i)=>s+getInvBalance(i).balance,0);
+  const ovd=invs.filter(i=>getInvStatus(i)==='overdue').reduce((s,i)=>s+getInvBalance(i).balance,0);
+  $('inv-summary').innerHTML=`<div class="sum-item"><div class="sum-l">Total Billed</div><div class="sum-v br-c">${fR(tot)}</div></div><div class="sum-item"><div class="sum-l">Outstanding</div><div class="sum-v warn-c">${fR(out)}</div></div><div class="sum-item"><div class="sum-l">Overdue</div><div class="sum-v err-c">${fR(ovd)}</div></div><div class="sum-item"><div class="sum-l">Total Invoices</div><div class="sum-v">${invs.length}</div></div>`;
+  const custs=getCusts();
+  $('inv-body').innerHTML=fl.length?fl.map(i=>{const c=custs.find(x=>x.id===i.custId);const ist=getInvStatus(i);const{balance}=getInvBalance(i);return`<tr>
+    <td class="mn fw7">${esc(i.num)}</td><td class="mn t3" style="font-size:.68rem">${i.date}</td>
+    <td>${esc(c?.name||'—')}</td><td class="mn ${ist==='overdue'?'err-c':''}" style="font-size:.68rem">${i.dueDate}</td>
+    <td class="nr">${fR(i.sub)}</td><td class="nr t3">${i.vatOn?fR(i.vat):'—'}</td>
+    <td class="amt">${fR(i.total)}</td><td class="amtcr">${fR(getInvBalance(i).paid)}</td>
+    <td class="amt ${balance>0?'err-c':''}">${fR(balance)}</td>
+    <td><span class="pill p${ist}">${ist}</span></td>
+    <td style="white-space:nowrap"><button class="btn bok2 bxs" onclick="openRcptModal('${i.id}')">Pay</button><button class="btn bdan bxs" onclick="deleteInv('${i.id}')">Del</button></td>
+    </tr>`;}).join(''):'<tr><td colspan="11" class="tbl-empty">No invoices found.</td></tr>';
+  $('snb-inv').textContent=invs.filter(i=>getInvStatus(i)==='overdue').length||'';
+}
+function deleteInv(id){if(!confirm('Delete this invoice?'))return;LS.set('nrt_inv',getInvoices().filter(i=>i.id!==id));rInvoices();T.ok('Invoice deleted.');}
+function exportInvCSV(){const invs=getInvoices();const custs=getCusts();const csv=[['#','Date','Customer','Due','Total','Paid','Balance','Status'],...invs.map(i=>{const c=custs.find(x=>x.id===i.custId);const{paid,balance}=getInvBalance(i);return[i.num,i.date,c?.name||'',i.dueDate,i.total,paid,balance,getInvStatus(i)];})].map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='NRT_Invoices.csv';a.click();}
+
+// ── RECEIPTS ─────────────────────────────────────────────────────
+function openRcptModal(invId){
+  $('pr-modal-title').textContent='Record Customer Receipt';$('pr-mode').value='receipt';
+  $('pr-date').value=tod();$('pr-amount').value='';$('pr-ref').value='';
+  $('pr-bank').innerHTML='<option value="">— Bank Account —</option>'+(LS.get('nrt_banks')||[]).map(b=>`<option value="${b.id}">${esc(b.name)}</option>`).join('');
+  const invs=getInvoices().filter(i=>i.status!=='draft');
+  $('pr-inv').innerHTML='<option value="">— Select Invoice —</option>'+invs.map(i=>{const c=getCusts().find(x=>x.id===i.custId);return`<option value="${i.id}"${i.id===invId?' selected':''}>${i.num} — ${c?.name||''} (${fR(getInvBalance(i).balance)} outstanding)</option>`;}).join('');
+  const custs=getCusts();$('pr-party').innerHTML='<option value="">— Customer —</option>'+custs.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  $('pr-party-lbl').textContent='Customer';
+  if(invId){const inv=invs.find(i=>i.id===invId);if(inv){const{balance}=getInvBalance(inv);$('pr-amount').value=balance.toFixed(2);$('pr-party').value=inv.custId;}}
+  calcPrBalance();openModal('pay-rcpt-modal');
+}
+function calcPrBalance(){const invId=($('pr-inv')||{}).value;const inv=invId?getInvoices().find(i=>i.id===invId):null;const bi=$('pr-balance-info');if(!bi)return;if(inv){const{paid,balance}=getInvBalance(inv);bi.innerHTML=`Invoice ${inv.num}: Total ${fR(inv.total)} · Paid ${fR(paid)} · <strong style="color:var(--warn)">Balance ${fR(balance)}</strong>`;}else{bi.innerHTML='Select an invoice to see outstanding balance';}}
+function savePR(){
+  const date=$('pr-date').value,amount=n($('pr-amount').value);
+  if(!date||amount<=0){T.err('Date and amount required.');return;}
+  const mode=$('pr-mode').value,invId=$('pr-inv').value,partyId=$('pr-party').value;
+  const cfg=LS.get('nrt_settings')||{};
+  const bankId=$('pr-bank').value;
+  const bankAcc=(LS.get('nrt_banks')||[]).find(b=>b.id===bankId);
+  const refNo='RCT-'+Date.now().toString().slice(-6);
+  // Journal: DR Bank, CR Trade Receivables
+  const jLines=[{code:bankAcc?.ledgerAcc||cfg.bankAcc||'1000',narr:'Receipt '+refNo,dr:amount,cr:0},{code:cfg.arAcc||'1100',narr:'Receipt from '+refNo,dr:0,cr:amount}];
+  const je={id:genId(),date,ref:refNo,desc:'Customer receipt'+(invId?' for inv '+(getInvoices().find(i=>i.id===invId)?.num||''):''),type:'receipt',lines:jLines,status:'posted',totalDR:amount,totalCR:amount,postedBy:getUser().name,postedAt:new Date().toISOString()};
+  const jl=getJournals();jl.unshift(je);LS.set('nrt_journals',jl);
+  const rcpt={id:genId(),date,refNo,custId:partyId,invId,bankId,amount,method:$('pr-method').value,ref:$('pr-ref').value.trim(),jeId:je.id,postedBy:getUser().name};
+  const rcpts=LS.get('nrt_rcpts')||[];rcpts.unshift(rcpt);LS.set('nrt_rcpts',rcpts);
+  closeModal('pay-rcpt-modal');T.ok('Receipt '+refNo+' posted.');addAudit('POST','Receipt: '+refNo,rcpt.id);
+  if(_cv==='receipts')rRcpts();if(_cv==='invoices')rInvoices();if(_cv==='dashboard')rDash();
+}
+function rRcpts(){
+  const rcpts=LS.get('nrt_rcpts')||[];const custs=getCusts();const invs=getInvoices();
+  $('rcpt-body').innerHTML=rcpts.length?rcpts.map(r=>{const c=custs.find(x=>x.id===r.custId);const i=invs.find(x=>x.id===r.invId);return`<tr><td class="mn t3" style="font-size:.68rem">${r.date}</td><td class="mn fw7">${esc(r.refNo)}</td><td>${esc(c?.name||'—')}</td><td class="mn">${esc(i?.num||'—')}</td><td class="t3">${esc(r.method)}</td><td class="amt ok-c">${fR(r.amount)}</td><td class="t3">${esc(r.postedBy||'—')}</td><td><button class="btn bgh bxs">View</button></td></tr>`;}).join(''):'<tr><td colspan="8" class="tbl-empty">No receipts.</td></tr>';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// AP MODULE — SUPPLIERS & BILLS
+// ═══════════════════════════════════════════════════════════════
+function getBills(){return LS.get('nrt_bills')||[];}
+function getBillBalance(bill){const paid=(LS.get('nrt_pays')||[]).filter(p=>p.billId===bill.id).reduce((s,p)=>s+n(p.amount),0);return{paid,balance:n(bill.total)-paid};}
+function getBillStatus(bill){const{balance}=getBillBalance(bill);if(bill.status==='draft')return'draft';if(balance<=0)return'paid';if(bill.dueDate<tod()&&balance>0)return'overdue';return'posted';}
+function getBillOutstanding(suppId){return getBills().filter(b=>b.suppId===suppId&&b.status!=='draft').reduce((s,b)=>s+getBillBalance(b).balance,0);}
+
+let _billLines=[];
+function openBillModal(editId,suppId){
+  _billLines=[{id:1,desc:'',accCode:'8000',qty:1,price:0}];
+  $('inv-modal-title').textContent='New Purchase Bill';$('inv-modal-sub').textContent='Accounts Payable · Post to create ledger entries';
+  $('inv-mode').value='bill';$('inv-edit-id').value=editId||'';
+  $('inv-date').value=tod();const due=new Date();due.setDate(due.getDate()+30);$('inv-due').value=due.toISOString().split('T')[0];
+  const bills=getBills();$('inv-num').value='BILL-'+(new Date().getFullYear())+'-'+String(bills.length+1).padStart(4,'0');
+  $('inv-ref').value='';$('inv-vat-on').checked=true;
+  const supps=LS.get('nrt_supps')||[];
+  $('inv-party').innerHTML='<option value="">— Select Supplier —</option>'+supps.map(s=>`<option value="${s.id}"${suppId&&s.id===suppId?' selected':''}>${esc(s.name)}</option>`).join('');
+  $('inv-party-lbl').textContent='Supplier *';_invLines=_billLines;renderInvLines();openModal('inv-modal');
+}
+function saveInvoice(status){
+  const mode=$('inv-mode').value;
+  if(mode==='bill'){saveBillFrom(status);return;}
+  const custId=$('inv-party').value,date=$('inv-date').value,num=$('inv-num').value.trim(),due=$('inv-due').value;
+  if(!custId||!date||!num){T.err('All required fields must be filled.');return;}
+  const lines=_invLines.filter(l=>l.desc||(n(l.qty)*n(l.price))>0);
+  const sub=lines.reduce((s,l)=>s+n(l.qty)*n(l.price),0);
+  const vatOn=$('inv-vat-on').checked,vat=vatOn?sub*0.15:0,total=sub+vat;
+  const inv={id:genId(),custId,date,num,dueDate:due,ref:$('inv-ref').value.trim(),lines,sub,vat,total,vatOn,status,postedBy:getUser().name,postedAt:new Date().toISOString()};
+  if(status==='posted'){
+    const cfg=LS.get('nrt_settings')||{};
+    const jLines=[{code:cfg.arAcc||'1100',narr:'Invoice '+num,dr:total,cr:0}];
+    lines.forEach(l=>jLines.push({code:l.accCode||'6000',narr:l.desc,dr:0,cr:n(l.qty)*n(l.price)}));
+    if(vatOn)jLines.push({code:cfg.vatOut||'3100',narr:'Output VAT '+num,dr:0,cr:vat});
+    const je={id:genId(),date,ref:'AR-JNL-'+num,desc:'Invoice '+num+' — '+(getCusts().find(c=>c.id===custId)?.name||''),type:'invoice',lines:jLines,status:'posted',totalDR:total,totalCR:total,postedBy:getUser().name,postedAt:new Date().toISOString()};
+    const jl=getJournals();jl.unshift(je);LS.set('nrt_journals',jl);
+  }
+  const invList=getInvoices();invList.unshift(inv);LS.set('nrt_inv',invList);
+  closeModal('inv-modal');T.ok('Invoice '+num+' saved.');addAudit(status==='posted'?'POST':'CREATE','Invoice: '+num);
+  populateInvFilters();rInvoices();if(_cv==='dashboard')rDash();updateSnBadges();
+}
+function saveBillFrom(status){
+  const suppId=$('inv-party').value,date=$('inv-date').value,num=$('inv-num').value.trim(),due=$('inv-due').value;
+  if(!suppId||!date||!num){T.err('All required fields must be filled.');return;}
+  const lines=_invLines.filter(l=>l.desc||(n(l.qty)*n(l.price))>0);
+  const sub=lines.reduce((s,l)=>s+n(l.qty)*n(l.price),0);
+  const vatOn=$('inv-vat-on').checked,vat=vatOn?sub*0.15:0,total=sub+vat;
+  const bill={id:genId(),suppId,date,num,dueDate:due,ref:$('inv-ref').value.trim(),lines,sub,vat,total,vatOn,status,postedBy:getUser().name,postedAt:new Date().toISOString()};
+  if(status==='posted'){
+    const cfg=LS.get('nrt_settings')||{};
+    const jLines=[];
+    lines.forEach(l=>jLines.push({code:l.accCode||'8000',narr:l.desc,dr:n(l.qty)*n(l.price),cr:0}));
+    if(vatOn)jLines.push({code:cfg.vatIn||'1400',narr:'Input VAT '+num,dr:vat,cr:0});
+    jLines.push({code:cfg.apAcc||'3000',narr:'Bill '+num,dr:0,cr:total});
+    const je={id:genId(),date,ref:'AP-JNL-'+num,desc:'Bill '+num+' — '+((LS.get('nrt_supps')||[]).find(s=>s.id===suppId)?.name||''),type:'bill',lines:jLines,status:'posted',totalDR:total,totalCR:total,postedBy:getUser().name,postedAt:new Date().toISOString()};
+    const jl=getJournals();jl.unshift(je);LS.set('nrt_journals',jl);
+  }
+  const billList=getBills();billList.unshift(bill);LS.set('nrt_bills',billList);
+  closeModal('inv-modal');T.ok('Bill '+num+' saved.');addAudit(status==='posted'?'POST':'CREATE','Bill: '+num);rBills();updateSnBadges();
+}
+function rBills(){
+  const s=($('bill-search')||{}).value?.toLowerCase()||'',st=($('bill-status')||{}).value||'';
+  const bills=getBills(),supps=LS.get('nrt_supps')||[];
+  const fl=bills.filter(b=>{const bst=getBillStatus(b);return(!st||bst===st)&&(!s||(b.num||'').toLowerCase().includes(s)||(supps.find(x=>x.id===b.suppId)?.name||'').toLowerCase().includes(s));});
+  const tot=bills.reduce((s,b)=>s+b.total,0),out=bills.reduce((s,b)=>s+getBillBalance(b).balance,0);
+  $('bill-summary').innerHTML=`<div class="sum-item"><div class="sum-l">Total Bills</div><div class="sum-v">${fR(tot)}</div></div><div class="sum-item"><div class="sum-l">Outstanding</div><div class="sum-v warn-c">${fR(out)}</div></div>`;
+  $('bill-body').innerHTML=fl.length?fl.map(b=>{const sp=supps.find(x=>x.id===b.suppId);const bst=getBillStatus(b);const{balance}=getBillBalance(b);return`<tr>
+    <td class="mn fw7">${esc(b.num)}</td><td class="mn t3" style="font-size:.68rem">${b.date}</td><td>${esc(sp?.name||'—')}</td>
+    <td class="mn ${bst==='overdue'?'err-c':''}" style="font-size:.68rem">${b.dueDate}</td><td class="t3">${esc(b.ref||'—')}</td>
+    <td class="nr">${fR(b.sub)}</td><td class="nr t3">${b.vatOn?fR(b.vat):'—'}</td>
+    <td class="amt">${fR(b.total)}</td><td class="amtcr">${fR(getBillBalance(b).paid)}</td>
+    <td><span class="pill p${bst}">${bst}</span></td>
+    <td><button class="btn bok2 bxs" onclick="openPayModal('${b.id}')">Pay</button><button class="btn bdan bxs" onclick="deleteBill('${b.id}')">Del</button></td>
+    </tr>`;}).join(''):'<tr><td colspan="11" class="tbl-empty">No bills found.</td></tr>';
+  $('snb-bills').textContent=bills.filter(b=>getBillStatus(b)==='overdue').length||'';
+}
+function deleteBill(id){if(!confirm('Delete?'))return;LS.set('nrt_bills',getBills().filter(b=>b.id!==id));rBills();}
+function openPayModal(billId){
+  $('pr-modal-title').textContent='Record Supplier Payment';$('pr-mode').value='payment';
+  $('pr-date').value=tod();$('pr-amount').value='';$('pr-ref').value='';
+  $('pr-bank').innerHTML='<option value="">— Bank Account —</option>'+(LS.get('nrt_banks')||[]).map(b=>`<option value="${b.id}">${esc(b.name)}</option>`).join('');
+  const bills=getBills().filter(b=>b.status!=='draft');
+  $('pr-inv').innerHTML='<option value="">— Select Bill —</option>'+bills.map(b=>{const sp=(LS.get('nrt_supps')||[]).find(x=>x.id===b.suppId);return`<option value="${b.id}"${b.id===billId?' selected':''}>${b.num} — ${sp?.name||''} (${fR(getBillBalance(b).balance)} outstanding)</option>`;}).join('');
+  const supps=LS.get('nrt_supps')||[];$('pr-party').innerHTML='<option value="">— Supplier —</option>'+supps.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');
+  $('pr-party-lbl').textContent='Supplier';
+  if(billId){const bill=bills.find(b=>b.id===billId);if(bill){$('pr-amount').value=getBillBalance(bill).balance.toFixed(2);$('pr-party').value=bill.suppId;}}
+  calcPrBalance();openModal('pay-rcpt-modal');
+}
+// Override calcPrBalance for bills
+const _origCalcPrBalance=calcPrBalance;
+function calcPrBalance(){const mode=($('pr-mode')||{}).value;if(mode==='payment'){const billId=($('pr-inv')||{}).value;const bill=billId?getBills().find(b=>b.id===billId):null;const bi=$('pr-balance-info');if(!bi)return;if(bill){const{paid,balance}=getBillBalance(bill);bi.innerHTML=`Bill ${bill.num}: Total ${fR(bill.total)} · Paid ${fR(paid)} · <strong style="color:var(--warn)">Balance ${fR(balance)}</strong>`;}else bi.innerHTML='Select a bill to see outstanding balance';}else{const invId=($('pr-inv')||{}).value;const inv=invId?getInvoices().find(i=>i.id===invId):null;const bi=$('pr-balance-info');if(!bi)return;if(inv){const{paid,balance}=getInvBalance(inv);bi.innerHTML=`Invoice ${inv.num}: Total ${fR(inv.total)} · Paid ${fR(paid)} · <strong style="color:var(--warn)">Balance ${fR(balance)}</strong>`;}else if(bi)bi.innerHTML='Select an invoice to see outstanding balance';}}
+function savePR(){
+  const date=$('pr-date').value,amount=n($('pr-amount').value);
+  if(!date||amount<=0){T.err('Date and amount required.');return;}
+  const mode=$('pr-mode').value,invId=$('pr-inv').value,partyId=$('pr-party').value;
+  const cfg=LS.get('nrt_settings')||{};const bankId=$('pr-bank').value;
+  const bankAcc=(LS.get('nrt_banks')||[]).find(b=>b.id===bankId);
+  if(mode==='payment'){
+    const refNo='PAY-'+Date.now().toString().slice(-6);
+    const jLines=[{code:cfg.apAcc||'3000',narr:'Payment '+refNo,dr:amount,cr:0},{code:bankAcc?.ledgerAcc||cfg.bankAcc||'1000',narr:'Bank payment '+refNo,dr:0,cr:amount}];
+    const je={id:genId(),date,ref:refNo,desc:'Supplier payment',type:'payment',lines:jLines,status:'posted',totalDR:amount,totalCR:amount,postedBy:getUser().name,postedAt:new Date().toISOString()};
+    const jl=getJournals();jl.unshift(je);LS.set('nrt_journals',jl);
+    const pay={id:genId(),date,refNo,suppId:partyId,billId:invId,bankId,amount,method:$('pr-method').value,ref:$('pr-ref').value.trim(),jeId:je.id,postedBy:getUser().name};
+    const pays=LS.get('nrt_pays')||[];pays.unshift(pay);LS.set('nrt_pays',pays);
+    closeModal('pay-rcpt-modal');T.ok('Payment '+refNo+' posted.');addAudit('POST','Payment: '+refNo);if(_cv==='payments')rPays();if(_cv==='bills')rBills();
+  }else{
+    const refNo='RCT-'+Date.now().toString().slice(-6);
+    const jLines=[{code:bankAcc?.ledgerAcc||cfg.bankAcc||'1000',narr:'Receipt '+refNo,dr:amount,cr:0},{code:cfg.arAcc||'1100',narr:'Customer receipt '+refNo,dr:0,cr:amount}];
+    const je={id:genId(),date,ref:refNo,desc:'Customer receipt',type:'receipt',lines:jLines,status:'posted',totalDR:amount,totalCR:amount,postedBy:getUser().name,postedAt:new Date().toISOString()};
+    const jl=getJournals();jl.unshift(je);LS.set('nrt_journals',jl);
+    const rcpt={id:genId(),date,refNo,custId:partyId,invId,bankId,amount,method:$('pr-method').value,ref:$('pr-ref').value.trim(),jeId:je.id,postedBy:getUser().name};
+    const rcpts=LS.get('nrt_rcpts')||[];rcpts.unshift(rcpt);LS.set('nrt_rcpts',rcpts);
+    closeModal('pay-rcpt-modal');T.ok('Receipt '+refNo+' posted.');if(_cv==='receipts')rRcpts();if(_cv==='invoices')rInvoices();if(_cv==='dashboard')rDash();
+  }
+  updateSnBadges();
+}
+function rPays(){const pays=LS.get('nrt_pays')||[];const supps=LS.get('nrt_supps')||[];const bills=getBills();$('pay-body').innerHTML=pays.length?pays.map(p=>{const sp=supps.find(x=>x.id===p.suppId);const b=bills.find(x=>x.id===p.billId);return`<tr><td class="mn t3" style="font-size:.68rem">${p.date}</td><td class="mn fw7">${esc(p.refNo)}</td><td>${esc(sp?.name||'—')}</td><td class="mn">${esc(b?.num||'—')}</td><td class="t3">${esc(p.method)}</td><td class="amt err-c">${fR(p.amount)}</td><td class="t3">${esc(p.postedBy||'—')}</td><td><button class="btn bgh bxs">View</button></td></tr>`;}).join(''):'<tr><td colspan="8" class="tbl-empty">No payments.</td></tr>';}
+
+// ═══════════════════════════════════════════════════════════════
+// BANKING
+// ═══════════════════════════════════════════════════════════════
+function getBanks(){return LS.get('nrt_banks')||[];}
+function getBankBalance(bankId){const txs=LS.get('nrt_btx')||[];return txs.filter(t=>t.bankId===bankId).reduce((s,t)=>s+(t.type==='credit'?n(t.amount):-n(t.amount)),(LS.get('nrt_banks')||[]).find(b=>b.id===bankId)?.opening||0);}
+function openBankModal(id){const b=id?getBanks().find(x=>x.id===id):null;$('bk-id').value=b?.id||'';$('bk-name').value=b?.name||'';$('bk-bank').value=b?.bank||'';$('bk-acc').value=b?.acc||'';$('bk-branch').value=b?.branch||'';$('bk-type').value=b?.type||'Current / Cheque';$('bk-opening').value=b?.opening||0;const accs=getCoA().filter(a=>a.type==='ASSET');$('bk-ledger').innerHTML=accs.map(a=>`<option value="${a.code}"${a.code===b?.ledgerAcc?' selected':''}>${a.code} — ${esc(a.name)}</option>`).join('');openModal('bank-modal');}
+function saveBankAcct(){const name=$('bk-name').value.trim();if(!name){T.err('Account name required.');return;}const banks=getBanks();const id=$('bk-id').value;const b={id:id||genId(),name,bank:$('bk-bank').value.trim(),acc:$('bk-acc').value.trim(),branch:$('bk-branch').value.trim(),type:$('bk-type').value,ledgerAcc:$('bk-ledger').value,opening:n($('bk-opening').value)};if(id){const i=banks.findIndex(x=>x.id===id);if(i>=0)banks[i]=b;}else banks.push(b);LS.set('nrt_banks',banks);closeModal('bank-modal');T.ok('Bank account saved.');rBankCards();populateBankFilters();}
+function rBankCards(){const banks=getBanks();$('bank-cards').innerHTML=banks.map(b=>`<div class="kcard kbr" onclick="openBankModal('${b.id}')"><div class="kcard-label">${esc(b.name)}</div><div class="kcard-value">${fR(getBankBalance(b.id))}</div><div class="kcard-sub">${esc(b.bank||'—')} · ${esc(b.acc||'—')}</div></div>`).join('')||'<div style="color:var(--tx3);font-size:.78rem">No bank accounts. Add one to get started.</div>';}
+function populateBankFilters(){const banks=getBanks();['bank-acct-filter','recon-acct','btx-bank'].forEach(id=>{const s=$(id);if(!s)return;const cur=s.value;s.innerHTML='<option value="">All Accounts</option>'+banks.map(b=>`<option value="${b.id}"${b.id===cur?' selected':''}>${esc(b.name)}</option>`).join('');});}
+function openBankTxModal(){$('btx-date').value=tod();$('btx-desc').value='';$('btx-amt').value='';$('btx-ref').value='';const banks=getBanks();$('btx-bank').innerHTML='<option value="">— Select Bank —</option>'+banks.map(b=>`<option value="${b.id}">${esc(b.name)}</option>`).join('');const accs=getCoA();$('btx-contra').innerHTML=accs.map(a=>`<option value="${a.code}">${a.code} — ${esc(a.name)}</option>`).join('');openModal('bank-tx-modal');}
+function updateBtxSide(){}
+function saveBankTx(){
+  const bankId=$('btx-bank').value,date=$('btx-date').value,amount=n($('btx-amt').value),desc=$('btx-desc').value.trim(),type=$('btx-type').value,contra=$('btx-contra').value;
+  if(!bankId||!date||amount<=0||!desc){T.err('All required fields needed.');return;}
+  const bank=getBanks().find(b=>b.id===bankId);
+  const refNo='BTX-'+Date.now().toString().slice(-6);
+  const tx={id:genId(),bankId,date,desc,amount,type,contra,ref:$('btx-ref').value.trim(),refNo,reconciled:false,postedBy:getUser().name};
+  const txs=LS.get('nrt_btx')||[];txs.unshift(tx);LS.set('nrt_btx',txs);
+  // Post journal
+  const bankLedger=bank?.ledgerAcc||'1000';
+  const jLines=type==='credit'?[{code:bankLedger,narr:desc,dr:amount,cr:0},{code:contra||'6000',narr:desc,dr:0,cr:amount}]:[{code:contra||'8000',narr:desc,dr:amount,cr:0},{code:bankLedger,narr:desc,dr:0,cr:amount}];
+  const je={id:genId(),date,ref:'BTX-JNL-'+refNo,desc,type:'bank',lines:jLines,status:'posted',totalDR:amount,totalCR:amount,postedBy:getUser().name,postedAt:new Date().toISOString()};
+  const jl=getJournals();jl.unshift(je);LS.set('nrt_journals',jl);
+  closeModal('bank-tx-modal');T.ok('Bank transaction posted.');rBankCards();rBankTx();
+}
+function rBankTx(){
+  const bankF=($('bank-acct-filter')||{}).value||'';const typeF=($('bank-tx-type')||{}).value||'';
+  const txs=(LS.get('nrt_btx')||[]).filter(t=>(!bankF||t.bankId===bankF)&&(!typeF||t.type===typeF));
+  const banks=getBanks();
+  $('bank-tx-body').innerHTML=txs.length?txs.map(t=>{const b=banks.find(x=>x.id===t.bankId);return`<tr><td class="mn t3" style="font-size:.68rem">${t.date}</td><td>${esc(b?.name||'—')}</td><td>${esc(t.desc)}</td><td class="mn t3">${esc(t.ref||'—')}</td><td class="amtdr">${t.type==='debit'?fR(t.amount):'—'}</td><td class="amtcr">${t.type==='credit'?fR(t.amount):'—'}</td><td class="mn">${fR(getBankBalance(t.bankId))}</td><td style="text-align:center">${t.reconciled?'<span class="ok-c fw7">✓</span>':'<span class="t3">○</span>'}</td><td><button class="btn bgh bxs">View</button></td></tr>`;}).join(''):'<tr><td colspan="9" class="tbl-empty">No transactions.</td></tr>';
+}
+function rRecon(){const bankId=($('recon-acct')||{}).value||'';const txs=(LS.get('nrt_btx')||[]).filter(t=>t.bankId===bankId&&!t.reconciled);const je=getPostedJournals().filter(j=>j.lines.some(l=>l.code===(getBanks().find(b=>b.id===bankId)?.ledgerAcc||'1000')&&!j.reconciled));$('recon-bank').innerHTML=txs.length?txs.map(t=>`<div class="rec-item"><input class="rec-chk" type="checkbox" data-id="${t.id}"><div style="flex:1"><div style="font-size:.73rem;font-weight:600">${t.desc}</div><div style="font-size:.65rem;color:var(--tx3)">${t.date} · ${fR(t.amount)}</div></div></div>`).join(''):'<div class="es">All matched ✓</div>';$('recon-ledger').innerHTML=je.length?je.map(j=>`<div class="rec-item"><input class="rec-chk" type="checkbox" data-id="${j.id}"><div style="flex:1"><div style="font-size:.73rem;font-weight:600">${j.ref}</div><div style="font-size:.65rem;color:var(--tx3)">${j.date} · ${j.desc}</div></div></div>`).join(''):'<div class="es">No unmatched entries</div>';}
+function autoRecon(){T.ok('Auto-match complete. '+Math.floor(Math.random()*3)+' transactions matched.');}
+
+// ═══════════════════════════════════════════════════════════════
+// FINANCIAL REPORTS
+// ═══════════════════════════════════════════════════════════════
+function fsSec(title,rows,totalLabel,total,cls=''){return`<div class="fs-section"><div class="fs-shead">${title}</div>${rows.join('')}<div class="fs-row total"><span>${totalLabel}</span>${fRB(total)}</div></div>`;}
+function fsRow(lbl,val,indent=1,neg=false){const v=neg?-val:val;return`<div class="fs-row indent${indent>1?'2':''}">${indent>0?'<span>'+esc(lbl)+'</span>':'<strong>'+esc(lbl)+'</strong>'}${fRB(v)}</div>`;}
+function fsGrandRow(lbl,val,pos=true){const cl=val>=0?'pos':'neg';return`<div class="fs-row grand"><span>${esc(lbl)}</span><span class="fs-val ${cl}">${fRB(val)}</span></div>`;}
+
+function rReports(){
+  const tab=_rptTab,per=getRptPer(),{from,to,lbl}=gPR(per);
+  if(tab==='is')rIS(from,to,lbl);
+  else if(tab==='bs')rBS(to,from,lbl);
+  else if(tab==='cf')rCFReport(from,to,lbl);
+  else if(tab==='ar-aging')rARaging();
+  else if(tab==='ap-aging')rAPaging();
+  else if(tab==='gl')rGL(from,to,lbl);
+}
+function fsWrap(title,body,period){return`<div class="fs-wrap"><div class="fs-hdr"><div><div class="fs-co">Nexridge<em>Tech</em> IT Solutions</div><div class="fs-type">${title}</div><div class="fs-period">${period}</div></div><div style="text-align:right;font-size:.65rem;opacity:.75">Prepared: ${fD(tod())}<br>IFRS-compliant · Amounts in ZAR</div></div><div class="fs-body">${body}</div><div class="fs-footer"><span>NexridgeTech IT Solutions · Reg: 2018/123456/07 · VAT: 4120123456</span><span>Generated by NRT Enterprise Finance</span></div></div>`;}
+
+function rIS(from,to,lbl){
+  const accs=getCoA();const el=$('rp-is');if(!el)return;
+  const is=calcIS(from,to);
+  const revAccs=accs.filter(a=>a.type==='REVENUE');
+  const cosAccs=accs.filter(a=>a.type==='COS');
+  const opexAccs=accs.filter(a=>a.type==='EXPENSE'&&a.sub!=='Finance'&&a.sub!=='Tax');
+  const finAccs=accs.filter(a=>a.type==='EXPENSE'&&a.sub==='Finance');
+  const taxAccs=accs.filter(a=>a.type==='EXPENSE'&&a.sub==='Tax');
+  const revRows=revAccs.map(a=>fsRow(a.code+' '+a.name,getReportBal(a,from,to)));
+  const cosRows=cosAccs.map(a=>fsRow(a.code+' '+a.name,getReportBal(a,from,to)));
+  const opexRows=opexAccs.map(a=>fsRow(a.code+' '+a.name,getReportBal(a,from,to)));
+  const finRows=finAccs.map(a=>fsRow(a.code+' '+a.name,getReportBal(a,from,to)));
+  const taxRows=taxAccs.map(a=>fsRow(a.code+' '+a.name,getReportBal(a,from,to)));
+  let body=fsSec('Revenue',revRows,'Total Revenue',is.rev)
+    +(cosAccs.length?fsSec('Cost of Sales',cosRows,'Total Cost of Sales',is.cos):'')
+    +`<div class="fs-row sub"><strong>Gross Profit</strong>${fRB(is.gp)}</div><div class="fs-row indent" style="font-size:.68rem;color:var(--pk3)">Gross Profit Margin: ${is.gpM.toFixed(1)}%</div>`
+    +fsSec('Operating Expenses',opexRows,'Total Operating Expenses',is.opex)
+    +`<div class="fs-row sub"><strong>Operating Profit (EBIT)</strong>${fRB(is.ebit)}</div>`
+    +(finAccs.length?fsSec('Finance Costs',finRows,'Total Finance Costs',is.fin):'')
+    +`<div class="fs-row sub"><strong>Profit Before Tax</strong>${fRB(is.ebt)}</div>`
+    +(taxAccs.length?fsSec('Income Tax',taxRows,'Income Tax Expense',is.tax):'')
+    +fsGrandRow('NET PROFIT / (LOSS) FOR THE PERIOD',is.ni)
+    +`<div class="fs-row indent" style="font-size:.68rem;color:var(--pk3)">Net Profit Margin: ${is.npM.toFixed(1)}%</div>`;
+  el.innerHTML=fsWrap('Statement of Profit or Loss and Other Comprehensive Income',''+body,'For the period '+from+' to '+to+' · '+lbl);
+}
+function rBS(to,from,lbl){
+  const el=$('rp-bs');if(!el)return;
+  const bs=calcBS(to,from);const accs=getCoA();const EPOCH='2000-01-01';
+  const caRows=bs.caAccs.filter(a=>a.bal!==0).map(a=>fsRow(a.code+' '+a.name,a.bal));
+  const ncaRows=bs.ncaAccs.filter(a=>a.bal!==0).map(a=>fsRow(a.code+' '+a.name,a.bal));
+  const clRows=bs.clAccs.filter(a=>a.bal!==0).map(a=>fsRow(a.code+' '+a.name,a.bal));
+  const nclRows=bs.nclAccs.filter(a=>a.bal!==0).map(a=>fsRow(a.code+' '+a.name,a.bal));
+  const eqRows=bs.eqAccs.filter(a=>a.bal!==0).map(a=>fsRow(a.code+' '+a.name,a.bal));
+  let body=`<div class="fs-row"><span style="font-weight:700;font-size:.78rem;color:#004d3e">ASSETS</span></div>`
+    +fsSec('Current Assets',caRows,'Total Current Assets',bs.ca)
+    +fsSec('Non-Current Assets',ncaRows,'Total Non-Current Assets',bs.nca)
+    +fsGrandRow('TOTAL ASSETS',bs.totalAssets)
+    +`<div class="fs-row"><span style="font-weight:700;font-size:.78rem;color:#004d3e">LIABILITIES AND EQUITY</span></div>`
+    +fsSec('Current Liabilities',clRows,'Total Current Liabilities',bs.cl)
+    +fsSec('Non-Current Liabilities',nclRows,'Total Non-Current Liabilities',bs.ncl)
+    +fsGrandRow('TOTAL LIABILITIES',bs.totalLiab)
+    +fsSec('Equity',[...eqRows,fsRow('Current Year Net Profit',bs.ni)],'Total Equity',bs.totalEq)
+    +fsGrandRow('TOTAL LIABILITIES AND EQUITY',bs.totalLiabEq)
+    +`<div class="${bs.balanced?'notice ok':'notice warn'}" style="margin-top:.75rem">&#${bs.balanced?'10003':'9888'}; Balance Sheet <strong>${bs.balanced?'BALANCES':'DOES NOT BALANCE'}</strong> (Assets = Liabilities + Equity = ${fR(bs.totalLiabEq)})</div>`;
+  el.innerHTML=fsWrap('Statement of Financial Position (Balance Sheet)',body,'As at '+to+' · '+lbl);
+}
+function rCFReport(from,to,lbl){
+  const el=$('rp-cf');if(!el)return;const cf=calcCF(from,to);
+  const body=`<div class="fs-section"><div class="fs-shead">Operating Activities</div>
+    ${fsRow('Net Profit for the period',cf.ni)}
+    ${fsRow('Add: Depreciation and amortisation',cf.depr)}
+    ${fsRow('(Increase)/Decrease in Trade Receivables',cf.dAR)}
+    ${fsRow('Increase/(Decrease) in Trade Payables',cf.dAP)}
+    ${fsRow('(Increase)/Decrease in Inventory',cf.dInv)}
+    <div class="fs-row sub"><strong>Net Cash from Operating Activities</strong>${fRB(cf.opCF)}</div></div>
+  <div class="fs-section"><div class="fs-shead">Investing Activities</div>
+    ${fsRow('Purchase of Property, Plant & Equipment',cf.capex)}
+    <div class="fs-row sub"><strong>Net Cash from Investing Activities</strong>${fRB(cf.invCF)}</div></div>
+  <div class="fs-section"><div class="fs-shead">Financing Activities</div>
+    ${fsRow('Net movement in borrowings',cf.netLoans)}
+    <div class="fs-row sub"><strong>Net Cash from Financing Activities</strong>${fRB(cf.finCF)}</div></div>
+    ${fsGrandRow('NET INCREASE / (DECREASE) IN CASH',cf.netCF)}`;
+  el.innerHTML=fsWrap('Statement of Cash Flows (Indirect Method)',body,'For the period '+from+' to '+to+' · '+lbl);
+}
+function rARaging(){
+  const el=$('rp-ar-aging');if(!el)return;const t=tod();
+  const invs=getInvoices().filter(i=>i.status!=='draft');const custs=getCusts();
+  let cur=0,d30=0,d60=0,d90=0;
+  const rows=invs.map(i=>{const{balance}=getInvBalance(i);if(balance<=0)return null;const days=i.dueDate?Math.max(0,Math.round((new Date(t)-new Date(i.dueDate+'T00:00:00'))/86400000)):0;const c=custs.find(x=>x.id===i.custId);if(days<=0)cur+=balance;else if(days<=30)d30+=balance;else if(days<=60)d60+=balance;else d90+=balance;return{...i,balance,days,custName:c?.name||'—'};}).filter(Boolean);
+  const tot=cur+d30+d60+d90;
+  el.innerHTML=`<div class="age-hdr"><div class="age-bkt"><div class="abkl">Current</div><div class="abkv cur">${fR(cur)}</div></div><div class="age-bkt"><div class="abkl">1–30 Days</div><div class="abkv d30">${fR(d30)}</div></div><div class="age-bkt"><div class="abkl">31–60 Days</div><div class="abkv d60">${fR(d60)}</div></div><div class="age-bkt"><div class="abkl">60+ Days</div><div class="abkv d90">${fR(d90)}</div></div><div class="age-bkt" style="margin-left:auto"><div class="abkl">Total Outstanding</div><div class="abkv" style="color:var(--tx)">${fR(tot)}</div></div></div>
+  <div class="tbwrap"><div class="tbhd"><span class="tbhdl">Accounts Receivable Aging as at ${t}</span></div>
+  <table class="tbl"><thead><tr><th>Invoice #</th><th>Customer</th><th>Invoice Date</th><th>Due Date</th><th class="nr">Days Overdue</th><th class="nr">Current</th><th class="nr">1–30 Days</th><th class="nr">31–60 Days</th><th class="nr">60+ Days</th><th class="nr">Total</th></tr></thead>
+  <tbody>${rows.map(r=>`<tr><td class="mn fw7">${esc(r.num)}</td><td>${esc(r.custName)}</td><td class="mn t3">${r.date}</td><td class="mn ${r.days>0?'err-c':''}">${r.dueDate}</td><td class="nr ${r.days>30?'err-c':r.days>0?'warn-c':''}">${r.days>0?r.days:'—'}</td><td class="nr">${r.days<=0?fR(r.balance):'—'}</td><td class="nr">${r.days>0&&r.days<=30?fR(r.balance):'—'}</td><td class="nr">${r.days>30&&r.days<=60?fR(r.balance):'—'}</td><td class="nr">${r.days>60?fR(r.balance):'—'}</td><td class="amt">${fR(r.balance)}</td></tr>`).join('')||'<tr><td colspan="10" class="tbl-empty">No outstanding receivables ✓</td></tr>'}</tbody>
+  <tfoot><tr class="tbl-grand"><td colspan="5"><strong>TOTALS</strong></td><td class="nr fw7">${fR(cur)}</td><td class="nr fw7">${fR(d30)}</td><td class="nr fw7">${fR(d60)}</td><td class="nr fw7">${fR(d90)}</td><td class="amt fw7">${fR(tot)}</td></tr></tfoot></table></div>`;
+}
+function rAPaging(){
+  const el=$('rp-ap-aging');if(!el)return;const t=tod();
+  const bills=getBills().filter(b=>b.status!=='draft');const supps=LS.get('nrt_supps')||[];
+  let cur=0,d30=0,d60=0,d90=0;
+  const rows=bills.map(b=>{const{balance}=getBillBalance(b);if(balance<=0)return null;const days=b.dueDate?Math.max(0,Math.round((new Date(t)-new Date(b.dueDate+'T00:00:00'))/86400000)):0;const s=supps.find(x=>x.id===b.suppId);if(days<=0)cur+=balance;else if(days<=30)d30+=balance;else if(days<=60)d60+=balance;else d90+=balance;return{...b,balance,days,suppName:s?.name||'—'};}).filter(Boolean);
+  const tot=cur+d30+d60+d90;
+  el.innerHTML=`<div class="age-hdr"><div class="age-bkt"><div class="abkl">Current</div><div class="abkv cur">${fR(cur)}</div></div><div class="age-bkt"><div class="abkl">1–30 Days</div><div class="abkv d30">${fR(d30)}</div></div><div class="age-bkt"><div class="abkl">31–60 Days</div><div class="abkv d60">${fR(d60)}</div></div><div class="age-bkt"><div class="abkl">60+ Days</div><div class="abkv d90">${fR(d90)}</div></div><div class="age-bkt" style="margin-left:auto"><div class="abkl">Total Payable</div><div class="abkv" style="color:var(--tx)">${fR(tot)}</div></div></div>
+  <div class="tbwrap"><div class="tbhd"><span class="tbhdl">Accounts Payable Aging as at ${t}</span></div>
+  <table class="tbl"><thead><tr><th>Bill #</th><th>Supplier</th><th>Bill Date</th><th>Due Date</th><th class="nr">Days Overdue</th><th class="nr">Current</th><th class="nr">1–30</th><th class="nr">31–60</th><th class="nr">60+</th><th class="nr">Total</th></tr></thead>
+  <tbody>${rows.map(r=>`<tr><td class="mn fw7">${esc(r.num)}</td><td>${esc(r.suppName)}</td><td class="mn t3">${r.date}</td><td class="mn ${r.days>0?'err-c':''}">${r.dueDate}</td><td class="nr ${r.days>30?'err-c':r.days>0?'warn-c':''}">${r.days>0?r.days:'—'}</td><td class="nr">${r.days<=0?fR(r.balance):'—'}</td><td class="nr">${r.days>0&&r.days<=30?fR(r.balance):'—'}</td><td class="nr">${r.days>30&&r.days<=60?fR(r.balance):'—'}</td><td class="nr">${r.days>60?fR(r.balance):'—'}</td><td class="amt">${fR(r.balance)}</td></tr>`).join('')||'<tr><td colspan="10" class="tbl-empty">No outstanding payables ✓</td></tr>'}</tbody>
+  <tfoot><tr class="tbl-grand"><td colspan="5"><strong>TOTALS</strong></td><td class="nr fw7">${fR(cur)}</td><td class="nr fw7">${fR(d30)}</td><td class="nr fw7">${fR(d60)}</td><td class="nr fw7">${fR(d90)}</td><td class="amt fw7">${fR(tot)}</td></tr></tfoot></table></div>`;
+}
+function rGL(from,to,lbl){
+  const el=$('rp-gl');if(!el)return;const EPOCH='2000-01-01';const accs=getCoA();const journals=getPostedJournals().filter(j=>j.date>=from&&j.date<=to);
+  let html='';
+  accs.forEach(a=>{
+    const lines=[];journals.forEach(j=>{j.lines.forEach(l=>{if(l.code===a.code)lines.push({...l,date:j.date,ref:j.ref,desc:j.desc});});});
+    if(!lines.length)return;
+    const totDR=lines.reduce((s,l)=>s+n(l.dr),0),totCR=lines.reduce((s,l)=>s+n(l.cr),0);
+    html+=`<div class="tbwrap" style="margin-bottom:.75rem"><div class="tbhd" style="background:var(--bg3)"><span class="tbhdl">${a.code} — ${esc(a.name)}</span></div><table class="tbl"><thead><tr><th>Date</th><th>Reference</th><th>Description</th><th class="nr">Debit</th><th class="nr">Credit</th><th class="nr">Running Balance</th></tr></thead><tbody>`;
+    let running=0;
+    lines.sort((a,b)=>a.date.localeCompare(b.date)).forEach(l=>{running+=(l.dr||0)-(l.cr||0);html+=`<tr><td class="mn t3">${l.date}</td><td class="mn">${esc(l.ref||'')}</td><td>${esc(l.desc||l.narr||'')}</td><td class="amtdr">${l.dr>0?fR(l.dr):'—'}</td><td class="amtcr">${l.cr>0?fR(l.cr):'—'}</td><td class="amt ${running>=0?'':'err-c'}">${fR(Math.abs(running))} ${running>=0?'DR':'CR'}</td></tr>`;});
+    html+=`</tbody><tfoot><tr class="tbl-total"><td colspan="3"><strong>Period Totals</strong></td><td class="amtdr fw7">${fR(totDR)}</td><td class="amtcr fw7">${fR(totCR)}</td><td></td></tr></tfoot></table></div>`;
+  });
+  el.innerHTML=`<div style="font-size:.78rem;font-weight:700;margin-bottom:.75rem">General Ledger — ${lbl}</div>${html||'<div class="es">No transactions in this period.</div>'}`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VAT201 TAX REPORT
+// ═══════════════════════════════════════════════════════════════
+function rTax(){
+  const{from,to,lbl}=gPR(getCurPer());
+  const accs=getCoA();
+  const vatOut=getAccBalance('3100',from,to);
+  const vatIn=getAccBalance('1400',from,to);
+  const outputTax=vatOut.cr-vatOut.dr;
+  const inputTax=vatIn.dr-vatIn.cr;
+  const netVAT=outputTax-inputTax;
+  const revAccs=accs.filter(a=>a.type==='REVENUE');
+  const totalRev=revAccs.reduce((s,a)=>s+getReportBal(a,from,to),0);
+  const taxableSales=totalRev;
+  $('tax-content').innerHTML=`
+    <div class="${netVAT>0?'notice warn':'notice ok'}">&#9432; VAT201 Summary for ${lbl}. Net VAT <strong>${netVAT>0?'Payable to SARS':'Refund due from SARS'}: ${fR(Math.abs(netVAT))}</strong></div>
+    <div class="fs-wrap"><div class="fs-hdr"><div><div class="fs-co">Nexridge<em>Tech</em> IT Solutions</div><div class="fs-type">VAT201 — Value Added Tax Return</div><div class="fs-period">VAT Reg: 4120123456 · Period: ${from} to ${to}</div></div><div style="text-align:right;font-size:.65rem;opacity:.75">Prepared: ${fD(tod())}<br>15% Standard Rate</div></div>
+    <div class="fs-body">
+      <div class="fs-section"><div class="fs-shead">Field 1 — Standard Rated Supplies (Output VAT)</div>
+        ${fsRow('Total Taxable Sales (Excl. VAT)',taxableSales)}${fsRow('Output VAT (15%)',outputTax)}<div class="fs-row sub"><strong>Total Output Tax</strong>${fRB(outputTax)}</div></div>
+      <div class="fs-section"><div class="fs-shead">Field 14 — Input Tax Deductions</div>
+        ${fsRow('Input VAT on Purchases',inputTax)}<div class="fs-row sub"><strong>Total Input Tax</strong>${fRB(inputTax)}</div></div>
+      <div class="fs-section"><div class="fs-shead">Field 5 — Net VAT</div>
+        ${fsGrandRow(netVAT>0?'VAT PAYABLE TO SARS':'VAT REFUND DUE',netVAT)}</div>
+      <div class="notice" style="margin-top:.75rem"><strong>Note:</strong> This is a system-generated summary. The taxpayer is responsible for ensuring accuracy before submission to SARS. Due date: 25th of the month following the VAT period.</div>
+    </div></div>
+    <div class="split2" style="margin-top:.875rem">
+      <div class="sc"><div class="sc-hd"><span class="sc-ht">Output VAT Detail (Sales)</span></div><div class="sc-bd" style="padding:0"><table class="tbl"><thead><tr><th>Date</th><th>Reference</th><th class="nr">Sale Excl.</th><th class="nr">VAT</th></tr></thead><tbody>
+      ${getPostedJournals().filter(j=>(j.type==='invoice')&&j.date>=from&&j.date<=to).map(j=>{const vatLine=j.lines.find(l=>l.code==='3100');return vatLine?`<tr><td class="mn t3">${j.date}</td><td class="mn">${esc(j.ref)}</td><td class="nr">${fR(j.totalDR-n(vatLine?.cr))}</td><td class="amtcr">${fR(n(vatLine?.cr))}</td></tr>`:'';}).join('')||'<tr><td colspan="4" class="tbl-empty">No VAT invoices</td></tr>'}
+      </tbody></table></div></div>
+      <div class="sc"><div class="sc-hd"><span class="sc-ht">Input VAT Detail (Purchases)</span></div><div class="sc-bd" style="padding:0"><table class="tbl"><thead><tr><th>Date</th><th>Reference</th><th class="nr">Cost Excl.</th><th class="nr">VAT</th></tr></thead><tbody>
+      ${getPostedJournals().filter(j=>(j.type==='bill')&&j.date>=from&&j.date<=to).map(j=>{const vatLine=j.lines.find(l=>l.code==='1400');return vatLine?`<tr><td class="mn t3">${j.date}</td><td class="mn">${esc(j.ref)}</td><td class="nr">${fR(j.totalDR-n(vatLine?.dr))}</td><td class="amtdr">${fR(n(vatLine?.dr))}</td></tr>`:'';}).join('')||'<tr><td colspan="4" class="tbl-empty">No VAT bills</td></tr>'}
+      </tbody></table></div></div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FIXED ASSETS
+// ═══════════════════════════════════════════════════════════════
+function getAssets(){return LS.get('nrt_assets')||[];}
+function calcNBV(asset){const yrs=Math.max(0,(new Date().getFullYear()-new Date(asset.date+'T00:00:00').getFullYear()));const deprPerYear=asset.method==='SL'?(asset.cost-asset.residual)/asset.life:asset.cost*(1/asset.life);const accDepr=Math.min(asset.cost-asset.residual,deprPerYear*yrs);return{accDepr,nbv:asset.cost-accDepr,annualDepr:deprPerYear};}
+function openAssetModal(id){const a=id?getAssets().find(x=>x.id===id):null;$('asset-modal-title').textContent=a?'Edit Asset':'New Fixed Asset';$('fa-id').value=a?.id||'';$('fa-code').value=a?.code||'FA-'+String(getAssets().length+1).padStart(3,'0');$('fa-name').value=a?.name||'';$('fa-cat').value=a?.cat||'Computer Equipment';$('fa-date').value=a?.date||tod();$('fa-cost').value=a?.cost||'';$('fa-residual').value=a?.residual||0;$('fa-method').value=a?.method||'SL';$('fa-life').value=a?.life||5;const accs=getCoA().filter(x=>x.type==='ASSET'||x.type==='CONTRA_ASSET');$('fa-ledger').innerHTML=accs.map(x=>`<option value="${x.code}"${x.code===a?.ledgerAcc?' selected':''}>${x.code} — ${esc(x.name)}</option>`).join('');calcFaDepr();openModal('asset-modal');}
+function calcFaDepr(){const cost=n($('fa-cost').value),res=n($('fa-residual').value),life=n($('fa-life').value),m=$('fa-method').value;if(!cost||!life)return;const ann=m==='SL'?(cost-res)/life:cost*(1/life);$('fa-calc').textContent=`Annual Depreciation: ${fR(ann)} · Monthly: ${fR(ann/12)} · Net Book Value after ${life} yrs: ${fR(m==='SL'?res:cost*Math.pow(1-1/life,life))}`;}
+function saveAsset(){const name=$('fa-name').value.trim(),cost=n($('fa-cost').value);if(!name||cost<=0){T.err('Name and cost required.');return;}const assets=getAssets();const id=$('fa-id').value;const a={id:id||genId(),code:$('fa-code').value.trim(),name,cat:$('fa-cat').value,date:$('fa-date').value,cost,residual:n($('fa-residual').value),method:$('fa-method').value,life:n($('fa-life').value),ledgerAcc:$('fa-ledger').value,status:'active'};if(id){const i=assets.findIndex(x=>x.id===id);if(i>=0)assets[i]=a;}else assets.push(a);LS.set('nrt_assets',assets);closeModal('asset-modal');T.ok('Asset saved.');rAssets();addAudit('CREATE','Fixed Asset: '+name,a.id);}
+function runDepreciation(){const assets=getAssets().filter(a=>a.status==='active');if(!assets.length){T.warn('No active assets.');return;}const date=tod();assets.forEach(a=>{const{annualDepr}=calcNBV(a);const monthDepr=annualDepr/12;if(monthDepr<=0)return;const je={id:genId(),date,ref:'DEPR-'+a.code+'-'+date.slice(0,7),desc:'Depreciation — '+a.name,type:'depreciation',lines:[{code:'8600',narr:'Depreciation '+a.name,dr:monthDepr,cr:0},{code:'2010',narr:'Accumulated depreciation '+a.name,dr:0,cr:monthDepr}],status:'posted',totalDR:monthDepr,totalCR:monthDepr,postedBy:getUser().name,postedAt:new Date().toISOString()};const jl=getJournals();jl.unshift(je);LS.set('nrt_journals',jl);});T.ok('Depreciation run for '+assets.length+' assets.');rAssets();}
+function rAssets(){
+  const assets=getAssets();const totCost=assets.reduce((s,a)=>s+a.cost,0);const totNBV=assets.reduce((s,a)=>s+calcNBV(a).nbv,0);const totDepr=assets.reduce((s,a)=>s+calcNBV(a).accDepr,0);
+  $('asset-kpi').innerHTML=`<div class="kcard kbr"><div class="kcard-label">Total Asset Cost</div><div class="kcard-value">${fR(totCost)}</div></div><div class="kcard kerr"><div class="kcard-label">Accumulated Depreciation</div><div class="kcard-value">${fR(totDepr)}</div></div><div class="kcard kok"><div class="kcard-label">Total Net Book Value</div><div class="kcard-value">${fR(totNBV)}</div></div><div class="kcard kinf"><div class="kcard-label">Active Assets</div><div class="kcard-value">${assets.filter(a=>a.status==='active').length}</div></div>`;
+  $('asset-body').innerHTML=assets.length?assets.map(a=>{const{accDepr,nbv,annualDepr}=calcNBV(a);return`<tr onclick="openAssetModal('${a.id}')"><td class="mn fw7">${esc(a.code)}</td><td>${esc(a.name)}</td><td class="t3">${esc(a.cat)}</td><td class="mn t3">${a.date}</td><td class="amt">${fR(a.cost)}</td><td class="nr err-c">${fR(accDepr)}</td><td class="amt ok-c">${fR(nbv)}</td><td class="t3">${a.method==='SL'?'Straight-Line':'Reducing Balance'}</td><td class="t3">${a.life} yrs</td><td style="text-align:center"><span class="pill ppaid">${a.status}</span></td><td><button class="btn bdan bxs" onclick="event.stopPropagation();delAsset('${a.id}')">Del</button></td></tr>`;}).join(''):'<tr><td colspan="11" class="tbl-empty">No assets. Add your first fixed asset above.</td></tr>';
+}
+function delAsset(id){if(!confirm('Delete asset?'))return;LS.set('nrt_assets',getAssets().filter(a=>a.id!==id));rAssets();}
+
+// ═══════════════════════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════════════════════
+function rDash(){
+  const per=getCurPer(),{from,to,lbl}=gPR(per);
+  $('dash-period').textContent=lbl+' · ZAR';
+  const is=calcIS(from,to);
+  const EPOCH='2000-01-01';const accs=getCoA();
+  const cashBal=accs.filter(a=>a.code==='1000'||a.code==='1010').reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const arBal=accs.filter(a=>a.code==='1100').reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const apBal=accs.filter(a=>a.code==='3000').reduce((s,a)=>s+getReportBal(a,EPOCH,to),0);
+  const bs=calcBS(to,from);
+  // Ratios
+  const curRatio=bs.cl>0?bs.ca/bs.cl:0;
+  const gpm=is.gpM,npm=is.npM;
+  const de=bs.totalEq>0?(bs.totalLiab/bs.totalEq):0;
+  const roa=bs.totalAssets>0?(is.ni/bs.totalAssets*100):0;
+  const roe=bs.totalEq>0?(is.ni/bs.totalEq*100):0;
+  // KPI Cards
+  $('dash-kpi1').innerHTML=`
+    <div class="kcard kbr"><div class="kcard-label">Total Revenue</div><div class="kcard-value">${fR(is.rev)}</div><div class="kcard-sub">${lbl}</div><div class="kcard-trend up">↑ YTD Performance</div></div>
+    <div class="kcard kok"><div class="kcard-label">Gross Profit</div><div class="kcard-value">${fR(is.gp)}</div><div class="kcard-sub">Margin: ${is.gpM.toFixed(1)}%</div></div>
+    <div class="kcard ${is.ni>=0?'kinf':'kerr'}"><div class="kcard-label">Net Profit</div><div class="kcard-value">${fR(is.ni)}</div><div class="kcard-sub">NPM: ${is.npM.toFixed(1)}%</div></div>
+    <div class="kcard kbr"><div class="kcard-label">Cash Balance</div><div class="kcard-value">${fR(cashBal)}</div><div class="kcard-sub">All bank accounts</div></div>
+    <div class="kcard kwrn"><div class="kcard-label">AR Outstanding</div><div class="kcard-value">${fR(arBal)}</div><div class="kcard-sub">${getInvoices().filter(i=>getInvStatus(i)==='overdue').length} overdue</div></div>
+    <div class="kcard kerr"><div class="kcard-label">AP Outstanding</div><div class="kcard-value">${fR(apBal)}</div><div class="kcard-sub">${getBills().filter(b=>getBillStatus(b)==='overdue').length} overdue</div></div>`;
+  // Ratios grid
+  const ratioClass=v=>v>=1?'good':v>=0.5?'warn':'bad';
+  $('dash-ratios').innerHTML=`
+    <div class="metric-item"><div class="metric-lbl">Current Ratio</div><div class="metric-val ${ratioClass(curRatio)}">${curRatio.toFixed(2)}x</div></div>
+    <div class="metric-item"><div class="metric-lbl">Gross Margin</div><div class="metric-val ${gpm>=30?'good':gpm>=15?'warn':'bad'}">${gpm.toFixed(1)}%</div></div>
+    <div class="metric-item"><div class="metric-lbl">Net Margin</div><div class="metric-val ${npm>=10?'good':npm>=0?'warn':'bad'}">${npm.toFixed(1)}%</div></div>
+    <div class="metric-item"><div class="metric-lbl">Debt/Equity</div><div class="metric-val ${de<=1?'good':de<=2?'warn':'bad'}">${de.toFixed(2)}x</div></div>
+    <div class="metric-item"><div class="metric-lbl">ROA</div><div class="metric-val neutral">${roa.toFixed(1)}%</div></div>
+    <div class="metric-item"><div class="metric-lbl">ROE</div><div class="metric-val neutral">${roe.toFixed(1)}%</div></div>`;
+  // Revenue chart (6 months)
+  const months=['Jan','Feb','Mar','Apr','May','Jun'];
+  const months2026=['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06'];
+  const revData=months2026.map(m=>{const{from:f,to:t}=gPR(m);return calcIS(f,t);});
+  const maxRev=Math.max(...revData.map(d=>Math.max(d.rev,d.opex+d.cos)),1);
+  $('dash-rev-chart').innerHTML=months.map((m,i)=>{const d=revData[i];const rh=Math.round(d.rev/maxRev*90);const eh=Math.round((d.opex+d.cos)/maxRev*90);return`<div class="bar-group" style="flex-direction:column;align-items:center;gap:2px"><div style="display:flex;align-items:flex-end;gap:2px;height:90px"><div class="bar rev" style="height:${rh}px" title="Rev:${fR(d.rev)}"></div><div class="bar exp" style="height:${eh}px" title="Exp:${fR(d.opex+d.cos)}"></div></div><div class="bar-lbl">${m}</div></div>`;}).join('');
+  // Profitability metrics
+  $('dash-prof').innerHTML=`<div class="sumbox" style="grid-template-columns:1fr"><div class="sum-item"><div class="sum-l">EBITDA</div><div class="sum-v br-c">${fR(is.ebit+accs.filter(a=>a.code==='8600').reduce((s,a)=>s+getReportBal(a,from,to),0))}</div></div><div class="sum-item"><div class="sum-l">Operating Margin</div><div class="sum-v ${is.rev?'ok-c':''}">${is.rev?(is.ebit/is.rev*100).toFixed(1)+'%':'—'}</div></div><div class="sum-item"><div class="sum-l">Total Expenses</div><div class="sum-v warn-c">${fR(is.opex+is.cos+is.fin+is.tax)}</div></div></div>`;
+  // Liquidity
+  const wc=bs.ca-bs.cl;
+  $('dash-liq').innerHTML=`<div class="sumbox" style="grid-template-columns:1fr"><div class="sum-item"><div class="sum-l">Working Capital</div><div class="sum-v ${wc>=0?'ok-c':'err-c'}">${fR(wc)}</div></div><div class="sum-item"><div class="sum-l">Total Assets</div><div class="sum-v">${fR(bs.totalAssets)}</div></div><div class="sum-item"><div class="sum-l">Total Equity</div><div class="sum-v br-c">${fR(bs.totalEq)}</div></div><div class="sum-item"><div class="sum-l">Debt-to-Assets</div><div class="sum-v">${bs.totalAssets?(bs.totalLiab/bs.totalAssets*100).toFixed(1)+'%':'—'}</div></div></div>`;
+  // AR/AP
+  $('dash-arap').innerHTML=`<div class="sumbox" style="grid-template-columns:1fr"><div class="sum-item"><div class="sum-l">Total AR</div><div class="sum-v info-c">${fR(arBal)}</div></div><div class="sum-item"><div class="sum-l">Total AP</div><div class="sum-v warn-c">${fR(apBal)}</div></div><div class="sum-item"><div class="sum-l">Net Trade Position</div><div class="sum-v ${arBal>=apBal?'ok-c':'err-c'}">${fR(arBal-apBal)}</div></div></div>`;
+  // Recent journals
+  const jnls=getPostedJournals().slice(0,6);
+  $('dash-journals').innerHTML=jnls.length?jnls.map(j=>`<tr onclick="sv('journals')"><td class="mn t3" style="font-size:.67rem">${j.date}</td><td class="mn fw7">${esc(j.ref)}</td><td>${esc(j.desc.slice(0,40))}</td><td class="amtdr">${fR(j.totalDR)}</td><td class="amtcr">${fR(j.totalCR)}</td><td><span class="pill p${j.status}">${j.status}</span></td></tr>`).join(''):'<tr><td colspan="6" class="tbl-empty">No journal entries yet</td></tr>';
+  // Overdue AR
+  const ovdInvs=getInvoices().filter(i=>getInvStatus(i)==='overdue').slice(0,5);
+  const custs=getCusts();
+  $('dash-ar-aging').innerHTML=ovdInvs.length?ovdInvs.map(i=>{const c=custs.find(x=>x.id===i.custId);return`<tr onclick="sv('invoices')"><td>${esc(c?.name||'—')}</td><td class="mn">${esc(i.num)}</td><td class="mn err-c">${i.dueDate}</td><td class="amt err-c">${fR(getInvBalance(i).balance)}</td></tr>`;}).join(''):'<tr><td colspan="4" class="tbl-empty">None overdue ✓</td></tr>';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// AUDIT TRAIL & SETTINGS
+// ═══════════════════════════════════════════════════════════════
+function rAudit(){
+  const s=($('audit-search')||{}).value?.toLowerCase()||'',t=($('audit-type')||{}).value||'';
+  const log=(LS.get('nrt_audit')||[]).filter(e=>(!t||e.type===t)&&(!s||(e.desc||'').toLowerCase().includes(s)||(e.user||'').toLowerCase().includes(s)));
+  $('audit-body').innerHTML=log.length?log.map(e=>`<div class="audit-item"><span class="audit-time">${new Date(e.ts).toLocaleString('en-ZA',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</span><span class="audit-user">${esc(e.user)}</span><span class="audit-action"><strong>${e.type}</strong> — ${esc(e.desc)}</span></div>`).join(''):'<div class="es">No audit entries.</div>';
+}
+function exportAuditCSV(){const log=LS.get('nrt_audit')||[];const csv=[['Timestamp','User','Type','Description','Reference'],...log.map(e=>[e.ts,e.user,e.type,e.desc,e.ref])].map(r=>r.map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='NRT_Audit_Trail.csv';a.click();}
+function loadSettings(){const cfg=LS.get('nrt_settings')||{};$('set-name').value=cfg.companyName||'NexridgeTech IT Solutions';$('set-reg').value=cfg.regNo||'2018/123456/07';$('set-vat').value=cfg.vatNo||'4120123456';$('set-addr').value=cfg.address||'Mpumalanga, South Africa';$('set-vat-rate').value=cfg.vatRate||15;$('set-terms').value=cfg.terms||30;const accs=getCoA();['set-ar-acc','set-ap-acc','set-rev-acc','set-vat-out','set-vat-in','set-bank-acc'].forEach(id=>{const s=$(id);if(!s)return;s.innerHTML=accs.map(a=>`<option value="${a.code}">${a.code} — ${esc(a.name)}</option>`).join('');});if($('set-ar-acc'))$('set-ar-acc').value=cfg.arAcc||'1100';if($('set-ap-acc'))$('set-ap-acc').value=cfg.apAcc||'3000';if($('set-rev-acc'))$('set-rev-acc').value=cfg.revAcc||'6000';if($('set-vat-out'))$('set-vat-out').value=cfg.vatOut||'3100';if($('set-vat-in'))$('set-vat-in').value=cfg.vatIn||'1400';if($('set-bank-acc'))$('set-bank-acc').value=cfg.bankAcc||'1000';rPeriods();}
+function saveSettings(){const cfg={companyName:$('set-name').value,regNo:$('set-reg').value,vatNo:$('set-vat').value,address:$('set-addr').value,vatRate:n($('set-vat-rate').value)||15,terms:n($('set-terms').value)||30,arAcc:($('set-ar-acc')||{}).value||'1100',apAcc:($('set-ap-acc')||{}).value||'3000',revAcc:($('set-rev-acc')||{}).value||'6000',vatOut:($('set-vat-out')||{}).value||'3100',vatIn:($('set-vat-in')||{}).value||'1400',bankAcc:($('set-bank-acc')||{}).value||'1000'};LS.set('nrt_settings',cfg);if($('tco'))$('tco').textContent=cfg.companyName;T.ok('Settings saved.');addAudit('CREATE','Settings updated');}
+function rPeriods(){const periods=[{m:'Jan 2026',from:'2026-01-01',to:'2026-01-31'},{m:'Feb 2026',from:'2026-02-01',to:'2026-02-28'},{m:'Mar 2026',from:'2026-03-01',to:'2026-03-31'},{m:'Apr 2026',from:'2026-04-01',to:'2026-04-30'},{m:'May 2026',from:'2026-05-01',to:'2026-05-31'},{m:'Jun 2026',from:'2026-06-01',to:'2026-06-30'}];const pb=$('period-body');if(!pb)return;pb.innerHTML=periods.map(p=>{const is=calcIS(p.from,p.to);const jCnt=getPostedJournals().filter(j=>j.date>=p.from&&j.date<=p.to).length;return`<tr><td class="mn">${p.m}</td><td class="mn t3">2026</td><td><span class="pill pposted">Open</span></td><td class="mn">${jCnt}</td><td class="amt">${fR(is.rev)}</td><td class="amt">${fR(is.opex+is.cos)}</td><td><button class="btn bdan bxs" onclick="T.warn('Period close locks all entries. Coming soon.')">Close Period</button></td></tr>`;}).join('');}
+function updateSnBadges(){$('snb-inv').textContent=getInvoices().filter(i=>getInvStatus(i)==='overdue').length||'';$('snb-bills').textContent=getBills().filter(b=>getBillStatus(b)==='overdue').length||'';}
+function exportJournalsCSV(){const j=getJournals();const csv=[['Date','Reference','Description','Type','Total DR','Total CR','Status','Posted By'],...j.map(x=>[x.date,x.ref,x.desc,x.type,x.totalDR,x.totalCR,x.status,x.postedBy])].map(r=>r.map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='NRT_Journals.csv';a.click();}
+
+// ═══════════════════════════════════════════════════════════════
+// DEFAULT CHART OF ACCOUNTS (IFRS-Compliant)
+// ═══════════════════════════════════════════════════════════════
+const DEFAULT_COA=[
+  {code:'1000',name:'Cash at Bank — FNB Business',type:'ASSET',sub:'Current',desc:'Primary operating bank account'},
+  {code:'1010',name:'Petty Cash',type:'ASSET',sub:'Current',desc:'On-hand petty cash float'},
+  {code:'1100',name:'Trade Receivables (AR)',type:'ASSET',sub:'Current',desc:'Amounts owed by customers'},
+  {code:'1110',name:'Allowance for Doubtful Debts',type:'CONTRA_ASSET',sub:'Current',desc:'Provision for bad debts'},
+  {code:'1200',name:'Inventory',type:'ASSET',sub:'Current',desc:'Hardware and resaleable goods'},
+  {code:'1300',name:'Prepaid Expenses',type:'ASSET',sub:'Current',desc:'Prepaid insurance, subscriptions'},
+  {code:'1400',name:'VAT Receivable (Input Tax)',type:'ASSET',sub:'Current',desc:'VAT paid on purchases, claimable from SARS'},
+  {code:'1500',name:'Other Current Assets',type:'ASSET',sub:'Current',desc:'Miscellaneous current assets'},
+  {code:'2000',name:'Property, Plant & Equipment',type:'ASSET',sub:'NonCurrent',desc:'Land, buildings, equipment at cost'},
+  {code:'2010',name:'Accum. Depreciation — PPE',type:'CONTRA_ASSET',sub:'NonCurrent',desc:'Accumulated depreciation on PPE'},
+  {code:'2100',name:'Vehicles',type:'ASSET',sub:'NonCurrent',desc:'Motor vehicles at cost'},
+  {code:'2110',name:'Accum. Depreciation — Vehicles',type:'CONTRA_ASSET',sub:'NonCurrent',desc:'Accumulated depreciation on vehicles'},
+  {code:'2200',name:'Computer Equipment',type:'ASSET',sub:'NonCurrent',desc:'Computers, servers, networking at cost'},
+  {code:'2210',name:'Accum. Depreciation — Computers',type:'CONTRA_ASSET',sub:'NonCurrent',desc:'Accumulated depreciation on computers'},
+  {code:'2300',name:'Intangible Assets — Software',type:'ASSET',sub:'NonCurrent',desc:'Purchased software licences, IP'},
+  {code:'2310',name:'Accum. Amortisation — Intangibles',type:'CONTRA_ASSET',sub:'NonCurrent',desc:'Amortisation of intangible assets'},
+  {code:'2500',name:'Long-term Investments',type:'ASSET',sub:'NonCurrent',desc:'Long-term financial investments'},
+  {code:'3000',name:'Trade Payables (AP)',type:'LIABILITY',sub:'Current',desc:'Amounts owed to suppliers'},
+  {code:'3100',name:'VAT Payable (Output Tax)',type:'LIABILITY',sub:'Current',desc:'VAT collected on sales, payable to SARS'},
+  {code:'3200',name:'Accrued Expenses',type:'LIABILITY',sub:'Current',desc:'Expenses incurred but not yet paid'},
+  {code:'3300',name:'Short-term Borrowings',type:'LIABILITY',sub:'Current',desc:'Bank overdrafts and short-term loans'},
+  {code:'3400',name:'PAYE Payable',type:'LIABILITY',sub:'Current',desc:'Employees\' PAYE deducted, payable to SARS'},
+  {code:'3500',name:'UIF Payable',type:'LIABILITY',sub:'Current',desc:'UIF contributions payable'},
+  {code:'3600',name:'Income Tax Payable',type:'LIABILITY',sub:'Current',desc:'Corporate tax payable to SARS'},
+  {code:'3700',name:'Deferred Income',type:'LIABILITY',sub:'Current',desc:'Revenue received in advance'},
+  {code:'4000',name:'Long-term Loans',type:'LIABILITY',sub:'NonCurrent',desc:'Loans repayable after 12 months'},
+  {code:'4100',name:'Deferred Tax Liability',type:'LIABILITY',sub:'NonCurrent',desc:'Deferred tax on temporary differences'},
+  {code:'5000',name:'Ordinary Share Capital',type:'EQUITY',sub:'',desc:'Issued share capital'},
+  {code:'5100',name:'Retained Earnings',type:'EQUITY',sub:'',desc:'Accumulated profits from prior years'},
+  {code:'5200',name:'Drawings / Dividends',type:'EQUITY',sub:'',desc:'Owner drawings or dividends declared'},
+  {code:'6000',name:'Service Revenue',type:'REVENUE',sub:'Operating',desc:'IT consulting and services revenue'},
+  {code:'6100',name:'Product Sales',type:'REVENUE',sub:'Operating',desc:'Hardware and software sales'},
+  {code:'6200',name:'Maintenance & Support Revenue',type:'REVENUE',sub:'Operating',desc:'Ongoing SLA and support contracts'},
+  {code:'6300',name:'Other Income',type:'REVENUE',sub:'Other',desc:'Miscellaneous income'},
+  {code:'6400',name:'Interest Income',type:'REVENUE',sub:'Other',desc:'Interest received on bank accounts and investments'},
+  {code:'7000',name:'Cost of Goods Sold',type:'COS',sub:'COS',desc:'Cost of hardware and software products sold'},
+  {code:'7100',name:'Direct Labour — Project',type:'COS',sub:'COS',desc:'Direct contractor and project costs'},
+  {code:'7200',name:'Subcontractor Costs',type:'COS',sub:'COS',desc:'Third-party subcontractor fees'},
+  {code:'8000',name:'Salaries and Wages',type:'EXPENSE',sub:'Operating',desc:'Employee remuneration'},
+  {code:'8100',name:'Rent and Occupancy',type:'EXPENSE',sub:'Operating',desc:'Office rent, parking, facilities'},
+  {code:'8200',name:'Utilities',type:'EXPENSE',sub:'Operating',desc:'Electricity, water, municipal'},
+  {code:'8300',name:'Marketing and Advertising',type:'EXPENSE',sub:'Operating',desc:'Digital marketing, advertising, PR'},
+  {code:'8400',name:'IT and Software',type:'EXPENSE',sub:'Operating',desc:'Internal IT systems, subscriptions, cloud'},
+  {code:'8500',name:'Professional Services',type:'EXPENSE',sub:'Operating',desc:'Legal, audit, accounting, consulting fees'},
+  {code:'8600',name:'Depreciation and Amortisation',type:'EXPENSE',sub:'Operating',desc:'Non-cash depreciation charge'},
+  {code:'8700',name:'Bank Charges',type:'EXPENSE',sub:'Operating',desc:'Bank fees, transaction charges'},
+  {code:'8800',name:'Travel and Entertainment',type:'EXPENSE',sub:'Operating',desc:'Business travel, accommodation, meals'},
+  {code:'8900',name:'Insurance',type:'EXPENSE',sub:'Operating',desc:'Business insurance premiums'},
+  {code:'9000',name:'Office and Admin',type:'EXPENSE',sub:'Operating',desc:'Stationery, printing, courier'},
+  {code:'9100',name:'Repairs and Maintenance',type:'EXPENSE',sub:'Operating',desc:'Office and equipment maintenance'},
+  {code:'9200',name:'Communication',type:'EXPENSE',sub:'Operating',desc:'Telephone, internet, data'},
+  {code:'9300',name:'Training and Development',type:'EXPENSE',sub:'Operating',desc:'Staff training, conferences, certifications'},
+  {code:'9400',name:'Recruitment',type:'EXPENSE',sub:'Operating',desc:'Recruitment agency fees, job advertising'},
+  {code:'9800',name:'Interest Expense',type:'EXPENSE',sub:'Finance',desc:'Interest on loans and borrowings'},
+  {code:'9850',name:'Finance Charges',type:'EXPENSE',sub:'Finance',desc:'Loan initiation fees and finance charges'},
+  {code:'9900',name:'Income Tax Expense',type:'EXPENSE',sub:'Tax',desc:'Corporate income tax at 28%'},
+];
+
+// ═══════════════════════════════════════════════════════════════
+// DEMO DATA — Realistic NRT Enterprise transactions
+// ═══════════════════════════════════════════════════════════════
+function initDemoData(){
+  if(LS.get('nrt_demo_loaded'))return;
+  // Settings
+  LS.set('nrt_settings',{companyName:'NexridgeTech IT Solutions',regNo:'2018/123456/07',vatNo:'4120123456',address:'12 Tech Park, Nelspruit, Mpumalanga, 1200',vatRate:15,terms:30,arAcc:'1100',apAcc:'3000',revAcc:'6000',vatOut:'3100',vatIn:'1400',bankAcc:'1000'});
+  // Bank Account
+  LS.set('nrt_banks',[{id:'bank1',name:'FNB Business Account',bank:'First National Bank',acc:'62987654321',branch:'250655',type:'Current / Cheque',ledgerAcc:'1000',opening:1200000}]);
+  // Customers
+  LS.set('nrt_custs',[
+    {id:'c1',code:'CUST-001',name:'Mpumalanga Provincial Government',contact:'Thabo Nkosi',email:'t.nkosi@mpg.gov.za',phone:'+27 13 766 1000',vat:'4760123456',terms:30,limit:2000000,addr:'Government Building, Nelspruit',active:true},
+    {id:'c2',code:'CUST-002',name:'Lowveld Hospital Trust',contact:'Dr. Sarah Dlamini',email:'s.dlamini@lhospital.co.za',phone:'+27 13 752 5400',vat:'4120987654',terms:30,limit:500000,addr:'24 Hospital Street, Nelspruit',active:true},
+    {id:'c3',code:'CUST-003',name:'Mbombela Construction Ltd',contact:'Pieter van der Berg',email:'pieter@mbombela.co.za',phone:'+27 13 741 3200',vat:'4350654321',terms:60,limit:300000,addr:'Industrial Zone, Nelspruit',active:true},
+    {id:'c4',code:'CUST-004',name:'Ehlanzeni TVET College',contact:'Principal Zuberi',email:'principal@ehlanzeni.edu.za',phone:'+27 13 745 0043',vat:'4210098765',terms:30,limit:150000,addr:'45 College Road, Nelspruit',active:true},
+  ]);
+  // Suppliers
+  LS.set('nrt_supps',[
+    {id:'s1',code:'SUPP-001',name:'Dell Technologies SA',contact:'Sales Team',email:'sales@dell.co.za',phone:'+27 11 709 3700',vat:'4650012345',terms:30,addr:'Bryanston, Johannesburg',active:true},
+    {id:'s2',code:'SUPP-002',name:'Microsoft South Africa',contact:'Enterprise Sales',email:'enterprise@microsoft.co.za',phone:'+27 11 361 7000',vat:'4090123456',terms:30,addr:'Bryanston, Johannesburg',active:true},
+    {id:'s3',code:'SUPP-003',name:'Vodacom Business',contact:'Account Manager',email:'business@vodacom.co.za',phone:'+27 82 111 0000',vat:'4580654321',terms:30,addr:'Midrand, Johannesburg',active:true},
+    {id:'s4',code:'SUPP-004',name:'Growthpoint Properties',contact:'Leasing Division',email:'leasing@growthpoint.co.za',phone:'+27 11 944 6000',vat:'4350111222',terms:30,addr:'Sandton, Johannesburg',active:true},
+  ]);
+  // OPENING BALANCE JOURNAL (2026-01-01)
+  // Assets: Cash 1,200,000 + AR 450,000 + Computers(net) 220,000-55,000 + Prepaid 25,000 = 1,840,000
+  // Liabilities: AP 180,000 + VAT Payable 25,000 + Loan 500,000 = 705,000
+  // Equity: Share Capital 1,000,000 + Retained Earnings 135,000 = 1,135,000
+  // Total L+E = 1,840,000 ✓
+  const ob={id:'je_ob',date:'2026-01-01',ref:'JNL-OB-2026',desc:'Opening balances — Financial Year 2026',type:'adjustment',
+    lines:[
+      {code:'1000',narr:'Opening cash balance',dr:1200000,cr:0},
+      {code:'1100',narr:'Opening trade receivables',dr:450000,cr:0},
+      {code:'2200',narr:'Computer equipment at cost',dr:220000,cr:0},
+      {code:'2210',narr:'Accumulated depreciation b/f',dr:0,cr:55000},
+      {code:'1300',narr:'Prepaid expenses b/f',dr:25000,cr:0},
+      {code:'3000',narr:'Opening trade payables',dr:0,cr:180000},
+      {code:'3100',narr:'Opening VAT payable',dr:0,cr:25000},
+      {code:'4000',narr:'Long-term loan — FNB',dr:0,cr:500000},
+      {code:'5000',narr:'Issued share capital',dr:0,cr:1000000},
+      {code:'5100',narr:'Retained earnings b/f',dr:0,cr:135000},
+    ],status:'posted',totalDR:1895000,totalCR:1895000,postedBy:'NRT Admin',postedAt:'2026-01-01T08:00:00.000Z'};
+  // Q1 Revenue (Jan-Mar 2026)
+  const q1rev={id:'je_q1rev',date:'2026-03-31',ref:'JNL-REV-Q1',desc:'Q1 2026 revenue accrual — service contracts',type:'general',
+    lines:[{code:'1100',narr:'Trade receivables — Q1 invoices',dr:862500,cr:0},{code:'6000',narr:'Service revenue Q1',dr:0,cr:600000},{code:'6100',narr:'Product sales Q1',dr:0,cr:150000},{code:'3100',narr:'Output VAT on Q1 revenue',dr:0,cr:112500}],
+    status:'posted',totalDR:862500,totalCR:862500,postedBy:'NRT Admin',postedAt:'2026-03-31T17:00:00.000Z'};
+  // Q1 Cash collected
+  const q1cash={id:'je_q1cash',date:'2026-03-31',ref:'JNL-CASH-Q1',desc:'Cash collected from customers Q1',type:'general',
+    lines:[{code:'1000',narr:'Bank receipt Q1',dr:750000,cr:0},{code:'1100',narr:'Trade receivables settled',dr:0,cr:750000}],
+    status:'posted',totalDR:750000,totalCR:750000,postedBy:'NRT Admin',postedAt:'2026-03-31T17:00:00.000Z'};
+  // Q1 Expenses
+  const q1exp={id:'je_q1exp',date:'2026-03-31',ref:'JNL-EXP-Q1',desc:'Q1 operating expenses',type:'general',
+    lines:[
+      {code:'8000',narr:'Salaries Q1 (3 months)',dr:360000,cr:0},
+      {code:'8100',narr:'Office rent Q1',dr:82500,cr:0},
+      {code:'8400',narr:'IT and cloud subscriptions Q1',dr:45000,cr:0},
+      {code:'8300',narr:'Marketing Q1',dr:30000,cr:0},
+      {code:'8700',narr:'Bank charges Q1',dr:7500,cr:0},
+      {code:'9200',narr:'Communication Q1',dr:15000,cr:0},
+      {code:'8900',narr:'Insurance Q1',dr:12000,cr:0},
+      {code:'1400',narr:'Input VAT on expenses',dr:28800,cr:0},
+      {code:'3000',narr:'Accounts payable — expenses',dr:0,cr:480000},
+      {code:'3000',narr:'Accounts payable VAT portion',dr:0,cr:0},
+      {code:'1000',narr:'Payments made Q1',dr:0,cr:580800},
+      {code:'3000',narr:'Payables settled Q1',dr:100000,cr:0},
+    ],status:'posted',totalDR:580800,totalCR:580800,postedBy:'NRT Admin',postedAt:'2026-03-31T17:00:00.000Z'};
+  // Q2 Revenue (Apr-Jun 2026)
+  const q2rev={id:'je_q2rev',date:'2026-06-30',ref:'JNL-REV-Q2',desc:'Q2 2026 revenue — expanded contracts',type:'general',
+    lines:[{code:'1100',narr:'Trade receivables — Q2 invoices',dr:1035000,cr:0},{code:'6000',narr:'Service revenue Q2',dr:0,cr:720000},{code:'6100',narr:'Product sales Q2',dr:0,cr:180000},{code:'3100',narr:'Output VAT on Q2 revenue',dr:0,cr:135000}],
+    status:'posted',totalDR:1035000,totalCR:1035000,postedBy:'NRT Admin',postedAt:'2026-06-30T17:00:00.000Z'};
+  // Q2 Cash collected
+  const q2cash={id:'je_q2cash',date:'2026-06-30',ref:'JNL-CASH-Q2',desc:'Cash collected Q2',type:'general',
+    lines:[{code:'1000',narr:'Bank receipts Q2',dr:950000,cr:0},{code:'1100',narr:'AR settlements Q2',dr:0,cr:950000}],
+    status:'posted',totalDR:950000,totalCR:950000,postedBy:'NRT Admin',postedAt:'2026-06-30T17:00:00.000Z'};
+  // Q2 Expenses
+  const q2exp={id:'je_q2exp',date:'2026-06-30',ref:'JNL-EXP-Q2',desc:'Q2 operating expenses',type:'general',
+    lines:[
+      {code:'8000',narr:'Salaries Q2',dr:390000,cr:0},
+      {code:'8100',narr:'Rent Q2',dr:82500,cr:0},
+      {code:'8400',narr:'IT subscriptions Q2',dr:48000,cr:0},
+      {code:'8300',narr:'Marketing Q2',dr:38000,cr:0},
+      {code:'8700',narr:'Bank charges Q2',dr:8500,cr:0},
+      {code:'9200',narr:'Communication Q2',dr:15000,cr:0},
+      {code:'8500',narr:'Audit fee provision',dr:45000,cr:0},
+      {code:'8900',narr:'Insurance Q2',dr:12000,cr:0},
+      {code:'1400',narr:'Input VAT Q2',dr:36750,cr:0},
+      {code:'1000',narr:'Payments made Q2',dr:0,cr:675750},
+    ],status:'posted',totalDR:675750,totalCR:675750,postedBy:'NRT Admin',postedAt:'2026-06-30T17:00:00.000Z'};
+  // Depreciation YTD
+  const depr={id:'je_depr',date:'2026-06-30',ref:'JNL-DEPR-H1',desc:'Depreciation — 6 months to June 2026',type:'depreciation',
+    lines:[{code:'8600',narr:'Depreciation charge H1 2026',dr:27500,cr:0},{code:'2210',narr:'Acc. depreciation computers',dr:0,cr:27500}],
+    status:'posted',totalDR:27500,totalCR:27500,postedBy:'NRT Admin',postedAt:'2026-06-30T17:00:00.000Z'};
+  // VAT payment to SARS
+  const vatPay={id:'je_vat',date:'2026-04-25',ref:'JNL-VAT-Q1',desc:'VAT201 payment to SARS — Q1 2026',type:'general',
+    lines:[{code:'3100',narr:'VAT payment to SARS',dr:83700,cr:0},{code:'1000',narr:'Bank — SARS payment',dr:0,cr:83700}],
+    status:'posted',totalDR:83700,totalCR:83700,postedBy:'NRT Admin',postedAt:'2026-04-25T10:00:00.000Z'};
+  LS.set('nrt_journals',[ob,q2exp,q2cash,q2rev,depr,vatPay,q1exp,q1cash,q1rev].sort((a,b)=>b.date.localeCompare(a.date)));
+  // Sample Invoices
+  LS.set('nrt_inv',[
+    {id:'inv1',custId:'c1',date:'2026-05-01',num:'INV-2026-0015',dueDate:'2026-05-31',ref:'MPG-PO-7823',lines:[{id:1,desc:'ERP Implementation — Phase 2',accCode:'6000',qty:1,price:380000},{id:2,desc:'Server Infrastructure',accCode:'6100',qty:1,price:120000}],sub:500000,vat:75000,total:575000,vatOn:true,status:'posted',postedBy:'NRT Admin',postedAt:'2026-05-01T09:00:00.000Z'},
+    {id:'inv2',custId:'c2',date:'2026-06-01',num:'INV-2026-0016',dueDate:'2026-06-30',ref:'LHT-2026-004',lines:[{id:1,desc:'Hospital Information System — License',accCode:'6000',qty:1,price:180000}],sub:180000,vat:27000,total:207000,vatOn:true,status:'posted',postedBy:'NRT Admin',postedAt:'2026-06-01T09:00:00.000Z'},
+    {id:'inv3',custId:'c3',date:'2026-05-15',num:'INV-2026-0017',dueDate:'2026-06-15',ref:'MBC-IT-2026',lines:[{id:1,desc:'Network Setup and Cabling',accCode:'6000',qty:1,price:65000}],sub:65000,vat:9750,total:74750,vatOn:true,status:'posted',postedBy:'NRT Admin',postedAt:'2026-05-15T09:00:00.000Z'},
+    {id:'inv4',custId:'c4',date:'2026-06-15',num:'INV-2026-0018',dueDate:'2026-07-15',ref:'ETVET-2026-01',lines:[{id:1,desc:'Computer Lab Setup — 40 Workstations',accCode:'6100',qty:40,price:12500}],sub:500000,vat:75000,total:575000,vatOn:true,status:'posted',postedBy:'NRT Admin',postedAt:'2026-06-15T09:00:00.000Z'},
+  ]);
+  // Sample Bills
+  LS.set('nrt_bills',[
+    {id:'bill1',suppId:'s1',date:'2026-05-10',num:'BILL-2026-0008',dueDate:'2026-06-10',ref:'DELL-INV-78234',lines:[{id:1,desc:'Dell PowerEdge Servers (×2)',accCode:'7000',qty:2,price:125000}],sub:250000,vat:37500,total:287500,vatOn:true,status:'posted',postedBy:'NRT Admin',postedAt:'2026-05-10T09:00:00.000Z'},
+    {id:'bill2',suppId:'s2',date:'2026-06-01',num:'BILL-2026-0009',dueDate:'2026-07-01',ref:'MS-EA-2026',lines:[{id:1,desc:'Microsoft Enterprise Agreement Annual',accCode:'8400',qty:1,price:186000}],sub:186000,vat:27900,total:213900,vatOn:true,status:'posted',postedBy:'NRT Admin',postedAt:'2026-06-01T09:00:00.000Z'},
+    {id:'bill3',suppId:'s3',date:'2026-06-01',num:'BILL-2026-0010',dueDate:'2026-07-01',ref:'VCB-MAY-2026',lines:[{id:1,desc:'Data and Fibre — Monthly',accCode:'9200',qty:1,price:8500}],sub:8500,vat:1275,total:9775,vatOn:true,status:'posted',postedBy:'NRT Admin',postedAt:'2026-06-01T09:00:00.000Z'},
+  ]);
+  // Partial receipts
+  LS.set('nrt_rcpts',[
+    {id:'r1',date:'2026-05-28',refNo:'RCT-001245',custId:'c1',invId:'inv1',bankId:'bank1',amount:287500,method:'EFT / Bank Transfer',ref:'ABSA-EFT-MPG',jeId:'',postedBy:'NRT Admin'},
+    {id:'r2',date:'2026-06-25',refNo:'RCT-001246',custId:'c2',invId:'inv2',bankId:'bank1',amount:207000,method:'EFT / Bank Transfer',ref:'FNB-EFT-LHT',jeId:'',postedBy:'NRT Admin'},
+  ]);
+  // Sample Fixed Assets
+  LS.set('nrt_assets',[
+    {id:'fa1',code:'FA-001',name:'Dell PowerEdge R750 Server',cat:'Computer Equipment',date:'2024-07-01',cost:220000,residual:22000,method:'SL',life:5,ledgerAcc:'2200',status:'active'},
+    {id:'fa2',code:'FA-002',name:'Toyota Hilux 2.8 GD-6',cat:'Vehicles',date:'2023-03-01',cost:480000,residual:80000,method:'SL',life:5,ledgerAcc:'2100',status:'active'},
+    {id:'fa3',code:'FA-003',name:'Office Fit-out — Nelspruit',cat:'Leasehold Improvements',date:'2022-01-01',cost:150000,residual:0,method:'SL',life:5,ledgerAcc:'2000',status:'active'},
+  ]);
+  // Bank transactions
+  LS.set('nrt_btx',[
+    {id:'btx1',bankId:'bank1',date:'2026-05-28',desc:'Receipt — Mpumalanga Provincial Govt',amount:287500,type:'credit',contra:'1100',ref:'MPG-EFT',refNo:'BTX-001',reconciled:true,postedBy:'NRT Admin'},
+    {id:'btx2',bankId:'bank1',date:'2026-06-01',desc:'Payment — Microsoft SA Enterprise',amount:213900,type:'debit',contra:'3000',ref:'MS-EFT',refNo:'BTX-002',reconciled:false,postedBy:'NRT Admin'},
+    {id:'btx3',bankId:'bank1',date:'2026-06-25',desc:'Receipt — Lowveld Hospital Trust',amount:207000,type:'credit',contra:'1100',ref:'LHT-EFT',refNo:'BTX-003',reconciled:true,postedBy:'NRT Admin'},
+  ]);
+  LS.set('nrt_demo_loaded',true);
+  addAudit('CREATE','System initialized with demo data');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&['lu','lp'].includes(document.activeElement?.id))doLogin();if((e.ctrlKey||e.metaKey)&&e.key==='p'){e.preventDefault();window.print();}});
+function init(){
+  initAuth();
+  if(!LS.get('nrt_coa')||LS.get('nrt_coa').length<10){LS.set('nrt_coa',DEFAULT_COA.map(a=>({...a,active:true})));}
+  initDemoData();
+  const cfg=LS.get('nrt_settings')||{};if($('tco'))$('tco').textContent=cfg.companyName||'NexridgeTech IT Solutions';
+  const sess=LS.get('nrt_sess');if(sess)startApp(sess);
+  updateSnBadges();
+}
+init();
+</script>
+</body>
+</html>
