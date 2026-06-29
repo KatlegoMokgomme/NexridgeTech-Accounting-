@@ -16,7 +16,7 @@ npm install
 cp .env.example .env
 
 # 3. Apply schema (only if your DB doesn't already exist)
-psql -U nrt_user -d nrt_finance -f schema.sql
+& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U nrt_user -d nrt_finance -f schema.sql
 
 # 4. Run in development (auto-reload)
 npm run dev
